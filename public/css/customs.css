@@ -1,0 +1,599 @@
+@media (min-width: 992px) and (max-width: 1199px)
+
+{
+
+	.cart_product_img img {
+
+	    width: 100%;
+
+	}
+
+	.login_container {
+
+	    padding: 0 15px;
+
+	}
+
+	a.merchant {
+
+        width: 370px;
+
+    }
+
+    .customer {
+
+	    width: 31.3%;
+
+	}
+
+}
+
+@media (min-width: 768px) and (max-width: 991px)
+
+{
+	.top_head{
+		display: none;
+	}
+	.main_menu ul li {
+
+	    padding: 10px 13px;
+	    border-bottom: 1px solid #ccc;
+
+	}
+
+	button.navbar-toggler i {
+
+	    color: #ffffff;
+
+	}
+
+	.scnd_head nav.navbar.navbar-expand-lg {
+
+	    position: inherit;
+
+	}
+
+	.scnd_head nav.navbar.navbar-expand-lg .col-2 {
+
+	    position: inherit;
+
+	}
+
+	.main_menu {
+
+	    position: absolute;
+
+	    width: 100%;
+
+	    background: #ffffff;
+
+	    left: 0;
+
+	    text-align: center;
+
+	    z-index: 999;
+
+	    top: 160px;
+
+	}
+
+	.main_menu ul li a {
+
+	    color: #000000 !important;
+
+	}
+
+	img.banner_img {
+
+	    height: 260px;
+
+	}
+
+	img.feefo_logo {
+
+	    padding: 10px 0;
+
+	}
+
+	.bnr_content h1 {
+
+	    font-size: 30px;
+
+	    line-height: 1;
+
+	}
+
+	.bnr_content ul {
+
+	    padding: 20px 0;
+
+	}
+
+	.bnr_content ul li a {
+
+	    padding: 10px 15px;
+
+	    font-size: 17px;
+
+	    line-height: 1;
+
+	}
+
+	form.footer_join_form ul input[type="email"] {
+
+	    width: 128px;
+
+	}
+
+	.cart_product_img img {
+
+	    width: 100%;
+
+	}
+
+	.login_container {
+
+	    padding: 0 15px;
+
+	}
+
+	.sell_bnr {
+
+        padding: 50px 0 0;
+
+    }
+
+    .sell_bnr h2 {
+
+        padding: 0;
+
+        font-size: 25px;
+
+    }
+
+    .sell_form_sec {
+
+        padding: 30px 0;
+
+    }
+
+    form.sell_form ul {
+
+        display: block;
+
+        text-align: center;
+
+    }
+
+    form.sell_form ul li {
+
+        padding: 0 0 15px;
+
+    }
+
+    a.merchant {
+
+        width: 80%;
+
+    }
+
+    .chosen-drop {
+
+        z-index: 9;
+
+    }
+
+    .customer {
+
+	    width: 30.5%;
+
+	}
+
+}
+
+@media only screen and (max-width: 767px) 
+
+{
+
+	.top_head{
+		display: none;
+	}
+	.main_menu ul li {
+
+	    padding: 10px 13px;
+	    border-bottom: 1px solid #ccc;
+
+	}
+
+	.top_head ol {
+
+	    text-align: center;
+
+	}
+
+	button.navbar-toggler i {
+
+	    color: #ffffff;
+
+	}
+
+	.scnd_head nav.navbar.navbar-expand-lg {
+
+	    position: inherit;
+
+	}
+
+	.scnd_head nav.navbar.navbar-expand-lg .col-2 {
+
+	    position: inherit;
+
+	}
+
+	.main_menu {
+
+        position: absolute;
+
+        width: 100%;
+
+        background: #ffffff;
+
+        left: 0;
+
+        /*text-align: center;*/
+
+        z-index: 999;
+
+        top: 180px;
+
+    }
+    .fa-navicon:before, .fa-reorder:before, .fa-bars:before{font-size: 35px !important;}
+
+	.main_menu ul li a {
+
+	    color: #000000 !important;
+
+	}
+
+	img.banner_img {
+
+	    height: 260px;
+
+	}
+
+	img.feefo_logo {
+
+	    padding: 10px 0;
+
+	}
+
+	.bnr_content h1 {
+
+	    font-size: 30px;
+
+	    line-height: 1;
+
+	}
+
+	.bnr_content ul {
+
+	    padding: 20px 0;
+
+	}
+
+	.bnr_content ul li a {
+
+	    padding: 10px 15px;
+
+	    font-size: 17px;
+
+	    line-height: 1;
+
+	}
+
+	form.footer_join_form ul input[type="email"] {
+
+	    width: 220px;
+
+	}
+
+	ol.footer_social {
+
+	    float: left;
+
+	    padding-top: 20px;
+
+	}
+
+	.footer_container {
+
+	    padding: 0 15px;
+
+	    text-align: center;
+
+	}
+
+	.scnd_footer h3 {
+
+	    padding: 15px 0;
+
+	}
+
+	.flt_right {
+
+	    float: none;
+
+	}
+
+	.address_col {
+
+	    width: 100%;
+
+	}
+
+	.cart_product_img img {
+
+	    width: 100%;
+
+	}
+
+	.login_container {
+
+	    padding: 0 15px;
+
+	}
+
+	.why .row.choose_box {
+
+        margin: 0;
+
+    }
+
+    .about_testi button.carousel-control-prev {
+
+        left: 36.5%;
+
+    }
+
+    table.card_info thead tr th {
+
+        font-size: 8px;
+
+    }
+
+    table.card_info tbody tr td input {
+
+        padding-left: 3px;
+
+        font-size: 10px;
+
+        height: 30px;
+
+    }
+
+    table.card_info tbody tr td:nth-child(4) input[type="month"] {
+
+        width: 63px;
+
+    }
+
+    .text-md-right {
+
+        width: 100%;
+
+    }
+
+    .sell_bnr {
+
+        padding: 50px 0 0;
+
+    }
+
+    .sell_bnr h2 {
+
+        padding: 0;
+
+        font-size: 25px;
+
+    }
+
+    .sell_form_sec {
+
+        padding: 30px 0;
+
+    }
+
+    form.sell_form ul {
+
+        display: block;
+
+        text-align: center;
+
+    }
+
+    form.sell_form ul li {
+
+        padding: 0 0 15px;
+
+    }
+
+    a.merchant {
+
+        width: 100%;
+
+    }
+
+    .video_sec img {
+
+        width: 250px;
+
+        height: 250px;
+
+    }
+
+    .chosen-drop {
+
+        z-index: 9;
+
+    }
+
+    form#btnListFormSub {
+
+        text-align: center;
+
+    }
+
+    form#btnListFormSub h5 {
+
+        font-size: 16px;
+
+    }
+
+    .redeem_btn ul {
+
+        padding-top: 0;
+
+    }
+
+    form#btnListFormSub input#b1 {
+
+        width: 100%;
+
+        padding: 14px 11px;
+
+        text-align: center;
+
+        margin-bottom: 14px;
+
+    }
+
+    .scnd_head nav.navbar.navbar-expand-lg {
+
+        display: flex;
+
+        align-items: center;
+
+    }
+
+    .scnd_head nav.navbar.navbar-expand-lg button.navbar-toggler {
+
+        padding: 0;
+
+        float: left;
+
+    }
+
+    .scnd_head nav.navbar.navbar-expand-lg .row {
+
+        display: block;
+
+        width: 91%;
+
+        margin: 0;
+
+        float: left;
+
+    }
+
+    .logo_col {
+
+        width: 63%;
+
+        float: left;
+
+        padding-top: 13px;
+
+    }
+
+    .scnd_head nav.navbar.navbar-expand-lg .col-lg-2.col-md-2.col-sm-2.col-12 {
+
+        width: 36%;
+
+        float: left;
+
+    }
+
+    .services {
+
+	    padding: 50px 0;
+
+	}
+
+	.process {
+
+	    padding: 50px 15px 0;
+
+	}
+
+	.process_first {
+
+	    padding: 0 0 50px;
+
+	}
+
+	.steps {
+
+		padding: 0;
+
+	}
+
+	.steps p {
+
+	    padding-bottom: 50px !important;
+
+	}
+
+	.payment_processed.text-center {
+
+	    padding: 50px 0;
+
+	}
+
+	.review {
+
+	    padding: 50px 0;
+
+	}
+
+	.customer {
+
+	    width: 100%;
+
+	    margin: 0 0px 20px !important;
+
+	}
+
+}
+
+@media only screen and (max-width: 320px) 
+
+{
+
+	.top_head{
+		display: none;
+	}
+	.main_menu ul li {
+
+	    padding: 10px 13px;
+	    border-bottom: 1px solid #ccc;
+
+	}
+
+
+}
+
+@media (min-width: 411px) and (max-width: 766px)
+
+{
+
+	.top_head{
+		display: none;
+	}
+	.main_menu ul li {
+
+	    padding: 10px 13px;
+	    border-bottom: 1px solid #ccc;
+
+	}
+
+
+}
