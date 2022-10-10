@@ -28,11 +28,8 @@
                 <!-- End .home-slide-content -->
             </div>
             <!-- End .home-slide -->
-            <div class="home-slide home-slide-2 banner banner-h-100 loaded banner-lg-vw">
-                <video class="w-100" autoplay="" loop muted>
-                    <source src="{{ asset('assets/images/slider/slide-2.mp4') }}" type="video/mp4" />
-                    Your browser does not support HTML5 video.
-                </video>
+            <div class="home-slide home-slide-2 banner banner-h-100 banner-md-vw-small">
+                <img class="slide-bg h-100" src="{{ asset('assets/images/slider/slide-1.jpg') }}" style="background-color: #ccc;" width="1903" height="969" alt="Home Banner" />
                 <div class="banner-layer banner-layer-middle banner-layer-left appear-animate" data-animation-name="fadeIn" data-animation-duration="1200" data-animation-delay="200">
                     <h2 class="font3 font-weight-normal p-l-1 mb-0 ml-0">Summer Trends</h2>
                     <h3 class="mb-0 text-left text-uppercase">sale</h3>
