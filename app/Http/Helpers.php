@@ -218,12 +218,13 @@ class Helper {
             $cart  = Session::get('carts');
 
             $total = 0;
-
+            if(count($cart) > 0){
             foreach($cart as $list)
             {
                 $list->price = 1 * $list->value;
                 $total += $list->price;
             }
+        }
 
             $data['cart_count'] = count($cart);
             $data['cart'] = $cart;
