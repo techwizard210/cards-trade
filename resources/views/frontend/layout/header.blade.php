@@ -83,6 +83,7 @@
                         </div>
 
                         <div class="products">
+                            @if(!empty(Helper::getCart()['cart']))
                             @forelse (Helper::getCart()['cart'] as $list)
                             <div class="product product-cart">
                                 <div class="product-detail">
@@ -108,6 +109,7 @@
                             </div>
                             @empty
                             @endforelse
+                            @endif
 
                         </div>
 
