@@ -2,923 +2,291 @@
 
 @section('content')
 
-<div class="single_product_archive">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-3 col-md-3 col-sm-3 col-12">
-                <div class="cat_box">
-                    <h3>Top Products</h3>
-                    <a href="#" class="promo_link">Gift Cards</a>
-                    <ul>
-                        <li><a href="#"><span class="span_icons">🏠</span> All Gift Cards</a></li>
-                        <li><a href="#"><span class="span_icons">🛒</span> Ecommerce</a></li>
-                        <li><a href="#"><span class="span_icons">🛍️</span> Retail</a></li>
-                        <li><a href="#"><span class="span_icons">👕</span> Apparel</a></li>
-                        <li><a href="#"><span class="span_icons">💙</span> Health & Beauty</a></li>
-                        <li><a href="#"><span class="span_icons">🏠</span> Home</a></li>
-                        <li><a href="#"><span class="span_icons">🔌</span> Electronics</a></li>
-                        <li><a href="#"><span class="span_icons">🐱</span> Pets</a></li>
-                        <li><a href="#"><span class="span_icons">🥘</span> Food</a></li>
-                        <li><a href="#"><span class="span_icons">🍽️</span> Restaurants</a></li>
-                        <li><a href="#"><span class="span_icons">🍅</span> Groceries</a></li>
-                        <li><a href="#"><span class="span_icons">📺</span> Streaming</a></li>
-                        <li><a href="#"><span class="span_icons">✈️</span> Travel</a></li>
-                        <li><a href="#"><span class="span_icons">🎵</span> Music</a></li>
-                        <li><a href="#"><span class="span_icons">🎭</span> Entertainment</a></li>
-                        <li><a href="#"><span class="span_icons">😄</span> Experiences</a></li>
-                        <li><a href="#"><span class="span_icons">🎁</span> Gifts</a></li>
-                        <li><a href="#"><span class="span_icons">☎️</span> VoIP</a></li>
-                        <!-- <li><a href="#"><span class="span_icons">➕</span> Other Products</a></li> -->
-                    </ul>
-                    <!-- <a href="#" class="promo_link">Refills</a>
-                    <ul>
-                        <li><a href="#"><span class="span_icons">📱</span> Prepaid phones</a></li>
-                        <li><a href="#"><span class="span_icons">📡</span> Data</a></li>
-                        <li><a href="#"><span class="span_icons">📶</span> Phone Codes</a></li>
-                        <li><a href="#"><span class="span_icons">🗃️</span> Other bundles</a></li>
-                    </ul>
-                    <a href="#" class="promo_link">Crypto Utilities</a>
-                    <ul>
-                        <li><a href="#"><span class="span_icons">🔑</span>Bitcoin</a></li>
-                    </ul> -->
+<div class="container">
+    <nav aria-label="breadcrumb" class="breadcrumb-nav">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="demo42.html"><i class="icon-home"></i></a></li>
+            <li class="breadcrumb-item active" aria-current="page">SHOP</li>
+        </ol>
+    </nav>
+    <div class="row">
+        <div class="col-lg-9 main-content">
+            <nav class="toolbox sticky-header" data-sticky-options="{'mobile': true}">
+                <div class="toolbox-left">
+                    <a href="#" class="sidebar-toggle">
+                        <svg data-name="Layer 3" id="Layer_3" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+                            <line x1="15" x2="26" y1="9" y2="9" class="cls-1"></line>
+                            <line x1="6" x2="9" y1="9" y2="9" class="cls-1"></line>
+                            <line x1="23" x2="26" y1="16" y2="16" class="cls-1"></line>
+                            <line x1="6" x2="17" y1="16" y2="16" class="cls-1"></line>
+                            <line x1="17" x2="26" y1="23" y2="23" class="cls-1"></line>
+                            <line x1="6" x2="11" y1="23" y2="23" class="cls-1"></line>
+                            <path
+                                d="M14.5,8.92A2.6,2.6,0,0,1,12,11.5,2.6,2.6,0,0,1,9.5,8.92a2.5,2.5,0,0,1,5,0Z"
+                                class="cls-2"></path>
+                            <path d="M22.5,15.92a2.5,2.5,0,1,1-5,0,2.5,2.5,0,0,1,5,0Z" class="cls-2"></path>
+                            <path d="M21,16a1,1,0,1,1-2,0,1,1,0,0,1,2,0Z" class="cls-3"></path>
+                            <path
+                                d="M16.5,22.92A2.6,2.6,0,0,1,14,25.5a2.6,2.6,0,0,1-2.5-2.58,2.5,2.5,0,0,1,5,0Z"
+                                class="cls-2"></path>
+                        </svg>
+                        <span>Filter</span>
+                    </a>
+
+                    <div class="toolbox-item toolbox-sort">
+                        <label class="text-uppercase">{{ __('label.sort_by') }}:</label>
+                        <div class="select-custom">
+                            <select name="orderby" class="form-control sort-selector">
+                                <option value="" selected="selected">{{ __('label.default') }}</option>
+                                {{-- <option value="popularity">Sort by popularity</option>
+                                <option value="rating">Sort by average rating</option> --}}
+                                <option value="new" @if(!empty($_GET['sortBy']) && $_GET['sortBy']=='new') selected @endif>{{ __('label.new') }}</option>
+                                <option value="title" @if(!empty($_GET['sortBy']) && $_GET['sortBy']=='title') selected @endif>{{ __('label.name') }} (A-Z)</option>
+                                <option value="price" @if(!empty($_GET['sortBy']) && $_GET['sortBy']=='price') selected @endif>{{ __('label.price') }}: {{ __('label.ascending') }}</option>
+                                <option value="price-desc" @if(!empty($_GET['sortBy']) && $_GET['sortBy']=='price-desc') selected @endif>{{ __('label.price') }}: {{ __('label.descending') }}</option>
+                            </select>
+                        </div>
+                        <!-- End .select-custom -->
+
+
+                    </div>
+                    <!-- End .toolbox-item -->
                 </div>
+                <!-- End .toolbox-left -->
+
+                <div class="toolbox-right">
+
+                    <div class="toolbox-item toolbox-show">
+                        <label class="text-uppercase">{{ __('label.show') }}:</label>
+                        <div class="select-custom">
+                            <select class="form-control" id="page-size-selector">
+                                <option value="12" @if(!empty($_GET['show']) && $_GET['show']=='12') selected @endif>12</option>
+                                <option value="24" @if(!empty($_GET['show']) && $_GET['show']=='24') selected @endif>24</option>
+                                <option value="36" @if(!empty($_GET['show']) && $_GET['show']=='36') selected @endif>36</option>
+                            </select>
+                        </div>
+                        <!-- End .select-custom -->
+                    </div>
+                    <!-- End .toolbox-item -->
+
+                    <div class="toolbox-item layout-modes">
+                        <a href="javascript:;" class="layout-btn btn-grid active" title="{{ __('label.grid') }}">
+                            <i class="icon-mode-grid"></i>
+                        </a>
+                        <a href="javascript:;" class="layout-btn btn-list" title="{{ __('label.list') }}">
+                            <i class="icon-mode-list"></i>
+                        </a>
+                    </div>
+                    <!-- End .layout-modes -->
+                </div>
+                <!-- End .toolbox-right -->
+            </nav>
+
+            <div class="row" style="display: none;" id="div-list">
+                @forelse($products as $product)
+                <div class="col-sm-12 col-6 product-default left-details product-list mb-2">
+                    @include('user.components.product-div-list')
+                </div>
+                @empty
+                <h4 class="text-products" style="margin:60px auto;">{{ __('message.home.no_product') }}</h4>
+                @endforelse
+
             </div>
-            <div class="col-lg-9 col-md-9 col-sm-9 col-12">
-                <div class="row" style="margin-top:20px;margin-bottom:20px;margin-left:5px;">
-                    <div class="col-lg-12">
-                        <h4>Gift cards, the easiest way to spend your crypto</h4>
-                        <p>Ready to use online or in-store. Buy gift cards with Bitcoin, Ether, Tether, and more.</p>
-                    </div>
-                </div>
-                <div class="home-demo">
-                  <div class="owl-carousel owl-theme stage-margin" data-owl-options="{'items': 4, 'margin': 10, 'loop': false, 'nav': true, 'dots': false, 'stagePadding': 40}">
-                    <div>
-                      <img src="images/top_slider_1/1.png" alt="" />
-                    </div>
-                    <div class="item caro_item">
-                      <img src="images/top_slider_1/2.png" alt="" />
-                    </div>
-                    <div class="item caro_item">
-                      <img src="images/top_slider_1/3.png" alt="" />
-                    </div>
-                    <div class="item caro_item">
-                      <img src="images/top_slider_1/4.png" alt="" />
-                    </div>
-                    <div class="item caro_item">
-                      <img src="images/top_slider_1/5.png" alt="" />
-                    </div>
-                    <div class="item caro_item">
-                      <img src="images/top_slider_1/6.png" alt="" />
-                    </div>
-                    <div class="item caro_item">
-                      <img src="images/top_slider_1/7.png" alt="" />
-                    </div>
-                    <div class="item caro_item">
-                      <img src="images/top_slider_1/8.png" alt="" />
-                    </div>
-                  </div>
-                </div>
+            <div class="row" id="div-grid">
 
-                <!-- carousal 2 -->
+                @forelse($products as $product)
+                <div class="col-6 col-sm-4">
+                    @include('user.components.product-div')
+                </div>
+                @empty
+                <h4 class="text-products" style="margin:60px auto;">{{ __('message.home.no_product') }}</h4>
+                @endforelse
+            </div>
 
-                <div class="row" style="margin-top:20px;margin-bottom:20px;margin-left:5px;">
-                    <div class="col-lg-12">
-                        <h4>Pay your credit card bills</h4>
-                        <p>Don’t see your card immediately? We have thousands of credit cards to choose from, try the search bar for your credit card</p>
+            @if(count($products)>0)
+            <nav class="toolbox toolbox-pagination">
+                <div class="toolbox-item toolbox-show">
+                    <label class="text-uppercase">{{ __('label.show') }}:</label>
+                    <div class="select-custom">
+                        <select name="count" class="form-control" id="page-size-selector-bt">
+                            <option value="12" @if(!empty($_GET['show']) && $_GET['show']=='12') selected @endif>12</option>
+                            <option value="24" @if(!empty($_GET['show']) && $_GET['show']=='24') selected @endif>24</option>
+                            <option value="36" @if(!empty($_GET['show']) && $_GET['show']=='36') selected @endif>36</option>
+                        </select>
                     </div>
                 </div>
-                <div class="home-demo">
-                  <div class="owl-carousel new_carousal1 owl-theme" data-owl-options="{'items': 4, 'margin': 10, 'loop': false, 'nav': true, 'dots': false, 'stagePadding': 40}">
-                    <div class="item caro_item1">
-                      <img src="images/top_slider_2/1.png" alt="" />
-                    </div>
-                    <div class="item caro_item1">
-                      <img src="images/top_slider_2/2.png" alt="" />
-                    </div>
-                    <div class="item caro_item1">
-                      <img src="images/top_slider_2/3.png" alt="" />
-                    </div>
-                    <div class="item caro_item1">
-                      <img src="images/top_slider_2/4.png" alt="" />
-                    </div>
-                    <div class="item caro_item1">
-                      <img src="images/top_slider_2/5.png" alt="" />
-                    </div>
-                    <div class="item caro_item1">
-                      <img src="images/top_slider_2/6.png" alt="" />
-                    </div>
-                    <div class="item caro_item1">
-                      <img src="images/top_slider_2/7.png" alt="" />
-                    </div>
-                    <div class="item caro_item1">
-                      <img src="images/top_slider_2/8.png" alt="" />
-                    </div>
-                    <div class="item caro_item1">
-                      <img src="images/top_slider_2/9.png" alt="" />
-                    </div>
-                    <div class="item caro_item1">
-                      <img src="images/top_slider_2/10.png" alt="" />
-                    </div>
-                    <div class="item caro_item1">
-                      <img src="images/top_slider_2/11.png" alt="" />
-                    </div>
-                  </div>
-                </div>
-                <!-- carousal 3 -->
+                {{ $products->appends($_GET)->links() }}
+            </nav>
+            @endif
 
-                <div class="row" style="margin-top:20px;margin-bottom:20px;margin-left:5px;" >
-                    <div class="col-lg-12">
-                        <h4>Hungry?</h4>
-                        <p>Get your groceries or food delivered</p>
-                    </div>
-                </div>
-                <div class="home-demo">
-                  <div class="owl-carousel new_carousal2 owl-theme"  data-owl-options="{'items': 4, 'margin': 10, 'loop': false, 'nav': true, 'dots': false, 'stagePadding': 40}">
-                    <div class="item caro_item2">
-                      <img src="images/top_slider_3/1.png" alt="" />
-                    </div>
-                    <div class="item caro_item2">
-                      <img src="images/top_slider_3/2.png" alt="" />
-                    </div>
-                    <div class="item caro_item2">
-                      <img src="images/top_slider_3/3.png" alt="" />
-                    </div>
-                    <div class="item caro_item2">
-                      <img src="images/top_slider_3/4.png" alt="" />
-                    </div>
-                    <div class="item caro_item2">
-                      <img src="images/top_slider_3/5.png" alt="" />
-                    </div>
-                    <div class="item caro_item2">
-                      <img src="images/top_slider_3/6.png" alt="" />
-                    </div>
-                    <div class="item caro_item2">
-                      <img src="images/top_slider_3/7.png" alt="" />
-                    </div>
-                    <div class="item caro_item2">
-                      <img src="images/top_slider_3/8.png" alt="" />
-                    </div>
-                    <div class="item caro_item2">
-                      <img src="images/top_slider_3/9.png" alt="" />
-                    </div>
-                    <div class="item caro_item2">
-                      <img src="images/top_slider_3/10.png" alt="" />
-                    </div>
-                    <div class="item caro_item2">
-                      <img src="images/top_slider_3/11.png" alt="" />
-                    </div>
-                    <div class="item caro_item2">
-                      <img src="images/top_slider_3/12.png" alt="" />
-                    </div>
-                    <div class="item caro_item2">
-                      <img src="images/top_slider_3/13.png" alt="" />
-                    </div>
-                    <div class="item caro_item2">
-                      <img src="images/top_slider_3/14.png" alt="" />
-                    </div>
-                    <div class="item caro_item2">
-                      <img src="images/top_slider_3/15.png" alt="" />
-                    </div>
-                    <div class="item caro_item2">
-                      <img src="images/top_slider_3/16.png" alt="" />
-                    </div>
-                    <div class="item caro_item2">
-                      <img src="images/top_slider_3/17.png" alt="" />
-                    </div>
-                    <div class="item caro_item2">
-                      <img src="images/top_slider_3/18.png" alt="" />
-                    </div>
-                    <div class="item caro_item2">
-                      <img src="images/top_slider_3/19.png" alt="" />
-                    </div>
-                    <div class="item caro_item2">
-                      <img src="images/top_slider_3/20.png" alt="" />
-                    </div>
-                  </div>
-                </div>
-                <!-- carousal 3 -->
+        </div>
+        <!-- End .col-lg-9 -->
 
-                <div class="row" style="margin-top:20px;margin-bottom:20px;margin-left:5px;">
-                    <div class="col-lg-12">
-                        <h4>For Your Travel Needs</h4>
-                        <p>Be back never.</p>
-                    </div>
-                </div>
-                <div class="home-demo">
-                  <div class="owl-carousel new_carousal3 owl-theme"  data-owl-options="{'items': 4, 'margin': 10, 'loop': false, 'nav': true, 'dots': false, 'stagePadding': 40}">
-                    <div class="item caro_item3">
-                      <img src="images/top_slider_4/1.png" alt="" />
-                    </div>
-                    <div class="item caro_item3">
-                      <img src="images/top_slider_4/2.png" alt="" />
-                    </div>
-                    <div class="item caro_item3">
-                      <img src="images/top_slider_4/3.png" alt="" />
-                    </div>
-                    <div class="item caro_item3">
-                      <img src="images/top_slider_4/4.png" alt="" />
-                    </div>
-                    <div class="item caro_item3">
-                      <img src="images/top_slider_4/5.png" alt="" />
-                    </div>
-                    <div class="item caro_item3">
-                      <img src="images/top_slider_4/6.png" alt="" />
-                    </div>
-                    <div class="item caro_item3">
-                      <img src="images/top_slider_4/7.png" alt="" />
-                    </div>
-                    <div class="item caro_item3">
-                      <img src="images/top_slider_4/8.png" alt="" />
-                    </div>
-                    <div class="item caro_item3">
-                      <img src="images/top_slider_4/9.png" alt="" />
-                    </div>
-                    <div class="item caro_item3">
-                      <img src="images/top_slider_4/10.png" alt="" />
-                    </div>
-                    <div class="item caro_item3">
-                      <img src="images/top_slider_4/11.png" alt="" />
-                    </div>
-                    <div class="item caro_item3">
-                      <img src="images/top_slider_4/12.png" alt="" />
-                    </div>
-                    <div class="item caro_item3">
-                      <img src="images/top_slider_4/12.png" alt="" />
-                    </div>
-                    <div class="item caro_item3">
-                      <img src="images/top_slider_4/14.png" alt="" />
-                    </div>
-                    <div class="item caro_item3">
-                      <img src="images/top_slider_4/15.png" alt="" />
-                    </div>
-                    <div class="item caro_item3">
-                      <img src="images/top_slider_4/16.png" alt="" />
-                    </div>
-                    <div class="item caro_item3">
-                      <img src="images/top_slider_4/17.png" alt="" />
-                    </div>
-                    <div class="item caro_item3">
-                      <img src="images/top_slider_4/18.png" alt="" />
-                    </div>
-                    <div class="item caro_item3">
-                      <img src="images/top_slider_4/19.png" alt="" />
-                    </div>
-                    <div class="item caro_item3">
-                      <img src="images/top_slider_4/20.png" alt="" />
-                    </div>
-                  </div>
-                </div>
-                <!-- carousal 3 -->
+        <div class="sidebar-overlay"></div>
+        <aside class="sidebar-shop col-lg-3 order-lg-first mobile-sidebar">
+            <div class="sidebar-wrapper">
+                <div class="widget">
+                    <h3 class="widget-title">
+                        <a data-toggle="collapse" href="#widget-body-2" role="button" aria-expanded="true" aria-controls="widget-body-2">{{ __('title.categories') }}</a>
+                    </h3>
+                    <div class="collapse show" id="widget-body-2">
+                        <div class="widget-body">
+                            <ul class="cat-list">
+                                <li class="{{ empty($_GET['cat'])||$_GET['cat']=='all'?'active':'' }}"><a href="?cat=all">{{ __('label.all_categories') }}</a><span class="products-count"></span></li>
 
-                <div class="row" style="margin-top:20px;margin-bottom:20px;margin-left:5px;">
-                    <div class="col-lg-12">
-                        <h4>Ecommerce Picks</h4>
-                        <p>Need new clothes, books or a computer? We got you!</p>
+                            </ul>
+                        </div>
+                        <!-- End .widget-body -->
                     </div>
+                    <!-- End .collapse -->
                 </div>
-                <div class="home-demo">
-                  <div class="owl-carousel new_carousal4 owl-theme"  data-owl-options="{'items': 4, 'margin': 10, 'loop': false, 'nav': true, 'dots': false, 'stagePadding': 40}">
-                    <div class="item caro_item4">
-                      <img src="images/top_slider_5/1.png" alt="" />
-                    </div>
-                    <div class="item caro_item4">
-                      <img src="images/top_slider_5/2.png" alt="" />
-                    </div>
-                    <div class="item caro_item4">
-                      <img src="images/top_slider_5/3.png" alt="" />
-                    </div>
-                    <div class="item caro_item4">
-                      <img src="images/top_slider_5/4.png" alt="" />
-                    </div>
-                    <div class="item caro_item4">
-                      <img src="images/top_slider_5/5.png" alt="" />
-                    </div>
-                    <div class="item caro_item4">
-                      <img src="images/top_slider_5/6.png" alt="" />
-                    </div>
-                    <div class="item caro_item4">
-                      <img src="images/top_slider_5/7.png" alt="" />
-                    </div>
-                    <div class="item caro_item4">
-                      <img src="images/top_slider_5/8.png" alt="" />
-                    </div>
-                    <div class="item caro_item4">
-                      <img src="images/top_slider_5/9.png" alt="" />
-                    </div>
-                    <div class="item caro_item4">
-                      <img src="images/top_slider_5/10.png" alt="" />
-                    </div>
-                    <div class="item caro_item4">
-                      <img src="images/top_slider_5/11.png" alt="" />
-                    </div>
-                    <div class="item caro_item4">
-                      <img src="images/top_slider_5/12.png" alt="" />
-                    </div>
-                    <div class="item caro_item4">
-                      <img src="images/top_slider_5/13.png" alt="" />
-                    </div>
-                    <div class="item caro_item4">
-                      <img src="images/top_slider_5/14.png" alt="" />
-                    </div>
-                    <div class="item caro_item4">
-                      <img src="images/top_slider_5/15.png" alt="" />
-                    </div>
-                    <div class="item caro_item4">
-                      <img src="images/top_slider_5/16.png" alt="" />
-                    </div>
-                    <div class="item caro_item4">
-                      <img src="images/top_slider_5/17.png" alt="" />
-                    </div>
-                    <div class="item caro_item4">
-                      <img src="images/top_slider_5/18.png" alt="" />
-                    </div>
-                    <div class="item caro_item4">
-                      <img src="images/top_slider_5/19.png" alt="" />
-                    </div>
-                    <div class="item caro_item4">
-                      <img src="images/top_slider_5/20.png" alt="" />
-                    </div>
-                  </div>
-                </div>
-                <!-- carousal 3 -->
+                <!-- End .widget -->
 
-                <div class="row" style="margin-top:20px;margin-bottom:20px;margin-left:5px;">
-                    <div class="col-lg-12">
-                        <h4>Bitcoin cashback!</h4>
-                        <p>Buy gift cards, stack sats. A BTC reward is credited to your balance for each purchase.</p>
-                    </div>
-                </div>
-                <div class="home-demo">
-                  <div class="owl-carousel new_carousal5 owl-theme"  data-owl-options="{'items': 4, 'margin': 10, 'loop': false, 'nav': true, 'dots': false, 'stagePadding': 40}">
-                    <div class="item caro_item5">
-                      <img src="images/top_slider_6/1.png" alt="" />
-                    </div>
-                    <div class="item caro_item5">
-                      <img src="images/top_slider_6/2.png" alt="" />
-                    </div>
-                    <div class="item caro_item5">
-                      <img src="images/top_slider_6/3.png" alt="" />
-                    </div>
-                    <div class="item caro_item5">
-                      <img src="images/top_slider_6/4.png" alt="" />
-                    </div>
-                    <div class="item caro_item5">
-                      <img src="images/top_slider_6/5.png" alt="" />
-                    </div>
-                    <div class="item caro_item5">
-                      <img src="images/top_slider_6/6.png" alt="" />
-                    </div>
-                    <div class="item caro_item5">
-                      <img src="images/top_slider_6/7.png" alt="" />
-                    </div>
-                    <div class="item caro_item5">
-                      <img src="images/top_slider_6/8.png" alt="" />
-                    </div>
-                    <div class="item caro_item5">
-                      <img src="images/top_slider_6/9.png" alt="" />
-                    </div>
-                    <div class="item caro_item5">
-                      <img src="images/top_slider_6/10.png" alt="" />
-                    </div>
-                    <div class="item caro_item5">
-                      <img src="images/top_slider_6/11.png" alt="" />
-                    </div>
-                    <div class="item caro_item5">
-                      <img src="images/top_slider_6/12.png" alt="" />
-                    </div>
-                    <div class="item caro_item5">
-                      <img src="images/top_slider_6/13.png" alt="" />
-                    </div>
-                    <div class="item caro_item5">
-                      <img src="images/top_slider_6/14.png" alt="" />
-                    </div>
-                    <div class="item caro_item5">
-                      <img src="images/top_slider_6/15.png" alt="" />
-                    </div>
-                    <div class="item caro_item5">
-                      <img src="images/top_slider_6/16.png" alt="" />
-                    </div>
-                    <div class="item caro_item5">
-                      <img src="images/top_slider_6/17.png" alt="" />
-                    </div>
-                    <div class="item caro_item5">
-                      <img src="images/top_slider_6/18.png" alt="" />
-                    </div>
-                    <div class="item caro_item5">
-                      <img src="images/top_slider_6/19.png" alt="" />
-                    </div>
-                    <div class="item caro_item5">
-                      <img src="images/top_slider_6/20.png" alt="" />
-                    </div>
-                  </div>
-                </div>
-                <!-- carousal 3 -->
-
-                <div class="row" style="margin-top:20px;margin-bottom:20px;margin-left:5px;">
-                    <div class="col-lg-12">
-                        <h4>Fashion, online and in store</h4>
-                        <p>Don’t see your favorite product immediately? We have thousands of brands, try the search bar for your local brand or store</p>
-                    </div>
-                </div>
-                <div class="home-demo">
-                  <div class="owl-carousel new_carousal6 owl-theme"  data-owl-options="{'items': 4, 'margin': 10, 'loop': false, 'nav': true, 'dots': false, 'stagePadding': 40}">
-                    <div class="item caro_item6">
-                      <img src="images/top_slider_7/1.png" alt="" />
-                    </div>
-                    <div class="item caro_item6">
-                      <img src="images/top_slider_7/2.png" alt="" />
-                    </div>
-                    <div class="item caro_item6">
-                      <img src="images/top_slider_7/3.png" alt="" />
-                    </div>
-                    <div class="item caro_item6">
-                      <img src="images/top_slider_7/4.png" alt="" />
-                    </div>
-                    <div class="item caro_item6">
-                      <img src="images/top_slider_7/5.png" alt="" />
-                    </div>
-                    <div class="item caro_item6">
-                      <img src="images/top_slider_7/6.png" alt="" />
-                    </div>
-                    <div class="item caro_item6">
-                      <img src="images/top_slider_7/7.png" alt="" />
-                    </div>
-                    <div class="item caro_item6">
-                      <img src="images/top_slider_7/8.png" alt="" />
-                    </div>
-                    <div class="item caro_item6">
-                      <img src="images/top_slider_7/9.png" alt="" />
-                    </div>
-                    <div class="item caro_item6">
-                      <img src="images/top_slider_7/10.png" alt="" />
-                    </div>
-                    <div class="item caro_item6">
-                      <img src="images/top_slider_7/11.png" alt="" />
-                    </div>
-                    <div class="item caro_item6">
-                      <img src="images/top_slider_7/12.png" alt="" />
-                    </div>
-                    <div class="item caro_item6">
-                      <img src="images/top_slider_7/13.png" alt="" />
-                    </div>
-                    <div class="item caro_item6">
-                      <img src="images/top_slider_7/14.png" alt="" />
-                    </div>
-                    <div class="item caro_item6">
-                      <img src="images/top_slider_7/15.png" alt="" />
-                    </div>
-                    <div class="item caro_item6">
-                      <img src="images/top_slider_7/16.png" alt="" />
-                    </div>
-                    <div class="item caro_item6">
-                      <img src="images/top_slider_7/17.png" alt="" />
-                    </div>
-                    <div class="item caro_item6">
-                      <img src="images/top_slider_7/18.png" alt="" />
-                    </div>
-                    <div class="item caro_item6">
-                      <img src="images/top_slider_7/19.png" alt="" />
-                    </div>
-                    <div class="item caro_item6">
-                      <img src="images/top_slider_7/20.png" alt="" />
-                    </div>
-                  </div>
-                </div>
-                <!-- carousal 3 -->
-
-                <div class="row" style="margin-top:20px;margin-bottom:20px;margin-left:5px;">
-                    <div class="col-lg-12">
-                        <h4>Your online addictions</h4>
-                    </div>
-                </div>
-                <div class="home-demo">
-                  <div class="owl-carousel new_carousal7 owl-theme"  data-owl-options="{'items': 4, 'margin': 10, 'loop': false, 'nav': true, 'dots': false, 'stagePadding': 40}">
-                    <div class="item caro_item7">
-                      <img src="images/top_slider_8/1.png" alt="" />
-                    </div>
-                    <div class="item caro_item7">
-                      <img src="images/top_slider_8/2.png" alt="" />
-                    </div>
-                    <div class="item caro_item7">
-                      <img src="images/top_slider_8/3.png" alt="" />
-                    </div>
-                    <div class="item caro_item7">
-                      <img src="images/top_slider_8/4.png" alt="" />
-                    </div>
-                    <div class="item caro_item7">
-                      <img src="images/top_slider_8/5.png" alt="" />
-                    </div>
-                    <div class="item caro_item7">
-                      <img src="images/top_slider_8/6.png" alt="" />
-                    </div>
-                  </div>
-                </div>
-                <!-- carousal 3 -->
-                <div class="row" style="margin-top:20px;margin-bottom:20px;margin-left:5px;">
-                    <div class="col-lg-12">
-                        <h4>Home improvement</h4>
-                    </div>
-                </div>
-                <div class="home-demo">
-                  <div class="owl-carousel new_carousal8 owl-theme" data-owl-options="{'items': 4, 'margin': 10, 'loop': false, 'nav': true, 'dots': false, 'stagePadding': 40}">
-                    <div class="item caro_item8">
-                      <img src="images/top_slider_9/1.png" alt="" />
-                    </div>
-                    <div class="item caro_item8">
-                      <img src="images/top_slider_9/2.png" alt="" />
-                    </div>
-                    <div class="item caro_item8">
-                      <img src="images/top_slider_9/3.png" alt="" />
-                    </div>
-                    <div class="item caro_item8">
-                      <img src="images/top_slider_9/4.png" alt="" />
-                    </div>
-                    <div class="item caro_item8">
-                      <img src="images/top_slider_9/5.png" alt="" />
-                    </div>
-                    <div class="item caro_item8">
-                      <img src="images/top_slider_9/6.png" alt="" />
-                    </div>
-                    <div class="item caro_item8">
-                      <img src="images/top_slider_9/7.png" alt="" />
-                    </div>
-                    <div class="item caro_item8">
-                      <img src="images/top_slider_9/8.png" alt="" />
-                    </div>
-                    <div class="item caro_item8">
-                      <img src="images/top_slider_9/9.png" alt="" />
-                    </div>
-                    <div class="item caro_item8">
-                      <img src="images/top_slider_9/10.png" alt="" />
-                    </div>
-                    <div class="item caro_item8">
-                      <img src="images/top_slider_9/11.png" alt="" />
-                    </div>
-                  </div>
-                </div>
-                <!-- carousal 3 -->
-                <div class="single_product_archive">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-lg-12 col-md-12 col-sm-12 col-12">
-                                <div class="product_archive_detail">
-                                    <div class="row">
-                                        <div class="col-lg-6 col-md-6 col-sm-6 col-12">
-                                            <h2>Top Products</h2>
-                                        </div>
-                                        <div class="col-lg-6 col-md-6 col-sm-6 col-12">
-                                            <form class="register_form signle_product_search">
-                                                <input type="text" name="" placeholder="Search for brands or products" />
-                                                <i class="fa fa-search"></i>
-                                            </form>
-                                        </div>
-                                        <div class="col-lg-4 col-sm-6 col-12">
-                                            <div class="product_archive_single">
-                                                <a href="javascript:void(0)">
-                                                    <img src="images/product_img.png" alt="" />
-                                                    <h3>eGifter Choice Card</h3>
-                                                    <h4 class="pricing">$<span>25</span></h4>
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-4 col-sm-6 col-12">
-                                            <div class="product_archive_single">
-                                                <a href="javascript:void(0)">
-                                                    <img src="images/products/product2.png" alt="" />
-                                                    <h3>eGifter Gaming Choice Card</h3>
-                                                    <h4 class="pricing">$<span>25</span></h4>
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-4 col-sm-6 col-12">
-                                            <div class="product_archive_single">
-                                                <a href="javascript:void(0)">
-                                                    <img src="images/products/product3.png" alt="" />
-                                                    <h3>eGifter Streaming Choice Card</h3>
-                                                    <h4 class="pricing">$<span>25</span></h4>
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-4 col-sm-6 col-12">
-                                            <div class="product_archive_single">
-                                                <a href="javascript:void(0)">
-                                                    <img src="images/products/product4.png" alt="" />
-                                                    <h3>eGifter Takeout Choice Card</h3>
-                                                    <h4 class="pricing">$<span>25</span></h4>
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-4 col-sm-6 col-12">
-                                            <div class="product_archive_single">
-                                                <a href="javascript:void(0)">
-                                                    <img src="images/products/product5.png" alt="" />
-                                                    <h3>adidas</h3>
-                                                    <h4 class="pricing">$<span>25</span></h4>
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-4 col-sm-6 col-12">
-                                            <div class="product_archive_single">
-                                                <a href="javascript:void(0)">
-                                                    <img src="images/products/product6.png" alt="" />
-                                                    <h3>Airbnb</h3>
-                                                    <h4 class="pricing">$<span>25</span></h4>
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-4 col-sm-6 col-12">
-                                            <div class="product_archive_single">
-                                                <a href="javascript:void(0)">
-                                                    <img src="images/products/product7.png" alt="" />
-                                                    <h3>Amazon.com</h3>
-                                                    <h4 class="pricing">$<span>25</span></h4>
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-4 col-sm-6 col-12">
-                                            <div class="product_archive_single">
-                                                <a href="javascript:void(0)">
-                                                    <img src="images/products/product8.png" alt="" />
-                                                    <h3>American Eagle®</h3>
-                                                    <h4 class="pricing">$<span>25</span></h4>
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-4 col-sm-6 col-12">
-                                            <div class="product_archive_single">
-                                                <a href="javascript:void(0)">
-                                                    <img src="images/products/product9.png" alt="" />
-                                                    <h3>Apple Gift Card</h3>
-                                                    <h4 class="pricing">$<span>25</span></h4>
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-4 col-sm-6 col-12">
-                                            <div class="product_archive_single">
-                                                <a href="javascript:void(0)">
-                                                    <img src="images/products/product10.png" alt="" />
-                                                    <h3>Applebee's</h3>
-                                                    <h4 class="pricing">$<span>25</span></h4>
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-4 col-sm-6 col-12">
-                                            <div class="product_archive_single">
-                                                <a href="javascript:void(0)">
-                                                    <img src="images/products/product11.png" alt="" />
-                                                    <h3>BarBox 1 Month Gift</h3>
-                                                    <h4 class="pricing">$<span>25</span></h4>
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-4 col-sm-6 col-12">
-                                            <div class="product_archive_single">
-                                                <a href="javascript:void(0)">
-                                                    <img src="images/products/product12.png" alt="" />
-                                                    <h3>Bath & Body Works</h3>
-                                                    <h4 class="pricing">$<span>25</span></h4>
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-4 col-sm-6 col-12">
-                                            <div class="product_archive_single">
-                                                <a href="javascript:void(0)">
-                                                    <img src="images/products/product13.png" alt="" />
-                                                    <h3>Burlington</h3>
-                                                    <h4 class="pricing">$<span>25</span></h4>
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-4 col-sm-6 col-12">
-                                            <div class="product_archive_single">
-                                                <a href="javascript:void(0)">
-                                                    <img src="images/products/product14.png" alt="" />
-                                                    <h3>Cabela's®</h3>
-                                                    <h4 class="pricing">$<span>25</span></h4>
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-4 col-sm-6 col-12">
-                                            <div class="product_archive_single">
-                                                <a href="javascript:void(0)">
-                                                    <img src="images/products/product15.png" alt="" />
-                                                    <h3>Chili's® Grill & Bar</h3>
-                                                    <h4 class="pricing">$<span>25</span></h4>
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-4 col-sm-6 col-12">
-                                            <div class="product_archive_single">
-                                                <a href="javascript:void(0)">
-                                                    <img src="images/products/product16.png" alt="" />
-                                                    <h3>Domino's®</h3>
-                                                    <h4 class="pricing">$<span>25</span></h4>
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-4 col-sm-6 col-12">
-                                            <div class="product_archive_single">
-                                                <a href="javascript:void(0)">
-                                                    <img src="images/products/product17.png" alt="" />
-                                                    <h3>DoorDash</h3>
-                                                    <h4 class="pricing">$<span>25</span></h4>
-                                                </a>
-                                            </div>
-                                        </div>
-                                            <div class="col-lg-4 col-sm-6 col-12">
-                                            <div class="product_archive_single">
-                                                <a href="javascript:void(0)">
-                                                    <img src="images/products/product18.png" alt="" />
-                                                    <h3>DSW</h3>
-                                                    <h4 class="pricing">$<span>25</span></h4>
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-4 col-sm-6 col-12">
-                                            <div class="product_archive_single">
-                                                <a href="javascript:void(0)">
-                                                    <img src="images/products/product19.png" alt="" />
-                                                    <h3>Dunkin' Donuts®</h3>
-                                                    <h4 class="pricing">$<span>25</span></h4>
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-4 col-sm-6 col-12">
-                                            <div class="product_archive_single">
-                                                <a href="javascript:void(0)">
-                                                    <img src="images/products/product20.png" alt="" />
-                                                    <h3>Fogo de Chão Brazilian Steakhouse</h3>
-                                                    <h4 class="pricing">$<span>25</span></h4>
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-4 col-sm-6 col-12">
-                                            <div class="product_archive_single">
-                                                <a href="javascript:void(0)">
-                                                    <img src="images/products/product21.png" alt="" />
-                                                    <h3>Google Play</h3>
-                                                    <h4 class="pricing">$<span>25</span></h4>
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-4 col-sm-6 col-12">
-                                            <div class="product_archive_single">
-                                                <a href="javascript:void(0)">
-                                                    <img src="images/products/product22.png" alt="" />
-                                                    <h3>The Home Depot®</h3>
-                                                    <h4 class="pricing">$<span>25</span></h4>
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-4 col-sm-6 col-12">
-                                            <div class="product_archive_single">
-                                                <a href="javascript:void(0)">
-                                                    <img src="images/products/product23.png" alt="" />
-                                                    <h3>lululemon</h3>
-                                                    <h4 class="pricing">$<span>25</span></h4>
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-4 col-sm-6 col-12">
-                                            <div class="product_archive_single">
-                                                <a href="javascript:void(0)">
-                                                    <img src="images/products/product24.png" alt="" />
-                                                    <h3>Macy's</h3>
-                                                    <h4 class="pricing">$<span>25</span></h4>
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-4 col-sm-6 col-12">
-                                            <div class="product_archive_single">
-                                                <a href="javascript:void(0)">
-                                                    <img src="images/products/product25.png" alt="" />
-                                                    <h3>Mix It Up™</h3>
-                                                    <h4 class="pricing">$<span>25</span></h4>
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-4 col-sm-6 col-12">
-                                            <div class="product_archive_single">
-                                                <a href="javascript:void(0)">
-                                                    <img src="images/products/product26.png" alt="" />
-                                                    <h3>panera bread</h3>
-                                                    <h4 class="pricing">$<span>25</span></h4>
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-4 col-sm-6 col-12">
-                                            <div class="product_archive_single">
-                                                <a href="javascript:void(0)">
-                                                    <img src="images/products/product27.png" alt="" />
-                                                    <h3>Saks Fifth Avenue</h3>
-                                                    <h4 class="pricing">$<span>25</span></h4>
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-4 col-sm-6 col-12">
-                                            <div class="product_archive_single">
-                                                <a href="javascript:void(0)">
-                                                    <img src="images/products/product28.png" alt="" />
-                                                    <h3>Southwest® Airlines</h3></h3>
-                                                    <h4 class="pricing">$<span>25</span></h4>
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-4 col-sm-6 col-12">
-                                            <div class="product_archive_single">
-                                                <a href="javascript:void(0)">
-                                                    <img src="images/products/product29.png" alt="" />
-                                                    <h3>Subway®</h3>
-                                                    <h4 class="pricing">$<span>25</span></h4>
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-4 col-sm-6 col-12">
-                                            <div class="product_archive_single">
-                                                <a href="javascript:void(0)">
-                                                    <img src="images/products/product30.png" alt="" />
-                                                    <h3>Target</h3>
-                                                    <h4 class="pricing">$<span>25</span></h4>
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-4 col-sm-6 col-12">
-                                            <div class="product_archive_single">
-                                                <a href="javascript:void(0)">
-                                                    <img src="images/products/product31.png" alt="" />
-                                                    <h3>Uber</h3>
-                                                    <h4 class="pricing">$<span>25</span></h4>
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-4 col-sm-6 col-12">
-                                            <div class="product_archive_single">
-                                                <a href="javascript:void(0)">
-                                                    <img src="images/products/product32.png" alt="" />
-                                                    <h3>Vanilla® Visa® eGift Card</h3>
-                                                    <h4 class="pricing">$<span>25</span></h4>
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-4 col-sm-6 col-12">
-                                            <div class="product_archive_single">
-                                                <a href="javascript:void(0)">
-                                                    <img src="images/products/product33.png" alt="" />
-                                                    <h3>Vanilla® Visa® eGift Card</h3>
-                                                    <h4 class="pricing">$<span>25</span></h4>
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-4 col-sm-6 col-12">
-                                            <div class="product_archive_single">
-                                                <a href="javascript:void(0)">
-                                                    <img src="images/products/product34.png" alt="" />
-                                                    <h3>Vanilla® Visa® eGift Card</h3>
-                                                    <h4 class="pricing">$<span>25</span></h4>
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-4 col-sm-6 col-12">
-                                            <div class="product_archive_single">
-                                                <a href="javascript:void(0)">
-                                                    <img src="images/products/product35.png" alt="" />
-                                                    <h3>Walmart</h3>
-                                                    <h4 class="pricing">$<span>25</span></h4>
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-4 col-sm-6 col-12">
-                                            <div class="product_archive_single">
-                                                <a href="javascript:void(0)">
-                                                    <img src="images/products/product36.png" alt="" />
-                                                    <h3>Wayfair</h3>
-                                                    <h4 class="pricing">$<span>25</span></h4>
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-4 col-sm-6 col-12">
-                                            <div class="product_archive_single">
-                                                <a href="javascript:void(0)">
-                                                    <img src="images/products/product37.png" alt="" />
-                                                    <h3>White House Black Market</h3>
-                                                    <h4 class="pricing">$<span>25</span></h4>
-                                                </a>
-                                            </div>
-                                        </div>
-                                    <form method="post" class="main_cart_form">
-                                            <input type="hidden" value="" name="product_img" class="product_img" />
-                                            <input type="hidden" value="" name="product_title" class="product_title" />
-                                            <input type="hidden" value="" name="product_price" class="product_price" />
-                                        </form>
-                                    </div>
+                <!-- Start .price range widget -->
+                <div class="widget">
+                    <h3 class="widget-title">
+                        <a data-toggle="collapse" href="#widget-body-3" role="button" aria-expanded="true" aria-controls="widget-body-3">{{ __('label.price') }}</a>
+                    </h3>
+                    <div class="collapse show" id="widget-body-3">
+                        <div class="widget-body pb-0">
+                            <form action="#" id="form-price-filter">
+                                <div class="price-slider-wrapper">
+                                    <div id="price-slider"></div>
                                 </div>
-                            </div>
+                                <div class="filter-price-action d-flex align-items-center justify-content-between flex-wrap">
+                                    <div class="filter-price-text">
+                                        {{ __('label.price') }}:
+                                        <span id="filter-price-range">
+                                            $<span id="filter-price-from">{{ !empty($_GET['price'])? explode('-', $_GET['price'])[0] : 0 }}</span> -
+                                            $<span id="filter-price-to">{{ !empty($_GET['price'])? explode('-', $_GET['price'])[1] : 100 }}</span>
+                                        </span>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary">{{ __('title.buttons.filter') }}</button>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>
+                <!-- End .price range widget -->
+
+                {{-- <div class="widget widget-color">
+                    <h3 class="widget-title">
+                        <a data-toggle="collapse" href="#widget-body-4" role="button" aria-expanded="true" aria-controls="widget-body-4">Color</a>
+                    </h3>
+
+                    <div class="collapse show" id="widget-body-4">
+                        <div class="widget-body pb-0">
+                            <ul class="config-swatch-list">
+                                <li class="active">
+                                    <a href="#" style="background-color: #000;"></a>
+                                </li>
+                                <li>
+                                    <a href="#" style="background-color: #0188cc;"></a>
+                                </li>
+                                <li>
+                                    <a href="#" style="background-color: #81d742;"></a>
+                                </li>
+                                <li>
+                                    <a href="#" style="background-color: #6085a5;"></a>
+                                </li>
+                                <li>
+                                    <a href="#" style="background-color: #ab6e6e;"></a>
+                                </li>
+                            </ul>
+                        </div>
+                        <!-- End .widget-body -->
+                    </div>
+                    <!-- End .collapse -->
+                </div>
+                <!-- End .widget -->
+
+                <div class="widget widget-size">
+                    <h3 class="widget-title">
+                        <a data-toggle="collapse" href="#widget-body-5" role="button" aria-expanded="true" aria-controls="widget-body-5">Sizes</a>
+                    </h3>
+
+                    <div class="collapse show" id="widget-body-5">
+                        <div class="widget-body pb-0">
+                            <ul class="config-size-list">
+                                <li class="active"><a href="#">XL</a></li>
+                                <li><a href="#">L</a></li>
+                                <li><a href="#">M</a></li>
+                                <li><a href="#">S</a></li>
+                            </ul>
+                        </div>
+                        <!-- End .widget-body -->
+                    </div>
+                    <!-- End .collapse -->
+                </div>
+                <!-- End .widget --> --}}
             </div>
-        </div>
+            <!-- End .sidebar-wrapper -->
+        </aside>
+        <!-- End .col-lg-3 -->
     </div>
 </div>
 
 @endsection
+
+@push('page-scripts')
+
+<script type="text/javascript">
+
+    $(document).ready(function (){
+
+        var updateURL = function(key, value){
+            const queryString = window.location.search;
+            const urlParams = new URLSearchParams(queryString);
+            (urlParams.has(key) ? urlParams.set(key, value) : urlParams.append(key, value));
+            window.location.search = urlParams.toString();
+            //window.history.replaceState({}, '', `${location.pathname}?${urlParams}`);
+        };
+
+
+        $('.btn-list').on('click', function(){
+            $('#div-grid').hide();
+            $('#div-list').show();
+            $(this).addClass('active');
+            $('.btn-grid').removeClass('active');
+        });
+
+        $('.btn-grid').on('click', function(){
+            $('#div-grid').show();
+            $('#div-list').hide();
+            $(this).addClass('active');
+            $('.btn-list').removeClass('active');
+
+        });
+
+        $('#page-size-selector').on('change', function(){
+            updateURL('show', $(this).val());
+        });
+
+        $('#page-size-selector-bt').on('change', function(){
+            updateURL('show', $(this).val());
+        });
+
+        $('.sort-selector').on('change', function(){
+            updateURL('sortBy', $(this).val());
+        });
+
+        $('.brand-select').on('change', function(){
+            var str = '';
+            $( ".brand-select" ).each(function( index ) {
+                if($( this ).is(':checked')) str += ',' + $( this ).val();
+            });
+            updateURL('brand', str.substring(1));
+        });
+
+        $('#form-price-filter').on('submit', function (e) {
+            e.preventDefault();
+            updateURL('price', $('#filter-price-from').text() + '-' + $('#filter-price-to').text());
+        });
+
+    });
+
+</script>
+
+@endpush
+
+

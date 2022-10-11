@@ -120,25 +120,23 @@ class UserController extends Controller
             $user->password = Hash::make($request->password);
             $user->save();
 
-            return back();
+            $token = Str::random(64);
 
-            // $token = Str::random(64);
+            UserVerify::create([
+                'user_id' => $user->id,
+                'token' => $token
+            ]);
 
-            // UserVerify::create([
-            //     'user_id' => $user->id,
-            //     'token' => $token
-            // ]);
+            if($email_controller->emailVerification($request->email, $token)) {
 
-            // if($email_controller->emailVerification($request->email, $token)) {
+                if(Auth::guard('user')->attempt(['email' => $request->email, 'password' => $request->password]))
+                {
+                    return redirect()->route('home');
+                }
 
-            //     if(Auth::guard('user')->attempt(['email' => $request->email, 'password' => $request->password]))
-            //     {
-            //         return redirect()->route('home');
-            //     }
-
-            // } else {
-            //     return back()->withErrors(Lang::get('message.response.unknown_error'));
-            // }
+            } else {
+                return back()->withErrors('Sorry, Database Connection Error.');
+            }
         }
     }
 

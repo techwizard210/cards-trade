@@ -25,51 +25,10 @@ class Helper {
         return Message::whereNull('read_at')->orderBy('created_at', 'desc')->get();
     }
 
-    public static function getAllCategory(){
-        $category=new Category();
-        $menu=$category->getAllParentWithChild();
-        return $menu;
-    }
-
-    public static function getHeaderCategory(){
-        $category = new Category();
-        // dd($category);
-        $menu=$category->getAllParentWithChild();
-
-        if($menu){
-            ?>
-
-            <li>
-            <a href="javascript:void(0);">Category<i class="ti-angle-down"></i></a>
-                <ul class="dropdown border-0 shadow">
-                <?php
-                    foreach($menu as $cat_info){
-                        if($cat_info->child_cat->count()>0){
-                            ?>
-                            <li><a href="<?php echo route('product-cat',$cat_info->slug); ?>"><?php echo $cat_info->title; ?></a>
-                                <ul class="dropdown sub-dropdown border-0 shadow">
-                                    <?php
-                                    foreach($cat_info->child_cat as $sub_menu){
-                                        ?>
-                                        <li><a href="<?php echo route('product-sub-cat',[$cat_info->slug,$sub_menu->slug]); ?>"><?php echo $sub_menu->title; ?></a></li>
-                                        <?php
-                                    }
-                                    ?>
-                                </ul>
-                            </li>
-                            <?php
-                        }
-                        else{
-                            ?>
-                                <li><a href="<?php echo route('product-cat',$cat_info->slug);?>"><?php echo $cat_info->title; ?></a></li>
-                            <?php
-                        }
-                    }
-                    ?>
-                </ul>
-            </li>
-        <?php
-        }
+    public static function getAllCategories()
+    {
+        $category_data = Category::where('status', 'active')->get();
+        return $category_data;
     }
 
     public static function productCategoryList($option='all'){
@@ -235,33 +194,40 @@ class Helper {
         return $category;
     }
 
-    /* Get Product Type */
-    public static function getProType($template)
-    {
-        $cat = Category::where('is_parent', 1)->where('template', $template)->first();
-        return $cat;
-    }
-
     // Get Cart Products
     public static function getCart()
     {
         if(Auth::check()){
-            $cart = Cart::with('product')->where('user_id', auth()->user()->id)->get();
+            $cart = Cart::with('merchant')->where('user_id', auth()->user()->id)->get();
             $total = 0;
 
-            foreach($cart as $list)
+            if(count($cart) > 0){
+                foreach($cart as $list)
             {
-                $list->price = Helper::getCartItemPrice($list->id);
-                $total += $list->price*$list->quantity;
+                $list->price = $list->quantity * $list->merchant->value;
+                $total += $list->price;
             }
+
+            }
+
 
             $data['cart'] = $cart;
             $data['subtotal'] = $total;
             $data['cart_count'] = count($cart);
         } else {
-            $data['cart_count'] = 0;
-            $data['cart'] = array();
-            $data['subtotal'] = 0;
+            $cart  = Session::get('carts');
+
+            $total = 0;
+
+            foreach($cart as $list)
+            {
+                $list->price = 1 * $list->value;
+                $total += $list->price;
+            }
+
+            $data['cart_count'] = count($cart);
+            $data['cart'] = $cart;
+            $data['subtotal'] = $total;
         }
 
         return $data;

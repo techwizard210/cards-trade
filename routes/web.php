@@ -86,10 +86,11 @@ Route::group(['namespace' => 'Frontend', 'middleware' => 'cookie-consent'], func
         Route::get('sell', 'ProductController@sell')->name('sell');
 
 
-//         Route::get('getAjaxProductQuickView/{id}', 'ProductController@getQuickView')->name('getQuickView');
+        Route::get('getAjaxProductQuickView/{id}', 'ProductController@getQuickView')->name('getQuickView');
 
-//         // Cart Routes
-//         Route::post('addToCart','CartController@addToCart')->name('add-to-cart');
+        // Cart Routes
+        Route::get('cart', 'CartController@index')->name('cart');
+        Route::post('addToCart','CartController@addToCart')->name('add-to-cart');
 //         Route::post('cart-delete','CartController@cartDelete')->name('cart-delete');
 //         Route::post('cart-remove','CartController@cartRemove')->name('cart.remove');
 //         Route::post('cart-getStates', 'CartController@getStates')->name('cart.getStates');
@@ -108,10 +109,10 @@ Route::group(['namespace' => 'Frontend', 'middleware' => 'cookie-consent'], func
 //         Route::post('product/track/order','OrderController@productTrackOrder')->name('product.track.order');
 
 //         // Product Routes
-//         Route::get('/products','ProductController@products')->name('products');
+        Route::get('/products','ProductController@products')->name('products');
 //         Route::get('products/{slug}', 'ProductController@catProducts')->name('products.type');
 //         Route::post('getRecommendSearch', 'ProductController@getRecommendSearch')->name('search.getRecommended');
-//         Route::get('product-detail/{slug}', 'ProductController@productDetail')->name('product-detail');
+        Route::get('product-detail/{slug}', 'ProductController@productDetail')->name('product-detail');
 //         Route::post('getPriceByQuantity', 'ProductController@getPriceByQuantity')->name('getPriceByQuantity');
 
 //         // NewsLetter
@@ -124,8 +125,9 @@ Route::group(['namespace' => 'Frontend', 'middleware' => 'cookie-consent'], func
 //             Route::post('addToWishlist', 'WishlistController@add_wishlist')->name('add-to-wishlist');
 //             Route::post('wishlist-delete','WishlistController@wishlistDelete')->name('wishlist-delete');
 
-//             Route::get('cart', 'CartController@index')->name('cart');
-//             Route::get('checkout','CartController@checkout')->name('checkout');
+
+            Route::get('checkout','CartController@checkout')->name('checkout');
+            Route::post('saveOrder','CartController@saveOrder')->name('saveOrder');
 
 //             // Profile
             Route::get('my-account', 'UserController@myAccount')->name('my-account');
@@ -180,31 +182,30 @@ Route::group(['namespace' => 'Frontend', 'middleware' => 'cookie-consent'], func
 
 
 
-// /* ***************************************
-//  *                                       *
-//  *            ADMIN SECTION              *
-//  *                                       *
-//  * ************************************* */
+/* ***************************************
+ *                                       *
+ *            ADMIN SECTION              *
+ *                                       *
+ * ************************************* */
 
-// Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function(){
+Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function(){
 
-//     Route::get('/','AdminController@index')->name('admin');
+    Route::get('/','AdminController@index')->name('admin.index');
 
-//     Route::get('login', 'AdminController@login')->name('admin.login');
-//     Route::post('login', 'AdminController@authenticate')->name('admin.login.submit');
+    Route::get('login', 'AdminController@login')->name('admin.login');
+    Route::post('login', 'AdminController@authenticate')->name('admin.login.submit');
 
-//     Route::middleware(['admin'])->group(function () {
-//         // Account Routes
-//         Route::get('logout', 'AdminController@logout')->name('admin.logout');
-//         Route::get('locale/{lang}', 'AdminController@switch_locale')->name('admin.locale');
+    Route::middleware(['admin'])->group(function () {
+        // Account Routes
+        Route::get('logout', 'AdminController@logout')->name('admin.logout');
 
-//         // Dashboard Routes
-//         Route::get('dashboard', 'AdminController@dashboard')->name('admin.dashboard');
+        // Dashboard Routes
+        Route::get('dashboard', 'AdminController@dashboard')->name('admin.dashboard');
 
-//         // User Routes
-//         Route::get('user/index', 'UserController@index')->name('admin.user.index');
+        // User Routes
+        Route::get('user/index', 'UserController@index')->name('admin.user.index');
 //         Route::get('user/detail/{id}', 'UserController@detail')->name('admin.user.detail');
-//         Route::post('getUserData', 'UserController@getUserData')->name('admin.getUserData');
+        Route::post('getUserData', 'UserController@getUserData')->name('admin.getUserData');
 //         Route::post('user/import', 'UserController@userImport')->name('admin.user.import');
 //         Route::post('user/delete', 'UserController@userDelete')->name('admin.user.delete');
 //         Route::post('user/update', 'UserController@userUpdate')->name('admin.user.update');
@@ -218,8 +219,13 @@ Route::group(['namespace' => 'Frontend', 'middleware' => 'cookie-consent'], func
 //         Route::get('category/detail/{id}', 'CategoryController@edit')->name('admin.category.detail');
 //         Route::post('category/update', 'CategoryController@update')->name('admin.category.update');
 
-//         // Product Routes
-//         Route::get('product/index', 'ProductController@index')->name('admin.product.index');
+        // Merchant Routes
+        Route::get('merchant/index', 'MerchantController@index')->name('admin.merchant.index');
+        Route::post('merchant/getData', 'MerchantController@getData')->name('admin.merchant.get');
+
+        // Card Routes
+        Route::get('card/index', 'CardController@index')->name('admin.card.index');
+        Route::post('card/getData', 'CardController@getData')->name('admin.card.get');
 //         Route::get('product/detail/{id}', 'ProductController@detail')->name('admin.product.detail');
 //         Route::get('product/add', 'ProductController@add')->name('admin.product.add');
 //         Route::post('product/store', 'ProductController@store')->name('admin.product.store');
@@ -266,10 +272,8 @@ Route::group(['namespace' => 'Frontend', 'middleware' => 'cookie-consent'], func
 
 //         // Utility Routes
 //         Route::post('getStateData', 'UtilityController@getStateData')->name('admin.getStateData');
-
-
-//     });
-// });
+    });
+});
 
 // Route::group(['prefix'=>'/admin','middleware'=>['auth','admin']],function(){
 

@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Brand;
+use App\Models\Merchant;
 use App\Models\Product;
 use App\Models\Category;
 use App\Models\ProductImage;
@@ -25,7 +25,9 @@ class ProductController extends Controller
     public function buy()
     {
         $title = 'Buyer Page';
-        return view('user.buyer')->withTitle($title);
+        $products = Merchant::where('status', 'active')->paginate(12);
+        $data['products'] = $products;
+        return view('frontend.buyer', $data)->withTitle($title);
     }
 
     /* Render Product Detail Page */
@@ -153,15 +155,13 @@ class ProductController extends Controller
     }
 
     /* Get Product Quick View */
-    public function getQuickView($locale, $id)
+    public function getQuickView($id)
     {
-        $product = Product::find($id);
+        $product = Merchant::find($id);
 
         $data['product'] = $product;
-        $data['reviews'] = ProductReview::where('status', 'active')->where('product_id', $id)->get();
-        $data['product_images'] = ProductImage::where('product_id', $id)->where('status', 'active')->get();
 
-        return view('frontend.component.product-quick-view', $data);
+        return view('frontend.components.product-quick-view', $data);
     }
 
     /* Ajax Get Pirce By changed Qauntity */
