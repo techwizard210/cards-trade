@@ -218,7 +218,7 @@ class Helper {
             $cart  = Session::get('carts');
 
             $total = 0;
-            if(count($cart) > 0){
+            if(!empty($cart)){
             foreach($cart as $list)
             {
                 $list->price = 1 * $list->value;
