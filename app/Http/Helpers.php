@@ -224,9 +224,12 @@ class Helper {
                 $list->price = 1 * $list->value;
                 $total += $list->price;
             }
+            $data['cart_count'] = count($cart);
+        } else {
+            $data['cart_count'] = 0;
         }
 
-            $data['cart_count'] = count($cart);
+
             $data['cart'] = $cart;
             $data['subtotal'] = $total;
         }
