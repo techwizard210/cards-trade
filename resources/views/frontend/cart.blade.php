@@ -7,9 +7,9 @@
     <nav class="breadcrumb-nav">
         <div class="container">
             <ul class="breadcrumb shop-breadcrumb bb-no">
-                <li class="active"><a href="cart.html">Shopping Cart</a></li>
-                <li><a href="checkout.html">Checkout</a></li>
-                <li><a href="order.html">Order Complete</a></li>
+                <li class="active">Shopping Cart</li>
+                <li><a href="{{ route('checkout') }}">Checkout</a></li>
+                <li>Order Complete</li>
             </ul>
         </div>
     </nav>
@@ -52,7 +52,7 @@
                                                 @endif
                                             </figure>
                                         </a>
-                                        <button type="submit" class="btn btn-close"><i
+                                        <button type="submit" class="btn btn-close btn-delete-item-cart" data-id="{{ $data->id }}"><i
                                                 class="fas fa-times"></i></button>
                                     </div>
                                 </td>
@@ -70,7 +70,7 @@
                                     </div>
                                 </td>
                                 <td class="product-subtotal">
-                                    <span class="amount">${{ number_format($data->value, 2)}}</span>
+                                    <span class="amount">${{ number_format($data->value * $quantity, 2)}}</span>
                                 </td>
                             </tr>
 
@@ -82,9 +82,9 @@
                     </table>
 
                     <div class="cart-action mb-6">
-                        <a href="#" class="btn btn-dark btn-rounded btn-icon-left btn-shopping mr-auto"><i class="w-icon-long-arrow-left"></i>Continue Shopping</a>
-                        <button type="submit" class="btn btn-rounded btn-default btn-clear" name="clear_cart" value="Clear Cart">Clear Cart</button>
-                        <button type="submit" class="btn btn-rounded btn-update disabled" name="update_cart" value="Update Cart">Update Cart</button>
+                        <a href="{{ route('buy') }}" class="btn btn-dark btn-rounded btn-icon-left btn-shopping mr-auto"><i class="w-icon-long-arrow-left"></i>Continue Shopping</a>
+                        {{-- <button type="submit" class="btn btn-rounded btn-default btn-clear" name="clear_cart" value="Clear Cart">Clear Cart</button>
+                        <button type="submit" class="btn btn-rounded btn-update disabled" name="update_cart" value="Update Cart">Update Cart</button> --}}
                     </div>
 
                     {{-- <form class="coupon">
@@ -99,10 +99,10 @@
                             <h3 class="cart-title text-uppercase">Cart Totals</h3>
                             <div class="cart-subtotal d-flex align-items-center justify-content-between">
                                 <label class="ls-25">Subtotal</label>
-                                <span>${{ number_format($sub_total, 2)}}</span>
+                                <span id="tag_subtotal">${{ number_format($sub_total, 2)}}</span>
                             </div>
 
-                            <hr class="divider">
+                            {{-- <hr class="divider"> --}}
 
                             {{-- <ul class="shipping-methods mb-2"> --}}
                                 {{-- <li>
@@ -180,7 +180,7 @@
                             <hr class="divider mb-6">
                             <div class="order-total d-flex justify-content-between align-items-center">
                                 <label>Total</label>
-                                <span class="ls-50">${{ number_format($sub_total, 2)}}</span>
+                                <span class="ls-50" id="tag_total">${{ number_format($sub_total, 2)}}</span>
                             </div>
                             <a href="{{ route('checkout') }}"
                                 class="btn btn-block btn-dark btn-icon-right btn-rounded  btn-checkout">
@@ -195,3 +195,55 @@
 </main>
 
 @endsection
+
+@push('page-script')
+
+<script type="text/javascript">
+    $(document).ready(function (){
+        $('.btn-delete-item-cart').on('click', function(e){
+            e.preventDefault();
+            var i = $(this);
+            $.ajax({
+                type: "POST",
+                url: "{{ route('cart.delete') }}",
+                data: {
+                    product_id: i.attr('data-id')
+                },
+                headers: {
+                    'X-CSRF-Token': $('meta[name=csrf_token]').attr('content')
+                },
+                success: function (response) {
+                    if(response.status == 'error') {
+                        toastr['error'](response.message);
+                    }
+                    else if(response.status == 'success'){
+                        toastr['success'](response.message);
+                        $('#div-shopping-cart').html(response.cart);
+                        $(".cart-toggle").click(function () {
+                            $("body").toggleClass("cart-opened");
+                        }),
+                        $(".btn-close").click(function () {
+                            $("body").toggleClass("cart-opened");
+                            }),
+                            $(".box-close").click(function () {
+                                $(this).parent().remove();
+                            }),
+                            $(".cart-overlay").click(function (e) {
+                                $("body").removeClass("cart-opened");
+                            });
+
+                        $('#tag_subtotal').html('$' + response.subtotal), $('#tag_total').html('$' + response.subtotal);
+                        i.closest("tr").remove();
+                    } else {
+                        toastr['warning']('Something went wrong, please try again.');
+                    }
+                },
+                error: function(response) {
+                    toastr['error']('Server Connection Failed');
+                }
+            });
+        });
+    });
+</script>
+
+@endpush

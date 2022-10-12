@@ -31,7 +31,7 @@
                     @endif
                 </a>
             </figure>
-            <button class="btn btn-link btn-close btn-remove-item-cart" aria-label="button" data-id="{{ $list->merchant->id }}">
+            <button class="btn btn-link btn-close btn-remove-item-cart" aria-label="button" data-id="@auth{{ $list->merchant->id }}@else{{ $list->id }}@endauth">
                 <i class="fas fa-times"></i>
             </button>
         </div>

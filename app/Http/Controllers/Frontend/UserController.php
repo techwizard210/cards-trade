@@ -10,10 +10,11 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 use App\User;
 use App\Models\UserVerify;
-use App\Models\Order;
+use App\Models\Cart;
 use Lang;
 use Auth;
 use Mail;
+use Session;
 use DB;
 
 class UserController extends Controller
@@ -45,10 +46,32 @@ class UserController extends Controller
                 {
                     if(Auth::guard('user')->attempt(['email' => $request->email, 'password' => $request->password]))
                     {
+                        if (Session::has('carts')){
+                            foreach (Session::get('carts') as $cart) {
+
+                                $user_carts = Cart::where('user_id', Auth::user()->id)->where('product_id', $cart->id)->first();
+
+                                if(empty($user_carts))
+                                {
+                                    $carModel = new Cart;
+                                    $carModel->user_id = Auth::user()->id;
+                                    $carModel->product_id = $cart->id;
+                                    $carModel->quantity = 1;
+                                    $carModel->save();
+
+                                } else {
+                                    $tmp_carts = Cart::find($user_carts->id);
+                                    $tmp_carts->quantity += 1;
+                                    $tmp_carts->save();
+
+                                }
+                            }
+                            Session::forget('carts');
+                     }
                         if($request->redirect_url) {
                             return redirect($request->redirect_url);
                         } else {
-                            return redirect()->intended(app()->getLocale());
+                            return redirect()->route('home');
                         }
                     } else {
                         return back()->withErrors(Lang::get('message.response.invalid_login'))->withInput();

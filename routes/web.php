@@ -92,7 +92,7 @@ Route::group(['namespace' => 'Frontend', 'middleware' => 'cookie-consent'], func
         // Cart Routes
         Route::get('cart', 'CartController@index')->name('cart');
         Route::post('addToCart','CartController@addToCart')->name('add-to-cart');
-        Route::post('cart-delete','CartController@cartDelete')->name('cart-delete');
+        Route::post('cart-delete','CartController@cartDelete')->name('cart.delete');
         Route::post('cart-remove','CartController@cartRemove')->name('cart.remove');
 //         Route::post('cart-getStates', 'CartController@getStates')->name('cart.getStates');
 //         Route::post('updateCart', 'CartController@updateCart')->name('cart.update');

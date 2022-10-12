@@ -18,7 +18,7 @@
 
 <script type="text/javascript">
     $(document).ready(function (){
-        $('.btn-remove-item-cart').on('click', function(e){
+        $(document).on('click', '.btn-remove-item-cart', function(e){
             e.preventDefault();
             var i = $(this);
             $.ajax({

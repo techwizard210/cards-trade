@@ -33,6 +33,22 @@ class ProductController extends Controller
             $products->where('category', $_GET['cat']);
         }
 
+        // Sort by
+        if(!empty($_GET['sortBy'])){
+            if($_GET['sortBy'] == 'title') {
+                $products = $products->orderBy('name', 'ASC');
+            }
+            if($_GET['sortBy'] == 'price') {
+                $products = $products->orderBy('value', 'ASC');
+            }
+            if($_GET['sortBy'] == 'price-desc') {
+                $products = $products->orderBy('value', 'DESC');
+            }
+            if($_GET['sortBy'] == 'new') {
+                $products = $products->orderBy('id', 'DESC');
+            }
+        }
+
         // Page Size
         if(!empty($_GET['show'])) {
             $products = $products->where('status', 'active')->paginate($_GET['show']);

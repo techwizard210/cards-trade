@@ -10,8 +10,8 @@
                 <a href="blog.html" class="d-lg-show">Blog</a>
                 <a href="contact-us.html" class="d-lg-show">Contact Us</a>
 
-                <a href="{{ route('ajaxLogin') }}" class="d-lg-show login sign-in"><i
-                        class="w-icon-account"></i>Sign In</a>
+                {{-- <a href="{{ route('ajaxLogin') }}" class="d-lg-show login sign-in"><i
+                        class="w-icon-account"></i>Sign In</a> --}}
                 {{-- <span class="delimiter d-lg-show">/</span>
 
                 <a href="assets/ajax/login.html" class="ml-0 d-lg-show login register">Register</a> --}}
@@ -65,10 +65,10 @@
                     <i class="w-icon-heart"></i>
                     <span class="wishlist-label d-lg-show">Wishlist</span>
                 </a>
-                <a class="compare label-down link d-xs-show" href="compare.html">
+                {{-- <a class="compare label-down link d-xs-show" href="compare.html">
                     <i class="w-icon-compare"></i>
                     <span class="compare-label d-lg-show">Compare</span>
-                </a>
+                </a> --}}
                 <div class="dropdown cart-dropdown cart-offcanvas mr-0 mr-lg-2" id="div-shopping-cart">
                     @include('frontend.components.shopping-cart')
                 </div>

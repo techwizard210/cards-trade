@@ -219,18 +219,20 @@ class Helper {
 
             $total = 0;
             if(!empty($cart)){
-            foreach($cart as $list)
-            {
-                $list->price = 1 * $list->value;
-                $total += $list->price;
+                foreach($cart as $list)
+                {
+                    $list->price = 1 * $list->value;
+                    $total += $list->price;
+                }
+                $data['cart_count'] = count($cart);
+                $data['cart'] = $cart;
+            } else {
+                $data['cart_count'] = 0;
+                $data['cart'] = array();
             }
-            $data['cart_count'] = count($cart);
-        } else {
-            $data['cart_count'] = 0;
-        }
 
 
-            $data['cart'] = $cart;
+
             $data['subtotal'] = $total;
         }
 

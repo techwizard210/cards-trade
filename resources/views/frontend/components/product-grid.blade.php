@@ -13,8 +13,8 @@
                 @auth
                 <a href="#" class="btn-product-icon btn-wishlist {{ Helper::checkIfWishlist($product->id)?'added w-icon-heart-full':'w-icon-heart' }}" data-id="{{ $product->id }}" title="Wishlist"></a>
                 @endauth
-                <a href="#" class="btn-product-icon btn-compare w-icon-compare"
-                    title="Compare"></a>
+                {{-- <a href="#" class="btn-product-icon btn-compare w-icon-compare"
+                    title="Compare"></a> --}}
                 {{-- <a href="{{ route('getQuickView', $product->id) }}" class="btn-product-icon btn-quickview w-icon-search"
                     title="Quick View"></a> --}}
             </div>

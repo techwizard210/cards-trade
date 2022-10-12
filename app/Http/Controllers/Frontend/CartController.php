@@ -271,20 +271,58 @@ class CartController extends Controller
             return response()->json($res);
         } else{
 
+            if(Session::has('carts')){
+                foreach (Session::get('carts') as $inex => $value) {
+                  if($value->id == $request->product_id){
+                    Session::pull('carts.'.$inex);
+                  }
+                }
+            }
+
+            $new_cart = Helper::getCart();
+            $res = array(
+                'status' => 'success',
+                'message' => 'Product removed from your shopping cart',
+                'cnt' => $new_cart['cart_count'],
+                'subtotal' => $new_cart['subtotal'],
+            );
+            return response()->json($res);
         }
     }
 
     /* Delete from Cart */
     public function cartDelete(Request $request)
     {
-        $cart = Cart::find($request->id);
-        if ($cart) {
-            $cart->delete();
-            request()->session()->flash('success','Cart successfully removed');
-            return back();
+        if(Auth::check())
+        {
+            $cart = Cart::where('user_id', Auth::user()->id)->where('product_id', $request->product_id)->delete();
+            $new_cart = Helper::getCart();
+            $res = array(
+                'status' => 'success',
+                'message' => 'Product removed from your shopping cart',
+                'cart' => view('frontend.components.shopping-cart')->render(),
+                'subtotal' => $new_cart['subtotal'],
+            );
+            return response()->json($res);
+        } else{
+
+            if(Session::has('carts')){
+                foreach (Session::get('carts') as $inex => $value) {
+                  if($value->id == $request->product_id){
+                    Session::pull('carts.'.$inex);
+                  }
+                }
+            }
+
+            $new_cart = Helper::getCart();
+            $res = array(
+                'status' => 'success',
+                'message' => 'Product removed from your shopping cart',
+                'cart' => view('frontend.components.shopping-cart')->render(),
+                'subtotal' => $new_cart['subtotal'],
+            );
+            return response()->json($res);
         }
-        request()->session()->flash('error','Error please try again');
-        return back();
     }
 
 

@@ -287,13 +287,12 @@
                                     class="w-icon-category"></i><span>Filters</span></a>
                             <div class="toolbox-item toolbox-sort select-box text-dark">
                                 <label>Sort By :</label>
-                                <select name="orderby" class="form-control">
-                                    <option value="default" selected="selected">Default sorting</option>
-                                    <option value="popularity">Sort by popularity</option>
-                                    <option value="rating">Sort by average rating</option>
-                                    <option value="date">Sort by latest</option>
-                                    <option value="price-low">Sort by pric: low to high</option>
-                                    <option value="price-high">Sort by price: high to low</option>
+                                <select name="orderby" class="form-control sort-selector">
+                                    <option value="" selected="selected">Default sorting</option>
+                                    <option value="new" @if(!empty($_GET['sortBy']) && $_GET['sortBy']=='new') selected @endif>Sort by latest</option>
+                                    <option value="title" @if(!empty($_GET['sortBy']) && $_GET['sortBy']=='title') selected @endif>Sort by Name (A-Z)</option>
+                                    <option value="price" @if(!empty($_GET['sortBy']) && $_GET['sortBy']=='price') selected @endif>Sort by pric: low to high</option>
+                                    <option value="price-desc" @if(!empty($_GET['sortBy']) && $_GET['sortBy']=='price-desc') selected @endif>Sort by price: high to low</option>
                                 </select>
                             </div>
                         </div>
@@ -306,12 +305,12 @@
                                 </select>
                             </div>
                             <div class="toolbox-item toolbox-layout">
-                                <a href="shop-banner-sidebar.html" class="icon-mode-grid btn-layout active">
+                                <a href="#" class="icon-mode-grid btn-layout active">
                                     <i class="w-icon-grid"></i>
                                 </a>
-                                <a href="shop-list.html" class="icon-mode-list btn-layout">
+                                {{-- <a href="shop-list.html" class="icon-mode-list btn-layout">
                                     <i class="w-icon-list"></i>
-                                </a>
+                                </a> --}}
                             </div>
                         </div>
                     </nav>
