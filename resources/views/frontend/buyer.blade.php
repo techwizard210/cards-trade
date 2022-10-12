@@ -259,14 +259,14 @@
                         <div class="sticky-sidebar">
                             <div class="filter-actions">
                                 <label>Filter :</label>
-                                <a href="#" class="btn btn-dark btn-link filter-clean">Clean All</a>
+                                <a href="{{ route('buy') }}" class="btn btn-dark btn-link filter-clean">Clean All</a>
                             </div>
                             <!-- Start of Collapsible widget -->
                             <div class="widget widget-collapsible">
                                 <h3 class="widget-title"><label>All Categories</label></h3>
                                 <ul class="widget-body filter-items search-ul">
                                     @foreach (Helper::getAllCategories() as $list)
-                                    <li><a href="#">{{ $list->title }}</a></li>
+                                    <li class="{{ !empty($_GET['cat']) && $_GET['cat'] == $list->id ? 'active' : '' }}"><a class="category-selector" href="javascript:;" data-id="{{ $list->id }}">{{ $list->title }}</a></li>
                                     @endforeach
                                 </ul>
                             </div>
@@ -299,11 +299,10 @@
                         </div>
                         <div class="toolbox-right">
                             <div class="toolbox-item toolbox-show select-box">
-                                <select name="count" class="form-control">
-                                    <option value="9">Show 9</option>
-                                    <option value="12" selected="selected">Show 12</option>
-                                    <option value="24">Show 24</option>
-                                    <option value="36">Show 36</option>
+                                <select name="count" class="form-control" id="page-size-selector">
+                                    <option value="12" @if(!empty($_GET['show']) && $_GET['show']=='12') selected @endif>Show 12</option>
+                                    <option value="24" @if(!empty($_GET['show']) && $_GET['show']=='24') selected @endif>Show 24</option>
+                                    <option value="36" @if(!empty($_GET['show']) && $_GET['show']=='36') selected @endif>Show 36</option>
                                 </select>
                             </div>
                             <div class="toolbox-item toolbox-layout">
@@ -316,25 +315,26 @@
                             </div>
                         </div>
                     </nav>
+                    @if(count($products) > 0)
                     <div class="product-wrapper row cols-md-4 cols-sm-2 cols-2">
-                        @forelse($products as $product)
+                        @foreach($products as $product)
 
                             @include('frontend.components.product-grid')
 
-                        @empty
-
-                        There is no cards to sale.
-
-                        @endforelse
-
+                        @endforeach
                     </div>
+                    @else
+                    <h2 class="text-center" style="padding: 100px 20px;">No Records Found.</h2>
+                    @endif
 
+                    @if(count($products) > 0)
                     <div class="toolbox toolbox-pagination justify-content-between">
                         <p class="showing-info mb-2 mb-sm-0">
-                            Showing<span>1-12 of 60</span>Products
+                            Showing<span>{{ $products->firstItem() }}-{{ $products->lastItem() }} of {{ $products->total() }}</span>Cards
                         </p>
                         {{ $products->appends($_GET)->links() }}
                     </div>
+                    @endif
                 </div>
                 <!-- End of Shop Main Content -->
             </div>
@@ -345,4 +345,61 @@
 </main>
 
 @endsection
+
+@push('page-script')
+
+<script type="text/javascript">
+
+    $(document).ready(function (){
+
+        var updateURL = function(key, value){
+            const queryString = window.location.search;
+            const urlParams = new URLSearchParams(queryString);
+            (urlParams.has(key) ? urlParams.set(key, value) : urlParams.append(key, value));
+            window.location.search = urlParams.toString();
+            //window.history.replaceState({}, '', `${location.pathname}?${urlParams}`);
+        };
+
+
+        $('.btn-list').on('click', function(){
+            $('#div-grid').hide();
+            $('#div-list').show();
+            $(this).addClass('active');
+            $('.btn-grid').removeClass('active');
+        });
+
+        $('.btn-grid').on('click', function(){
+            $('#div-grid').show();
+            $('#div-list').hide();
+            $(this).addClass('active');
+            $('.btn-list').removeClass('active');
+
+        });
+
+        $('#page-size-selector').on('change', function(){
+            updateURL('show', $(this).val());
+        });
+
+        $('#page-size-selector-bt').on('change', function(){
+            updateURL('show', $(this).val());
+        });
+
+        $('.sort-selector').on('change', function(){
+            updateURL('sortBy', $(this).val());
+        });
+
+        $('.category-selector').on('click', function(){
+            updateURL('cat', $(this).attr('data-id'));
+        });
+
+        $('#form-price-filter').on('submit', function (e) {
+            e.preventDefault();
+            updateURL('price', $('#filter-price-from').text() + '-' + $('#filter-price-to').text());
+        });
+
+    });
+
+</script>
+
+@endpush
 

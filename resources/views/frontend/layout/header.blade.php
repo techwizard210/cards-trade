@@ -10,9 +10,10 @@
                 <a href="blog.html" class="d-lg-show">Blog</a>
                 <a href="contact-us.html" class="d-lg-show">Contact Us</a>
 
-                {{-- <a href="assets/ajax/login.html" class="d-lg-show login sign-in"><i
+                <a href="{{ route('ajaxLogin') }}" class="d-lg-show login sign-in"><i
                         class="w-icon-account"></i>Sign In</a>
-                <span class="delimiter d-lg-show">/</span>
+                {{-- <span class="delimiter d-lg-show">/</span>
+
                 <a href="assets/ajax/login.html" class="ml-0 d-lg-show login register">Register</a> --}}
                 @auth
                 <a href="my-account.html" class="d-lg-show">My Account</a>
@@ -60,7 +61,7 @@
                         <a href="tel:+1 508 322 1918" class="phone-number font-weight-bolder ls-50">+1 (508) 322-1918</a>
                     </div>
                 </div>
-                <a class="wishlist label-down link d-xs-show" href="wishlist.html">
+                <a class="wishlist label-down link d-xs-show" href="{{ route('wishlist') }}">
                     <i class="w-icon-heart"></i>
                     <span class="wishlist-label d-lg-show">Wishlist</span>
                 </a>
@@ -69,61 +70,7 @@
                     <span class="compare-label d-lg-show">Compare</span>
                 </a>
                 <div class="dropdown cart-dropdown cart-offcanvas mr-0 mr-lg-2" id="div-shopping-cart">
-                    <div class="cart-overlay"></div>
-                    <a href="#" class="cart-toggle label-down link">
-                        <i class="w-icon-cart">
-                            <span class="cart-count">{{ Helper::getCart()['cart_count'] }}</span>
-                        </i>
-                        <span class="cart-label">Cart</span>
-                    </a>
-                    <div class="dropdown-box">
-                        <div class="cart-header">
-                            <span>Shopping Cart</span>
-                            <a href="#" class="btn-close">Close<i class="w-icon-long-arrow-right"></i></a>
-                        </div>
-
-                        <div class="products">
-                            @if(!empty(Helper::getCart()['cart']))
-                            @forelse (Helper::getCart()['cart'] as $list)
-                            <div class="product product-cart">
-                                <div class="product-detail">
-                                    <a href="#" class="product-name">@auth {{ $list->merchant->name }}@else {{ $list->name }} @endauth</a>
-                                    <div class="price-box">
-                                        <span class="product-quantity">@auth {{ $list->quantity }}@else 1 @endauth</span>
-                                        <span class="product-price">$@auth {{ number_format($list->merchant->value, 2) }}@else {{ number_format($list->value, 2) }} @endauth</span>
-                                    </div>
-                                </div>
-                                @php if(Auth::check()) $img = $list->merchant->image; else $img =  $list->image; @endphp
-                                <figure class="product-media">
-                                    <a href="#">
-                                        @if(file_exists(public_path('storage/cards/'.$img)) && !empty($img))
-                                        <img src="{{ asset('storage/cards/'.$img) }}" alt="{{ $list->name }}" width="84" height="94" />
-                                        @else
-                                        <img src="{{ asset('user-assets/images/default-card.png') }}" width="84" height="94" alt="{{ $list->name }}" />
-                                        @endif
-                                    </a>
-                                </figure>
-                                <button class="btn btn-link btn-close" aria-label="button">
-                                    <i class="fas fa-times"></i>
-                                </button>
-                            </div>
-                            @empty
-                            @endforelse
-                            @endif
-
-                        </div>
-
-                        <div class="cart-total">
-                            <label>Subtotal:</label>
-                            <span class="price">${{ number_format(Helper::getCart()['subtotal'])}}</span>
-                        </div>
-
-                        <div class="cart-action">
-                            <a href="{{ route('cart') }}" class="btn btn-dark btn-outline btn-rounded">View Cart</a>
-                            <a href="{{ route('checkout') }}" class="btn btn-primary  btn-rounded">Checkout</a>
-                        </div>
-                    </div>
-                    <!-- End of Dropdown Box -->
+                    @include('frontend.components.shopping-cart')
                 </div>
             </div>
         </div>
@@ -146,14 +93,13 @@
                             <ul class="menu vertical-menu category-menu">
                                 @foreach (Helper::getAllCategories() as $list)
                                 <li>
-                                    <a href="#">
+                                    <a href="{{ route('buy').'?cat='.$list->id }}">
                                         {{ $list->title }}
                                     </a>
                                 </li>
                                 @endforeach
                                 <li>
-                                    <a href="#"
-                                        class="font-weight-bold text-primary text-uppercase ls-25">
+                                    <a href="{{ route('buy') }}" class="font-weight-bold text-primary text-uppercase ls-25">
                                         View All Categories<i class="w-icon-angle-right"></i>
                                     </a>
                                 </li>

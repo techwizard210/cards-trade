@@ -31,18 +31,19 @@
                     @endif
                 </a>
             </figure>
-            <button class="btn btn-link btn-close" aria-label="button">
+            <button class="btn btn-link btn-close btn-remove-item-cart" aria-label="button" data-id="{{ $list->merchant->id }}">
                 <i class="fas fa-times"></i>
             </button>
         </div>
         @empty
+        <div class="text-center pt-4">No Cart Items</div>
         @endforelse
 
     </div>
 
     <div class="cart-total">
         <label>Subtotal:</label>
-        <span class="price">${{ number_format(Helper::getCart()['subtotal'])}}</span>
+        <span class="price" id="side-cart-subtotal">${{ number_format(Helper::getCart()['subtotal'])}}</span>
     </div>
 
     <div class="cart-action">

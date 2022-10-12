@@ -244,7 +244,7 @@ class Helper {
         return $product;
     }
 
-    // Check if product in wishlist
+    /* Check if product in wishlist */
     public static function checkIfWishlist($product_id)
     {
         $res = Wishlist::where('user_id', auth()->user()->id)->where('product_id', $product_id)->get();

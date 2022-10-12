@@ -185,6 +185,8 @@ class CartController extends Controller
             {
                 $current_cart = Cart::where('user_id', auth()->user()->id)->where('product_id', $product->id)->first();
 
+                $wishlists = Wishlist::where('user_id', auth()->user()->id)->where('product_id', $product->id)->delete();
+
                 if(!empty($current_cart))
                 {
                     // if($current_cart->quantity + $request->quantity > $product->stock && $product->backorder == 'disable')
@@ -256,21 +258,20 @@ class CartController extends Controller
     /* Ajax Remove from Cart */
     public function cartRemove(Request $request)
     {
-        $cart = Cart::find($request->id);
-        if ($cart) {
-            $cart->delete();
-            $err = array(
+        if(Auth::check())
+        {
+            $cart = Cart::where('user_id', Auth::user()->id)->where('product_id', $request->product_id)->delete();
+            $new_cart = Helper::getCart();
+            $res = array(
                 'status' => 'success',
-                'message' => Lang::get('message.response.product_remove_success'),
-                'cart' => view('frontend.component.shopping-cart')->render()
+                'message' => 'Product removed from your shopping cart',
+                'cnt' => $new_cart['cart_count'],
+                'subtotal' => $new_cart['subtotal'],
             );
-            return response()->json($err);
+            return response()->json($res);
+        } else{
+
         }
-        $err = array(
-            'status' => 'error',
-            'message' => Lang::get('message.response.something_wrong'),
-        );
-        return response()->json($err);
     }
 
     /* Delete from Cart */

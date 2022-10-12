@@ -15546,9 +15546,8 @@ body .product-popup {
 }
 .cart-dropdown .products {
     max-height: 56rem;
-    overflow-y: scroll;
-  border-bottom: 1px solid #eee;
-  padding-bottom: 2.1rem;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 2.1rem;
 }
 .cart-dropdown.cart-offcanvas .dropdown-box {
   position: fixed;

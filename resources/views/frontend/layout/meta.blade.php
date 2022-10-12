@@ -27,6 +27,9 @@
 <link rel="stylesheet" href="{{ asset('user-assets/vendor/swiper/swiper-bundle.min.css') }}">
 <link rel="stylesheet" type="text/css" href="{{ asset('user-assets/vendor/nouislider/nouislider.min.css') }}">
 <link rel="stylesheet" type="text/css" href="{{ asset('user-assets/vendor/magnific-popup/magnific-popup.min.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ asset('user-assets/vendor/toastr/toastr.min.css') }}">
 
 <!-- Default CSS -->
 <link rel="stylesheet" type="text/css" href="{{ asset('user-assets/css/style.min.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ asset('user-assets/css/custom.css') }}">
+

@@ -54,6 +54,7 @@ Route::group(['namespace' => 'Frontend', 'middleware' => 'cookie-consent'], func
 
         // Auth Routes
         Route::get('login', 'UserController@login')->name('login');
+        Route::get('ajax-login', 'UserController@ajaxLogin')->name('ajaxLogin');
         Route::post('login','UserController@loginSubmit')->name('login.submit');
         Route::get('register','UserController@register')->name('register');
         Route::post('register','UserController@registerSave')->name('register.submit');
@@ -91,8 +92,8 @@ Route::group(['namespace' => 'Frontend', 'middleware' => 'cookie-consent'], func
         // Cart Routes
         Route::get('cart', 'CartController@index')->name('cart');
         Route::post('addToCart','CartController@addToCart')->name('add-to-cart');
-//         Route::post('cart-delete','CartController@cartDelete')->name('cart-delete');
-//         Route::post('cart-remove','CartController@cartRemove')->name('cart.remove');
+        Route::post('cart-delete','CartController@cartDelete')->name('cart-delete');
+        Route::post('cart-remove','CartController@cartRemove')->name('cart.remove');
 //         Route::post('cart-getStates', 'CartController@getStates')->name('cart.getStates');
 //         Route::post('updateCart', 'CartController@updateCart')->name('cart.update');
 //         Route::post('updateCartTotal', 'CartController@updateCartTotal')->name('updateCartTotal');
@@ -120,10 +121,11 @@ Route::group(['namespace' => 'Frontend', 'middleware' => 'cookie-consent'], func
 
         Route::middleware(['auth'])->group(function () {
 
-//             // Wishlist Routes
-//             Route::get('/wishlist', 'WishlistController@index')->name('wishlist');
-//             Route::post('addToWishlist', 'WishlistController@add_wishlist')->name('add-to-wishlist');
-//             Route::post('wishlist-delete','WishlistController@wishlistDelete')->name('wishlist-delete');
+            // Wishlist Routes
+            Route::get('/wishlist', 'WishlistController@index')->name('wishlist');
+            Route::post('addToWishlist', 'WishlistController@add_wishlist')->name('wishlist.add');
+            Route::post('removeFromWishlist', 'WishlistController@remove_wishlist')->name('wishlist.remove');
+            Route::post('wishlist-delete','WishlistController@wishlistDelete')->name('wishlist.delete');
 
 
             Route::get('checkout','CartController@checkout')->name('checkout');

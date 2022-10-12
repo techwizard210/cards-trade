@@ -25,6 +25,11 @@ class UserController extends Controller
         return view('user.auth.login')->withTitle($title);
     }
 
+    public function ajaxLogin()
+    {
+        return view('user.auth.login')->render();
+    }
+
     /* Ajax Login */
     public function loginSubmit(Request $request)
     {

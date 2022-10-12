@@ -74,7 +74,7 @@
                             <li><a href="cart.html">View Cart</a></li>
                             <li><a href="{{ route('login') }}">Sign In</a></li>
                             <li><a href="#">Help</a></li>
-                            <li><a href="wishlist.html">My Wishlist</a></li>
+                            <li><a href="{{ route('wishlist') }}">My Wishlist</a></li>
                             <li><a href="#">Privacy Policy</a></li>
                         </ul>
                     </div>

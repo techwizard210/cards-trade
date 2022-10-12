@@ -10,8 +10,9 @@
             </a>
             <div class="product-action-horizontal">
                 <a href="#" class="btn-product-icon btn-cart w-icon-cart" data-id="{{ $product->id }}" title="Add to cart"></a>
-                <a href="#" class="btn-product-icon btn-wishlist w-icon-heart"
-                    title="Wishlist"></a>
+                @auth
+                <a href="#" class="btn-product-icon btn-wishlist {{ Helper::checkIfWishlist($product->id)?'added w-icon-heart-full':'w-icon-heart' }}" data-id="{{ $product->id }}" title="Wishlist"></a>
+                @endauth
                 <a href="#" class="btn-product-icon btn-compare w-icon-compare"
                     title="Compare"></a>
                 {{-- <a href="{{ route('getQuickView', $product->id) }}" class="btn-product-icon btn-quickview w-icon-search"

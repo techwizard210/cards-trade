@@ -25,7 +25,21 @@ class ProductController extends Controller
     public function buy()
     {
         $title = 'Buyer Page';
-        $products = Merchant::where('status', 'active')->paginate(12);
+
+        $products = Merchant::query();
+
+        // Filter by Category
+        if(!empty($_GET['cat']) && $_GET['cat']!='all'){
+            $products->where('category', $_GET['cat']);
+        }
+
+        // Page Size
+        if(!empty($_GET['show'])) {
+            $products = $products->where('status', 'active')->paginate($_GET['show']);
+        } else {
+            $products = $products->where('status', 'active')->paginate(12);
+        }
+
         $data['products'] = $products;
         return view('frontend.buyer', $data)->withTitle($title);
     }
