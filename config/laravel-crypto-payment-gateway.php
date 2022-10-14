@@ -42,7 +42,7 @@ return [
     /**
      * Default coin
      */
-    'default_coin' => 'bitcoincash',
+    'default_coin' => 'bitcoin',
 
     /**
      * Place values from your gourl.io signup page here.
