@@ -2,6 +2,18 @@
 
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\Frontend\HomeController;
+use App\Http\Controllers\Frontend\ProductController;
+use App\Http\Controllers\Frontend\UserController;
+use App\Http\Controllers\Frontend\FrontendController;
+use App\Http\Controllers\Frontend\CartController;
+use App\Http\Controllers\Frontend\WishlistController;
+
+
+
+
+
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -14,6 +26,94 @@ use Illuminate\Support\Facades\Route;
 */
 
 Auth::routes(['register'=>false, 'login'=>false]);
+
+/*
+|--------------------------------------------------------------------------
+|                           User Routes
+|--------------------------------------------------------------------------|
+*/
+
+Route::get('/', [HomeController::class, 'index'])->name('home');
+
+// Auth Routes
+Route::get('login', [UserController::class, 'login'])->name('login');
+Route::post('login', [UserController::class, 'loginSubmit'])->name('login.submit');
+Route::get('register', [UserController::class, 'register'])->name('register');
+Route::post('register', [UserController::class, 'registerSave'])->name('register.submit');
+Route::get('logout', [UserController::class, 'logout'])->name('logout');
+Route::post('check-email', [UserController::class, 'checkEmail'])->name('check-email');
+
+// Buy Routes
+Route::get('buyer', [ProductController::class, 'buy'])->name('buy');
+Route::get('product-detail/{slug}', [ProductController::class, 'productDetail'])->name('product.detail');
+
+// Cart Routes
+Route::get('cart', [CartController::class, 'index'])->name('cart');
+Route::post('addToCart', [CartController::class, 'addToCart'])->name('cart.add');
+Route::post('cart-delete', [CartController::class, 'cartDelete'])->name('cart.delete');
+Route::post('cart-remove', [CartController::class, 'cartRemove'])->name('cart.remove');
+
+// Sell Routes
+Route::get('sell', [ProductController::class, 'sell'])->name('sell');
+
+// Help Routes
+Route::get('/about-us', [FrontendController::class, 'aboutUs'])->name('about-us');
+Route::get('/contact-us', [FrontendController::class, 'contactUs'])->name('contact-us');
+Route::post('/conctact-submit', [FrontendController::class, 'contactUsMsg'])->name('contact.submit');
+
+Route::middleware(['auth'])->group(function ()
+{
+    // Wishlist Routes
+    Route::get('/wishlist', [WishlistController::class, 'index'])->name('wishlist');
+    Route::post('addToWishlist', [WishlistController::class, 'add_wishlist'])->name('wishlist.add');
+    Route::post('removeFromWishlist', [WishlistController::class, 'remove_wishlist'])->name('wishlist.remove');
+    Route::post('wishlist-delete', [WishlistController::class, 'wishlistDelete'])->name('wishlist.delete');
+
+    // Checkout Routes
+    Route::get('checkout', [CartController::class, 'checkout'])->name('checkout');
+    Route::post('saveOrder', [CartController::class, 'saveOrder'])->name('saveOrder');
+    Route::get('confirm-order', [CartController::class, 'confirmOrder'])->name('order.confirm');
+
+//             // Profile
+        Route::get('my-account', 'UserController@myAccount')->name('my-account');
+//             Route::post('updateProfile', 'UserController@profileUpdate')->name('profile.update');
+//             //Route::get('profile','HomeController@profile')->name('user-profile');
+//             //Route::post('profile/{id}','HomeController@profileUpdate')->name('user-profile-update');
+
+//             // Verification
+//             Route::get('resend-verification-email', 'UserController@resendVerifyEmail')->name('verify.resend-email');
+
+});
+
+
+// You can protect the 'payments.crypto.pay' route with `auth` middleware to allow access by only authenticated user
+Route::match(['get', 'post'], '/payments/crypto/pay', Victorybiz\LaravelCryptoPaymentGateway\Http\Controllers\CryptoPaymentController::class)
+                ->name('payments.crypto.pay');
+
+// You you need to create your own callback controller and define the route below
+// The callback route should be a publicly accessible route with no auth
+// However, you may also exclude the route from CSRF Protection by adding their URIs to the $except property of the VerifyCsrfToken middleware.
+Route::post('/payments/crypto/callback', [App\Http\Controllers\Payment\PaymentController::class, 'callback'])
+                ->withoutMiddleware(['web', 'auth']);
+
+
+
+// Route::get('test', function(){
+//     return view('frontend.test');
+// });
+
+// You can protect the 'payments.crypto.pay' route with `auth` middleware to allow access by only authenticated user
+// Route::match(['get', 'post'], '/payments/crypto/pay', Victorybiz\LaravelCryptoPaymentGateway\Http\Controllers\CryptoPaymentController::class)
+//                 ->name('payments.crypto.pay');
+
+// // You you need to create your own callback controller and define the route below
+// // The callback route should be a publicly accessible route with no auth
+// // However, you may also exclude the route from CSRF Protection by adding their URIs to the $except property of the VerifyCsrfToken middleware.
+// Route::post('/payments/crypto/callback', [App\Http\Controllers\Payment\PaymentController::class, 'callback'])
+//                 ->withoutMiddleware(['web', 'auth']);
+
+// Route::get('cancel', 'PaypalController@cancel')->name('payment.cancel');
+// Route::get('payment/success', 'PaypalController@success')->name('payment.success');
 
 
 // // Reset password
@@ -37,43 +137,27 @@ Auth::routes(['register'=>false, 'login'=>false]);
 
 // Route::post('cart-update','CartController@cartUpdate')->name('cart.update');
 
-/* ***************************************
- *                                       *
- *            CUSTOMER SECTION           *
- *                                       *
- * ************************************* */
-
-Route::group(['namespace' => 'Frontend', 'middleware' => 'cookie-consent'], function () {
 
 
-        Route::get('/', 'HomeController@home')->name('home');
+
 
         // Socialite
-        Route::get('login/{provider}/', 'Auth\LoginController@redirect')->name('login.redirect');
-        Route::get('login/{provider}/callback/', 'Auth\LoginController@Callback')->name('login.callback');
+        // Route::get('login/{provider}/', 'Auth\LoginController@redirect')->name('login.redirect');
+        // Route::get('login/{provider}/callback/', 'Auth\LoginController@Callback')->name('login.callback');
 
-        // Auth Routes
-        Route::get('login', 'UserController@login')->name('login');
-        Route::get('ajax-login', 'UserController@ajaxLogin')->name('ajaxLogin');
-        Route::post('login','UserController@loginSubmit')->name('login.submit');
-        Route::get('register','UserController@register')->name('register');
-        Route::post('register','UserController@registerSave')->name('register.submit');
-        Route::get('logout','UserController@logout')->name('logout');
-        Route::post('check-email', 'UserController@checkEmail')->name('check-email');
+
 
         // Reset Password Routes
-        Route::get('forgot-password', 'UserController@forgotPassword')->name('forgot-password');
-        Route::post('reset_password_with_token', 'UserController@resetPasswordToken')->name('reset_password_with_token');
-        Route::get('password/reset/{token}', 'UserController@reset_password')->name('password-reset');
-        Route::post('reset-password','UserController@resetPasswordSave')->name('reset-password');
+        // Route::get('forgot-password', 'UserController@forgotPassword')->name('forgot-password');
+        // Route::post('reset_password_with_token', 'UserController@resetPasswordToken')->name('reset_password_with_token');
+        // Route::get('password/reset/{token}', 'UserController@reset_password')->name('password-reset');
+        // Route::post('reset-password','UserController@resetPasswordSave')->name('reset-password');
 
 //         // Email Verification
 //         Route::get('verification/{token}', 'UserController@verifyEmail')->name('verify.confirmation');
 //         Route::get('verify-success', 'UserController@verifySuccess')->name('verify.success');
 
-        Route::get('/about-us', 'FrontendController@aboutUs')->name('about-us');
-        Route::get('/contact-us', 'FrontendController@contactUs')->name('contact-us');
-        Route::post('/conctact-submit', 'FrontendController@contactUsMsg')->name('contact.submit');
+
 
 //         // Pages Routes
 //         Route::get('/terms', 'PageController@terms')->name('terms');
@@ -83,20 +167,13 @@ Route::group(['namespace' => 'Frontend', 'middleware' => 'cookie-consent'], func
 //         Route::get('/payment-methods', 'PageController@payment_methods')->name('payment-methods');
 //         Route::get('/faq', 'PageController@faq')->name('faq');
 
-        Route::get('buy', 'ProductController@buy')->name('buy');
-        Route::get('sell', 'ProductController@sell')->name('sell');
 
 
-        Route::get('getAjaxProductQuickView/{id}', 'ProductController@getQuickView')->name('getQuickView');
 
-        // Cart Routes
-        Route::get('cart', 'CartController@index')->name('cart');
-        Route::post('addToCart','CartController@addToCart')->name('add-to-cart');
-        Route::post('cart-delete','CartController@cartDelete')->name('cart.delete');
-        Route::post('cart-remove','CartController@cartRemove')->name('cart.remove');
-//         Route::post('cart-getStates', 'CartController@getStates')->name('cart.getStates');
-//         Route::post('updateCart', 'CartController@updateCart')->name('cart.update');
-//         Route::post('updateCartTotal', 'CartController@updateCartTotal')->name('updateCartTotal');
+
+        // Route::get('getAjaxProductQuickView/{id}', 'ProductController@getQuickView')->name('getQuickView');
+
+
 
 //         // Coupon
 //         Route::post('coupon-apply','CouponController@couponApply')->name('coupon.apply');
@@ -110,40 +187,19 @@ Route::group(['namespace' => 'Frontend', 'middleware' => 'cookie-consent'], func
 //         Route::post('product/track/order','OrderController@productTrackOrder')->name('product.track.order');
 
 //         // Product Routes
-        Route::get('/products','ProductController@products')->name('products');
-//         Route::get('products/{slug}', 'ProductController@catProducts')->name('products.type');
+        // Route::get('/products','ProductController@products')->name('products');
+        // Route::get('products/{slug}', 'ProductController@catProducts')->name('products.type');
 //         Route::post('getRecommendSearch', 'ProductController@getRecommendSearch')->name('search.getRecommended');
-        Route::get('product-detail/{slug}', 'ProductController@productDetail')->name('product-detail');
+
 //         Route::post('getPriceByQuantity', 'ProductController@getPriceByQuantity')->name('getPriceByQuantity');
 
 //         // NewsLetter
 //         Route::post('/subscribe','FrontendController@subscribe')->name('subscribe');
 
-        Route::middleware(['auth'])->group(function () {
-
-            // Wishlist Routes
-            Route::get('/wishlist', 'WishlistController@index')->name('wishlist');
-            Route::post('addToWishlist', 'WishlistController@add_wishlist')->name('wishlist.add');
-            Route::post('removeFromWishlist', 'WishlistController@remove_wishlist')->name('wishlist.remove');
-            Route::post('wishlist-delete','WishlistController@wishlistDelete')->name('wishlist.delete');
 
 
-            Route::get('checkout','CartController@checkout')->name('checkout');
-            Route::post('saveOrder','CartController@saveOrder')->name('saveOrder');
-
-//             // Profile
-            Route::get('my-account', 'UserController@myAccount')->name('my-account');
-//             Route::post('updateProfile', 'UserController@profileUpdate')->name('profile.update');
-//             //Route::get('profile','HomeController@profile')->name('user-profile');
-//             //Route::post('profile/{id}','HomeController@profileUpdate')->name('user-profile-update');
-
-//             // Verification
-//             Route::get('resend-verification-email', 'UserController@resendVerifyEmail')->name('verify.resend-email');
-
-        });
 
 
-});
 
 
 
@@ -177,10 +233,7 @@ Route::group(['namespace' => 'Frontend', 'middleware' => 'cookie-consent'], func
 // Route::post('post/{slug}/comment','PostCommentController@store')->name('post-comment.store');
 // Route::resource('/comment','PostCommentController');
 
-// // Payment
-// Route::get('payment', 'PaypalController@payment')->name('payment');
-// Route::get('cancel', 'PaypalController@cancel')->name('payment.cancel');
-// Route::get('payment/success', 'PaypalController@success')->name('payment.success');
+
 
 
 
@@ -365,3 +418,8 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function(){
 // Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'auth']], function () {
 //     \UniSharp\LaravelFilemanager\Lfm::routes();
 // });
+
+
+// Auth::routes();
+
+// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

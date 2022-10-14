@@ -40,17 +40,17 @@
                         @csrf
                         <div class="form-row">
                             <div class="form-group col-6">
-                                <label for="name">{{ __('label.first_name') }}<span class="required">*</span></label>
+                                <label for="name">First Name<span class="required">*</span></label>
                                 <input type="text" class="form-input form-wide form-control" id="first_name" name="first_name" value="{{ old('first_name') }}" />
                             </div>
                             <div class="form-group col-6">
-                                <label for="name">{{ __('label.last_name') }}<span class="required">*</span></label>
+                                <label for="name">Last Name<span class="required">*</span></label>
                                 <input type="text" class="form-input form-wide form-control" id="last_name" name="last_name" value="{{ old('last_name') }}" />
                             </div>
                         </div>
                         <div class="form-row">
                             <div class="form-group col-6">
-                                <label for="email">{{ __('label.email') }}<span class="required">*</span></label>
+                                <label for="email">Email<span class="required">*</span></label>
                                 <input type="email" class="form-input form-wide form-control" id="semail" name="email" value="{{ old('email') }}" />
                             </div>
                             <div class="form-group col-6">
@@ -75,11 +75,11 @@
 
                         <div class="form-row">
                             <div class="form-group col-6">
-                                <label for="password">{{ __('label.password') }}<span class="required">*</span></label>
+                                <label for="password">Password<span class="required">*</span></label>
                                 <input type="password" class="form-input form-wide form-control" id="password" name="password" value="{{ old('password') }}" />
                             </div>
                             <div class="form-group col-6">
-                                <label for="confirm-password">{{ __('label.confirm_password') }}<span class="required">*</span></label>
+                                <label for="confirm-password">Confirm Password<span class="required">*</span></label>
                                 <input type="password" class="form-input form-wide form-control" id="confirm-password" name="confirm_password" value="{{ old('confirm_password') }}" />
                             </div>
                         </div>
@@ -155,26 +155,26 @@
         },
         messages: {
             first_name: {
-                required: "{{ __('message.validation.required') }}",
+                required: "This field is required",
             },
             last_name: {
-                required: "{{ __('message.validation.required') }}",
+                required: "This field is required",
             },
             phone: {
                 required: "Phone Number required",
             },
             email: {
-                required: "{{ __('message.validation.required') }}",
-                email: "{{ __('message.validation.invalid_email') }}",
-                remote: "{{ __('message.validation.email_exist') }}",
+                required: "This field is required",
+                email: "Invalid email address, please try with correct email",
+                remote: "This email already in use.",
             },
             password: {
-                required: "{{ __('message.validation.password_required') }}",
+                required: "Password is required",
                 minlength: "{{ __('message.validation.password_length_error') }}",
             },
             confirm_password: {
-                required: "{{ __('message.validation.confirm_password_required') }}",
-                equalTo: "{{ __('message.validation.confirm_password_error') }}",
+                required: "Confirm password required",
+                equalTo: "Please confirm correct password",
             },
         },
     });

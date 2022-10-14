@@ -4,13 +4,14 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Pagination\Paginator;
+
 use App\Models\Merchant;
 use App\Models\Product;
 use App\Models\Category;
-use App\Models\ProductImage;
-use App\Models\ProductReview;
 use Helper;
 use Lang;
+use Auth;
 
 class ProductController extends Controller
 {
@@ -56,6 +57,8 @@ class ProductController extends Controller
             $products = $products->where('status', 'active')->paginate(12);
         }
 
+        Paginator::useBootstrap();
+
         $data['products'] = $products;
         return view('frontend.buyer', $data)->withTitle($title);
     }
@@ -63,33 +66,23 @@ class ProductController extends Controller
     /* Render Product Detail Page */
     public function productDetail(Request $request)
     {
-        $slug = $request->slug;
-        $product_detail = Product::getProductBySlug($slug);
-        $title = $product_detail->title;
+        $merchant_id = $request->slug;
+        $product_detail = Merchant::find($merchant_id);
+        $title = $product_detail->name;
 
-        // remove product itself from related list
-        foreach($product_detail->rel_prods as $key => $list){
-            if($list->id == $product_detail->id) unset($product_detail->rel_prods[$key]);
-        }
+        $contents = Product::where('merchant_id', $merchant_id)->where('status', 'active')->get();
 
         // get previous & next product
-        $previous = Product::where('id', '<', $product_detail->id)->orderBy('id','desc')->first();
-        $next = Product::where('id', '>', $product_detail->id)->orderBy('id','asc')->first();
-
-        // get product images
-        $product_images = ProductImage::where('product_id', $product_detail->id)->where('status', 'active')->get();
+        $previous = Merchant::where('id', '<', $product_detail->id)->orderBy('id','desc')->first();
+        $next = Merchant::where('id', '>', $product_detail->id)->orderBy('id','asc')->first();
 
         $data['product_detail'] = $product_detail;
-        $data['reviews'] = ProductReview::select('product_reviews.*', 'users.photo as user_photo', 'users.name as user_name')
-            ->where('product_reviews.status', 'active')
-            ->where('product_reviews.product_id', $product_detail->id)
-            ->leftJoin('users', 'users.id', '=', 'product_reviews.user_id')
-            ->get();
-        $data['previous'] = $previous;
+        $data['featured'] = Merchant::where('id', '<>', $merchant_id)->where('status', 'active')->inRandomOrder()->limit(6)->get();
+        $data['prev'] = $previous;
         $data['next'] = $next;
-        $data['product_images'] = $product_images;
+        $data['contents'] = $contents;
 
-        return view('frontend.pages.product_detail', $data)->withTitle($title);
+        return view('frontend.merchant', $data)->withTitle($title);
     }
 
     public function products(Request $request)

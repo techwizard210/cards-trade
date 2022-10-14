@@ -25,30 +25,29 @@
                             <tr>
                                 <th class="product-name"><span>Product</span></th>
                                 <th></th>
-                                <th class="product-price"><span>Price</span></th>
+                                <th style="text-align: start"><span>Value</span></th>
                                 <th class="product-quantity"><span>Quantity</span></th>
                                 <th class="product-subtotal"><span>Subtotal</span></th>
                             </tr>
                         </thead>
                         <tbody>
-                            @forelse ($content as $list)
+                            @if(!empty($content))
+                            @foreach ($content as $list)
                             @php if(Auth::check()) {
-                                $quantity =  $list->quantity;
-                                $data = $list->merchant;
+                                $data = $list->product;
                             } else {
-                                $quantity = 1;
                                 $data = $list;
                             }
                             @endphp
                             <tr>
                                 <td class="product-thumbnail">
                                     <div class="p-relative">
-                                        <a href="#">
+                                        <a href="{{ route('product.detail', $data->id) }}">
                                             <figure>
-                                                @if(file_exists(public_path('storage/cards/'.$data->image)) && !empty($data->image))
-                                                <img src="{{ asset('storage/cards/'.$data->image) }}" alt="{{ $data->name }}" width="84" height="94" />
+                                                @if(file_exists(public_path('storage/cards/'.$data->merchant->image)) && !empty($data->merchant->image))
+                                                <img src="{{ asset('storage/cards/'.$data->merchant->image) }}" alt="{{ $data->merchant->name }}" width="84" height="94" />
                                                 @else
-                                                <img src="{{ asset('user-assets/images/default-card.png') }}" width="84" height="94" alt="{{ $data->name }}" />
+                                                <img src="{{ asset('user-assets/images/default-card.png') }}" width="84" height="94" alt="{{ $data->merchant->name }}" />
                                                 @endif
                                             </figure>
                                         </a>
@@ -57,26 +56,27 @@
                                     </div>
                                 </td>
                                 <td class="product-name">
-                                    <a href="#">
-                                        {{ $data->name }}
+                                    <a href="{{ route('product.detail', $data->id) }}">
+                                        {{ $data->merchant->name }}
                                     </a>
                                 </td>
-                                <td class="product-price"><span class="amount">${{ number_format($data->value, 2)}}</span></td>
-                                <td class="product-quantity">
-                                    <div class="input-group">
-                                        <input class="quantity form-control" type="number" min="1" max="100000" value="{{ $quantity }}">
-                                        <button class="quantity-plus w-icon-plus"></button>
-                                        <button class="quantity-minus w-icon-minus"></button>
-                                    </div>
+                                <td><span class="text-center">${{ number_format($data->value, 2)}}</span></td>
+                                <td class="text-center">
+                                    {{ $data->quantity }}
                                 </td>
-                                <td class="product-subtotal">
-                                    <span class="amount">${{ number_format($data->value * $quantity, 2)}}</span>
+                                <td class="product-subtotal text-center">
+                                    <span class="amount" style="text-align: center">${{ number_format($data->value * ( 100 - $data->discount) / 100, 2)}}</span>
                                 </td>
                             </tr>
+                            @endforeach
 
-                            @empty
+                            @else
+                            <tr>
+                                <td colspan="5" class="text-center">No Product exist in your shopping cart.</td>
+                            </tr>
 
-                            @endforelse
+
+                            @endif
 
                         </tbody>
                     </table>

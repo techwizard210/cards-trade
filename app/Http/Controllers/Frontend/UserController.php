@@ -47,24 +47,13 @@ class UserController extends Controller
                     if(Auth::guard('user')->attempt(['email' => $request->email, 'password' => $request->password]))
                     {
                         if (Session::has('carts')){
-                            foreach (Session::get('carts') as $cart) {
-
-                                $user_carts = Cart::where('user_id', Auth::user()->id)->where('product_id', $cart->id)->first();
-
-                                if(empty($user_carts))
-                                {
-                                    $carModel = new Cart;
-                                    $carModel->user_id = Auth::user()->id;
-                                    $carModel->product_id = $cart->id;
-                                    $carModel->quantity = 1;
-                                    $carModel->save();
-
-                                } else {
-                                    $tmp_carts = Cart::find($user_carts->id);
-                                    $tmp_carts->quantity += 1;
-                                    $tmp_carts->save();
-
-                                }
+                            foreach (Session::get('carts') as $cart)
+                            {
+                                $carModel = new Cart;
+                                $carModel->user_id = Auth::user()->id;
+                                $carModel->product_id = $cart->id;
+                                $carModel->quantity = 1;
+                                $carModel->save();
                             }
                             Session::forget('carts');
                      }
@@ -148,23 +137,30 @@ class UserController extends Controller
             $user->password = Hash::make($request->password);
             $user->save();
 
-            $token = Str::random(64);
-
-            UserVerify::create([
-                'user_id' => $user->id,
-                'token' => $token
-            ]);
-
-            if($email_controller->emailVerification($request->email, $token)) {
-
-                if(Auth::guard('user')->attempt(['email' => $request->email, 'password' => $request->password]))
-                {
-                    return redirect()->route('home');
-                }
-
+            if(Auth::guard('user')->attempt(['email' => $request->email, 'password' => $request->password]))
+            {
+                return redirect()->route('home');
             } else {
                 return back()->withErrors('Sorry, Database Connection Error.');
             }
+
+            // $token = Str::random(64);
+
+            // UserVerify::create([
+            //     'user_id' => $user->id,
+            //     'token' => $token
+            // ]);
+
+            // if($email_controller->emailVerification($request->email, $token)) {
+
+            //     if(Auth::guard('user')->attempt(['email' => $request->email, 'password' => $request->password]))
+            //     {
+            //         return redirect()->route('home');
+            //     }
+
+            // } else {
+            //     return back()->withErrors('Sorry, Database Connection Error.');
+            // }
         }
     }
 

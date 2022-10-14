@@ -5,11 +5,14 @@ namespace App\Http\Controllers\Frontend;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Victorybiz\LaravelCryptoPaymentGateway\LaravelCryptoPaymentGateway;
 use App\Models\Wishlist;
 use App\Models\Merchant;
 use App\Models\Cart;
+use App\Models\Product;
+use App\Models\Order;
+use App\Models\OrderProduct;
 use App\User;
-use Lang;
 use Auth;
 use Session;
 use DB;
@@ -25,17 +28,23 @@ class CartController extends Controller
         $sub_total = 0.0;
         $shipping_fee = 0.0;
 
-        if(Auth::check()){
-            $data['content'] = Cart::with('merchant')->where('user_id', Auth::user()->id)->get();
+        if(Auth::check())
+        {
+            $data['content'] = Cart::with('product')->where('user_id', Auth::user()->id)->get();
 
-        foreach($data['content'] as $item){
-            $sub_total += $item->merchant->value * $item->quantity;
+            foreach($data['content'] as $item)
+            {
+                $sub_total += $item->product->value * (100 - $item->product->discount) / 100;
+            }
         }
-
-        } else {
+        else
+        {
             $data['content'] = Session::get('carts');
-            foreach($data['content'] as $item){
-                $sub_total += $item->value * 1;
+            if(!empty($data['content'])){
+                foreach($data['content'] as $item)
+                {
+                    $sub_total += $item->value * (100 - $item->discount) / 100;
+                }
             }
         }
 
@@ -78,55 +87,6 @@ class CartController extends Controller
         }
     }
 
-    /* Ajax Get States by Country */
-    public function getStates(Request $request)
-    {
-        try {
-
-            $data_states = DB::table('states')->where('country_id', $request->country_id)->get();
-
-            $shipping = DB::table('shipping_zones')->where('country_ids', $request->country_id)->first();
-            if(empty($shipping)) $shipping = DB::table('shipping_zones')->where('country_ids', 0)->first();
-            $shipping_methods = DB::table('shipping_methods')->where('zone_id', $shipping->id)->get();
-            foreach($shipping_methods as $item){
-                $item->converted_val = number_format(Helper::getPriceByCurrency(Helper::getCHF($item->value, $shipping->currency)), 2);
-            }
-
-            $cart = Helper::getCart();
-            $sub_total = $cart['subtotal'];
-
-            $coupon = 0.0;
-            if(Session::has('coupon')) $coupon = Helper::getCouponDiscount($sub_total);
-
-            $is_free_shipping = $sub_total > $shipping->free_limit ? 1 : 0;
-            $shipping_fee = 0.0;
-            if(!$is_free_shipping) {
-                $shipping_fee = Helper::getCHF($shipping_methods[0]->value, $shipping->currency);
-            }
-
-            $total = $sub_total -$coupon + $shipping_fee;
-
-            $err = array(
-                'status' => 'success',
-                'states' => $data_states,
-                'shipping_methods' => $shipping_methods,
-                'total' => Helper::getLocaleCurrency()->symbol.number_format(Helper::getPriceByCurrency($total), 2),
-                'is_free_shipping' => $is_free_shipping
-            );
-
-            return response()->json($err);
-
-        } catch (\Exception $e) {
-
-            $err = array(
-                'status' => 'error',
-                'message' => Lang::get('message.response.db_connection_error')
-            );
-
-            return response()->json($err);
-        }
-    }
-
     /* Ajax Add to Cart */
     public function addToCart(Request $request)
     {
@@ -147,111 +107,44 @@ class CartController extends Controller
         {
             $err = array(
                 'status' => 'error',
-                'message' => Lang::get('message.response.invalid_param'),
+                'message' => 'Invalid Parameter',
             );
             return response()->json($err);
         }
         else
         {
-            $product = Merchant::find($request->product_id);
-
-            // if ( ($request->quantity < 1) || empty($product) ) {
-            //     $err = array(
-            //         'status' => 'error',
-            //         'message' => Lang::get('message.response.invalid_param'),
-            //     );
-            //     return response()->json($err);
-            // }
-
-            // if($product->stock < 1 && $product->backorder == 'disable')
-            // {
-            //     $err = array(
-            //         'status' => 'error',
-            //         'message' => Lang::get('message.response.out_of_stock'),
-            //     );
-            //     return response()->json($err);
-            // }
-
-            // if($product->stock < $request->quantity && $product->backorder == 'disable')
-            // {
-            //     $err = array(
-            //         'status' => 'error',
-            //         'message' => Lang::get('message.response.stock_not_enough'),
-            //     );
-            //     return response()->json($err);
-            // }
+            $product = Product::find($request->product_id);
 
             if(Auth::check())
             {
-                $current_cart = Cart::where('user_id', auth()->user()->id)->where('product_id', $product->id)->first();
+                $cart = new Cart;
 
-                $wishlists = Wishlist::where('user_id', auth()->user()->id)->where('product_id', $product->id)->delete();
+                $cart->user_id = auth()->user()->id;
+                $cart->product_id = $product->id;
+                $cart->quantity = $request->quantity;
 
-                if(!empty($current_cart))
-                {
-                    // if($current_cart->quantity + $request->quantity > $product->stock && $product->backorder == 'disable')
-                    // {
-                    //     $err = array(
-                    //         'status' => 'error',
-                    //         'message' => Lang::get('message.response.stock_not_enough'),
-                    //     );
-                    //     return response()->json($err);
+                $cart->save();
 
-                    // } else {
-                        $current_cart->quantity += $request->quantity;
-                        $current_cart->save();
+                $res = array(
+                    'status' => 'success',
+                    'message' => 'Successfully added in your shopping cart',
+                    'cart' => view('frontend.components.shopping-cart')->render()
+                );
 
-                        $res = array(
-                            'status' => 'success',
-                            'message' => Lang::get('message.response.add_cart_success'),
-                            'cart' => view('frontend.components.shopping-cart')->render()
-                        );
-
-                        return response()->json($res);
-                    // }
-
-                } else {
-
-                    $cart = new Cart;
-
-                    $cart->user_id = auth()->user()->id;
-                    $cart->product_id = $product->id;
-                    $cart->quantity = $request->quantity;
-
-                    $cart->save();
-
-                    $res = array(
-                        'status' => 'success',
-                        'message' => Lang::get('message.response.add_cart_success'),
-                        'cart' => view('frontend.components.shopping-cart')->render()
-                    );
-
-                    return response()->json($res);
-                }
-
-            } else {
-
+                return response()->json($res);
+            }
+            else
+            {
                 Session::push('carts', $product);
 
-                if(1){
-                    $err = array(
-                        'status' => 'success',
-                        'message' => Lang::get('message.response.add_cart_success'),
-                        'data' => Session::get('carts'),
-                        'cart' => view('frontend.components.shopping-cart')->render()
-                    );
-                } else {
-                    $err = array(
-                        'status' => 'error',
-                        'message' => Lang::get('message.response.out_of_stock')
-                    );
-                }
+                $res = array(
+                    'status' => 'success',
+                    'message' => 'Successfully added in your shopping cart',
+                    'cart' => view('frontend.components.shopping-cart')->render()
+                );
 
-                return response()->json($err);
+                return response()->json($res);
             }
-
-            request()->session()->flash('success','Product successfully added to cart.');
-            return back();
         }
     }
 
@@ -325,7 +218,6 @@ class CartController extends Controller
         }
     }
 
-
     /* Render Checkout Page */
     public function checkout(Request $request)
     {
@@ -333,7 +225,7 @@ class CartController extends Controller
 
         $sub_total = 0.0;
 
-        $data['content'] = Cart::with('merchant')->where('user_id', Auth::user()->id)->get();
+        $data['content'] = Cart::with('product')->where('user_id', Auth::user()->id)->get();
         $data['countries'] = DB::table('countries')->get();
         $data['user'] = User::find(auth()->user()->id);
 
@@ -343,7 +235,7 @@ class CartController extends Controller
 
         foreach($data['content'] as $item)
         {
-            $sub_total += $item->merchant->value * $item->quantity;
+            $sub_total += $item->product->value * ( 100 - $item->product->discount) / 100;
         }
 
         $coupon = 0.0;
@@ -392,7 +284,41 @@ class CartController extends Controller
         return response()->json($res);
     }
 
-    public function saveOrder()
+    public function saveOrder(Request $request)
+    {
+        $subtotal = Helper::getCart()['subtotal'];
+        $products = Cart::where('user_id', Auth::user()->id)->get();
+
+        $order = new Order;
+        $order->user_id = Auth::user()->id;
+        $order->payment_method = 'crypto';
+        $order->payment_status = 'pending';
+        $order->status = 'pending';
+        $order->subtotal = $subtotal;
+        $order->total = $subtotal;
+        $order->save();
+
+        foreach($products as $list)
+        {
+            $order_product = new OrderProduct;
+            $order_product->product_id = $list->product_id;
+            $order_product->order_id = $order->id;
+            $order_product->save();
+
+            Cart::find($list->id)->delete();
+        }
+
+        $payment_url = LaravelCryptoPaymentGateway::startPaymentSession([
+            'amountUSD' => $subtotal, // OR 'amount' when sending BTC value
+            'orderID' => $order->id,
+            'userID' => Auth::user()->id,
+            'redirect' => route('order.confirm'),
+        ]);
+        // redirect to the payment page
+        return redirect()->to($payment_url);
+    }
+
+    public function confirmOrder()
     {
         $title = 'Order Success';
         return view('frontend.order-complete')->withTitle($title);

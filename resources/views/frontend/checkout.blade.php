@@ -178,8 +178,7 @@
                                         </option>
                                         <option value="uk">United Kingdom (UK)</option>
                                         <option value="us">United States</option>
-                                        <option value="fr">France</option>
-                                        <option value="aus">Australia</option>
+                                        <option value="fr">Canada</option>
                                     </select>
                                 </div>
                             </div>
@@ -232,10 +231,10 @@
                                     <tbody>
                                         @forelse ($content as $list)
                                         <tr class="bb-no">
-                                            <td class="product-name">{{ $list->merchant->name }} <i
+                                            <td class="product-name">{{ $list->product->merchant->name }} <i
                                                     class="fas fa-times"></i> <span
-                                                    class="product-quantity">{{ $list->quantity }}</span></td>
-                                            <td class="product-total">${{ number_format($list->quantity * $list->merchant->value, 2 )}}</td>
+                                                    class="product-quantity">{{ $list->product->quantity }}</span></td>
+                                            <td class="product-total">${{ number_format($list->product->value * (100- $list->product->discount) / 100, 2 )}}</td>
                                         </tr>
 
                                         @empty
@@ -303,6 +302,16 @@
                                     <div class="accordion payment-accordion">
                                         <div class="card">
                                             <div class="card-header">
+                                                <a href="#coin" class="collapse">Bitcoin</a>
+                                            </div>
+                                            <div id="coin" class="card-body expanded">
+                                                <p class="mb-0">
+                                                    Pay with Bitcoin on GoURL.io
+                                                </p>
+                                            </div>
+                                        </div>
+                                        {{-- <div class="card">
+                                            <div class="card-header">
                                                 <a href="#cash-on-delivery" class="collapse">Direct Bank Transfor</a>
                                             </div>
                                             <div id="cash-on-delivery" class="card-body expanded">
@@ -348,7 +357,7 @@
                                                     don't have a PayPal account.
                                                 </p>
                                             </div>
-                                        </div>
+                                        </div> --}}
                                     </div>
                                 </div>
 

@@ -40,13 +40,13 @@
                         @csrf
                         <div class="form-row">
                             <div class="form-group col">
-                                <label for="login-email">{{ __('label.email') }}<span class="required">*</span></label>
+                                <label for="login-email">Email<span class="required">*</span></label>
                                 <input type="email" class="form-input form-wide" id="email" name="email" value="{{ old('email') }}" />
                             </div>
                         </div>
                         <div class="form-row">
                             <div class="form-group col">
-                                <label for="login-password">{{ __('label.password') }}<span class="required">*</span></label>
+                                <label for="login-password">Password<span class="required">*</span></label>
                                 <input type="password" class="form-input form-wide" id="password" name="password" value="{{ old('password') }}" />
                             </div>
                         </div>

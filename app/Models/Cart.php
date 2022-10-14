@@ -14,9 +14,9 @@ class Cart extends Model
     // public static function getAllProductFromCart(){
     //     return Cart::with('product')->where('user_id',auth()->user()->id)->get();
     // }
-    public function merchant()
+    public function product()
     {
-        return $this->belongsTo(Merchant::class, 'product_id');
+        return $this->belongsTo(Product::class, 'product_id')->with('merchant');
     }
     public function order(){
         return $this->belongsTo(Order::class,'order_id');

@@ -11,7 +11,7 @@ use App\Models\Order;
 use App\Models\Wishlist;
 use App\Models\Shipping;
 use App\Models\Cart;
-use App\Models\Partner;
+use App\Models\Merchant;
 use App\Models\Product;
 use App\Models\ProductReview;
 use App\Models\Currency;
@@ -197,41 +197,47 @@ class Helper {
     // Get Cart Products
     public static function getCart()
     {
-        if(Auth::check()){
-            $cart = Cart::with('merchant')->where('user_id', auth()->user()->id)->get();
+        if(Auth::check())
+        {
+            $cart = Cart::with('product')->where('user_id', auth()->user()->id)->get();
+
             $total = 0;
 
-            if(count($cart) > 0){
-                foreach($cart as $list)
+            if(count($cart) > 0)
             {
-                $list->price = $list->quantity * $list->merchant->value;
-                $total += $list->price;
+                foreach($cart as $list)
+                {
+                    $list->price = $list->product->value * (100 - $list->product->discount) / 100 ;
+                    $total += $list->price;
+                }
             }
-
-            }
-
 
             $data['cart'] = $cart;
             $data['subtotal'] = $total;
             $data['cart_count'] = count($cart);
-        } else {
+        }
+        else
+        {
             $cart  = Session::get('carts');
 
             $total = 0;
-            if(!empty($cart)){
+
+            if(!empty($cart))
+            {
                 foreach($cart as $list)
                 {
-                    $list->price = 1 * $list->value;
+                    $list->merchant = Merchant::find($list->merchant_id);
+                    $list->price = $list->value * (100 - $list->discount) / 100;
                     $total += $list->price;
                 }
                 $data['cart_count'] = count($cart);
                 $data['cart'] = $cart;
-            } else {
+            }
+            else
+            {
                 $data['cart_count'] = 0;
                 $data['cart'] = array();
             }
-
-
 
             $data['subtotal'] = $total;
         }

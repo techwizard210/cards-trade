@@ -16,14 +16,14 @@
 
                 <a href="assets/ajax/login.html" class="ml-0 d-lg-show login register">Register</a> --}}
                 @auth
-                <a href="my-account.html" class="d-lg-show">My Account</a>
+                <a href="#" class="d-lg-show">My Account</a>
                 <a href="{{ route('logout') }}" class="d-lg-show">Sign Out</a>
                 @else
                 <a href="{{ route('login') }}" class="d-lg-show"><i
                     class="w-icon-account"></i>Sign In</a>
-            <span class="delimiter d-lg-show">/</span>
-            <a href="{{ route('logout') }}" class="ml-0 d-lg-show">Register</a>
-            @endauth
+                <span class="delimiter d-lg-show">/</span>
+                <a href="{{ route('register') }}" class="ml-0 d-lg-show">Register</a>
+                @endauth
             </div>
         </div>
     </div>

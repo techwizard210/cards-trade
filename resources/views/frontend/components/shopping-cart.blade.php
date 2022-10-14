@@ -13,25 +13,25 @@
 
     <div class="products">
         @forelse (Helper::getCart()['cart'] as $list)
+        @php if(Auth::check()) $data = $list->product; else $data = $list; @endphp
         <div class="product product-cart">
             <div class="product-detail">
-                <a href="#" class="product-name">@auth {{ $list->merchant->name }}@else {{ $list->name }} @endauth</a>
+                <a href="{{ route('product.detail', $data->merchant->id) }}" class="product-name">{{ $data->merchant->name }}</a>
                 <div class="price-box">
-                    <span class="product-quantity">@auth {{ $list->quantity }}@else 1 @endauth</span>
-                    <span class="product-price">$@auth {{ number_format($list->merchant->value, 2) }}@else {{ number_format($list->value, 2) }} @endauth</span>
+                    <span class="product-quantity">{{ $data->quantity }}</span>
+                    <span class="product-price">${{ number_format($data->value * (100 - $data->discount) / 100, 2) }}</span>
                 </div>
             </div>
-            @php if(Auth::check()) $img = $list->merchant->image; else $img =  $list->image; @endphp
             <figure class="product-media">
-                <a href="#">
-                    @if(file_exists(public_path('storage/cards/'.$img)) && !empty($img))
-                    <img src="{{ asset('storage/cards/'.$img) }}" alt="{{ $list->name }}" width="84" height="94" />
+                <a href="{{ route('product.detail', $data->merchant->id) }}">
+                    @if(file_exists(public_path('storage/cards/'.$data->merchant->image)) && !empty($data->merchant->image))
+                    <img src="{{ asset('storage/cards/'.$data->merchant->image) }}" alt="{{ $data->merchant->name }}" width="84" height="94" />
                     @else
-                    <img src="{{ asset('user-assets/images/default-card.png') }}" width="84" height="94" alt="{{ $list->name }}" />
+                    <img src="{{ asset('user-assets/images/default-card.png') }}" width="84" height="94" alt="{{ $data->merchant->name }}" />
                     @endif
                 </a>
             </figure>
-            <button class="btn btn-link btn-close btn-remove-item-cart" aria-label="button" data-id="@auth{{ $list->merchant->id }}@else{{ $list->id }}@endauth">
+            <button class="btn btn-link btn-close btn-remove-item-cart" aria-label="button" data-id="{{ $data->id }}">
                 <i class="fas fa-times"></i>
             </button>
         </div>

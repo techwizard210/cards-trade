@@ -77,4 +77,30 @@
 .wishlist-table .product-price, .wishlist-table .product-stock-status {
     text-align: left;
 }
+.product-gallery img {
+    width: 100%;
+    margin: 2rem;
+    border-radius: 24px;
+}
+.product-single .product-categories {
+    margin-bottom: 0;
+}
+.product-single .product-meta {
+    margin-bottom: 0;
+}
 
+.product-price .new-price {
+    color: #fb6a25;
+}
+.product-price span.price-label {
+    font-size: 20px;
+    padding-right: 10px;
+}
+
+.product-table th {
+    text-align: left;
+}
+
+.product-table th.wishlist-action {
+    text-align: center;
+}
