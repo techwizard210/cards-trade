@@ -20,9 +20,24 @@
 
     @include('frontend.layout.meta')
 
+    <style>
+        .no-js #loader { display: none;  }
+        .js #loader { display: block; position: absolute; left: 100px; top: 0; }
+        .se-pre-con {
+            position: fixed;
+            left: 0px;
+            top: 0px;
+            width: 100%;
+            height: 100%;
+            z-index: 9999;
+            background: url('{{ asset('Preloader_7.gif') }}') center no-repeat #ffffff;
+        }
+    </style>
+
 </head>
 
 <body>
+    <div class="se-pre-con"></div>
     <div class="page-wrapper">
         <h1 class="d-none">CardsTrade</h1>
 
@@ -364,6 +379,14 @@
     <!-- End of Quick view -->
 
     @include('frontend.layout.script')
+
+    <script type="text/javascript">
+
+        window.onload = (event) => {
+            $(".se-pre-con").fadeOut("slow");
+        };
+
+    </script>
 
 </body>
 
