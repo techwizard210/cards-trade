@@ -5,7 +5,7 @@
                 @if(file_exists(public_path('storage/cards/'.$product->image)) && !empty($product->image))
                 <img src="{{ asset('storage/cards/'.$product->image) }}" alt="{{ $product->name }}" width="300" height="338" />
                 @else
-                <img src="{{ asset('user-assets/images/default-card.png') }}" width="300px" height="300px" alt="{{ public_path('storage/cards/'.$product->image) }}" />
+                <img src="{{ asset('user-assets/images/default-card.png') }}" width="300px" height="300px" alt="{{ $product->title }}" />
                 @endif
             </a>
             @auth
