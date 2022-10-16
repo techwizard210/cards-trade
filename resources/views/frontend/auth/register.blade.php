@@ -173,7 +173,7 @@
             },
             password: {
                 required: "Password is required",
-                minlength: "{{ __('message.validation.password_length_error') }}",
+                minlength: "Password length should be more than 6",
             },
             confirm_password: {
                 required: "Confirm password required",

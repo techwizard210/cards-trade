@@ -20,7 +20,7 @@ use Lang;
 use Helper;
 use DB;
 
-class UserController extends Controller
+class CustomerController extends Controller
 {
     // View Users Page
     public function index()

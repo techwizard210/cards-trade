@@ -10,6 +10,11 @@ use App\Http\Controllers\Frontend\WishlistController;
 
 use App\Http\Controllers\Support\UtilController;
 
+use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\CustomerController;
+use App\Http\Controllers\Admin\MerchantController;
+use App\Http\Controllers\Admin\CardController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -236,33 +241,32 @@ Route::post('/payments/crypto/callback', [App\Http\Controllers\Payment\PaymentCo
 // Route::resource('/comment','PostCommentController');
 
 
+/*
+|--------------------------------------------------------------------------
+|                           Administrator Routes
+|--------------------------------------------------------------------------|
+*/
 
+Route::group(['prefix' => 'admin'], function(){
 
+    // Default Route
+    Route::get('/',[AdminController::class, 'index'])->name('admin.index');
 
-/* ***************************************
- *                                       *
- *            ADMIN SECTION              *
- *                                       *
- * ************************************* */
-
-Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function(){
-
-    Route::get('/','AdminController@index')->name('admin.index');
-
-    Route::get('login', 'AdminController@login')->name('admin.login');
-    Route::post('login', 'AdminController@authenticate')->name('admin.login.submit');
+    // Auth Route
+    Route::get('login', [AdminController::class, 'login'])->name('admin.login');
+    Route::post('login', [AdminController::class, 'authenticate'])->name('admin.login.submit');
 
     Route::middleware(['admin'])->group(function () {
         // Account Routes
-        Route::get('logout', 'AdminController@logout')->name('admin.logout');
+        Route::get('logout', [AdminController::class, 'logout'])->name('admin.logout');
 
         // Dashboard Routes
-        Route::get('dashboard', 'AdminController@dashboard')->name('admin.dashboard');
+        Route::get('dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
 
         // User Routes
-        Route::get('user/index', 'UserController@index')->name('admin.user.index');
+        Route::get('user/index', [CustomerController::class, 'index'])->name('admin.user.index');
+        Route::post('getUserData', [CustomerController::class, 'getUserData'])->name('admin.getUserData');
 //         Route::get('user/detail/{id}', 'UserController@detail')->name('admin.user.detail');
-        Route::post('getUserData', 'UserController@getUserData')->name('admin.getUserData');
 //         Route::post('user/import', 'UserController@userImport')->name('admin.user.import');
 //         Route::post('user/delete', 'UserController@userDelete')->name('admin.user.delete');
 //         Route::post('user/update', 'UserController@userUpdate')->name('admin.user.update');
@@ -277,12 +281,12 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function(){
 //         Route::post('category/update', 'CategoryController@update')->name('admin.category.update');
 
         // Merchant Routes
-        Route::get('merchant/index', 'MerchantController@index')->name('admin.merchant.index');
-        Route::post('merchant/getData', 'MerchantController@getData')->name('admin.merchant.get');
+        Route::get('merchant/index', [MerchantController::class, 'index'])->name('admin.merchant.index');
+        Route::post('merchant/getData', [MerchantController::class, 'getData'])->name('admin.merchant.get');
 
         // Card Routes
-        Route::get('card/index', 'CardController@index')->name('admin.card.index');
-        Route::post('card/getData', 'CardController@getData')->name('admin.card.get');
+        Route::get('card/index', [CardController::class, 'index'])->name('admin.card.index');
+        Route::post('card/getData', [CardController::class, 'getData'])->name('admin.card.get');
 //         Route::get('product/detail/{id}', 'ProductController@detail')->name('admin.product.detail');
 //         Route::get('product/add', 'ProductController@add')->name('admin.product.add');
 //         Route::post('product/store', 'ProductController@store')->name('admin.product.store');
