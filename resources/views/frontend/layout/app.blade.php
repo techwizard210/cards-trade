@@ -380,14 +380,6 @@
 
     @include('frontend.layout.script')
 
-    <script type="text/javascript">
-
-        window.onload = (event) => {
-            $(".se-pre-con").fadeOut("slow");
-        };
-
-    </script>
-
 </body>
 
 </html>
