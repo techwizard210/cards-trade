@@ -11,10 +11,12 @@ use Illuminate\Support\Str;
 use App\User;
 use App\Models\UserVerify;
 use App\Models\Cart;
+use App\Models\Order;
 use Lang;
 use Auth;
 use Mail;
 use Session;
+use Helper;
 use DB;
 
 class UserController extends Controller
@@ -287,50 +289,74 @@ class UserController extends Controller
     public function logout()
     {
         Auth::guard('user')->logout();
-        return back();
+        return redirect()->route('home');
     }
 
     /* Render My Account Page */
     public function myAccount()
     {
-        $title = Lang::get('label.my_account');
-        $data = array();
-        $profile = User::find(Auth::guard('user')->user()->id);
+        $title = 'My Account';
+        $profile = User::find(Auth::user()->id);
         $data['profile'] = $profile;
-        $data['orders'] = Order::where('user_id', Auth::guard('user')->user()->id)->get();
+        return view('frontend.user.my-account', $data)->withTitle($title);
+    }
 
-        return view('frontend.pages.my-account', $data)->withTitle($title);
+    /* Render My Account - Download Page */
+    public function downloads()
+    {
+        $title = 'Downloads';
+        $data = array();
+        return view('frontend.user.download', $data)->withTitle($title);
+    }
+
+    /* Render My Account - Address Page */
+    public function address()
+    {
+        $title = 'Addresses';
+        $profile = User::find(Auth::user()->id);
+        $data['profile'] = $profile;
+        return view('frontend.user.addresses', $data)->withTitle($title);
+    }
+
+    /* Render My Account - Profile Page */
+    public function profile()
+    {
+        $title = 'Account Details';
+        $profile = User::find(Auth::user()->id);
+        $data['profile'] = $profile;
+        return view('frontend.user.profile', $data)->withTitle($title);
     }
 
     /* Ajax Update Profile */
-    public function profileUpdate(Request $request, EmailController $email_controller)
+    public function profileUpdate(Request $request)
     {
         try {
-            $user = User::find(Auth::guard('user')->user()->id);
+            $user = User::find(Auth::user()->id);
             $old_email = $user->email;
 
-            $user->name = $request->acc_name;
-            $user->email = $request->acc_email;
+            $user->first_name = $request->firstname;
+            $user->last_name = $request->lastname;
+            $user->email = $request->email;
 
-            if($old_email != $request->acc_email)
+            if($old_email != $request->email)
             {
                 $user->email_verified = 0;
 
-                $token = Str::random(64);
-                UserVerify::create([
-                    'user_id' => $user->id,
-                    'token' => $token
-                ]);
+                // $token = Str::random(64);
+                // UserVerify::create([
+                //     'user_id' => $user->id,
+                //     'token' => $token
+                // ]);
 
-                $email_controller->emailVerification($request->acc_email, $token);
+                // $email_controller->emailVerification($request->acc_email, $token);
             }
 
             $user->save();
 
-            if($request->has('is_pass_change'))
+            if($request->has('change_pass'))
             {
-                if(Hash::check($request->acc_password, $user->password)){
-                    $user->password = Hash::make($request->acc_new_password);
+                if(Hash::check($request->cur_password, $user->password)){
+                    $user->password = Hash::make($request->new_password);
                     $user->save();
 
                     $res = array(
@@ -354,7 +380,31 @@ class UserController extends Controller
                 return response()->json($res);
             }
         } catch (\Exception $e) {
-            //throw $th;
+            $res = array(
+                'status' => 'error',
+                'title' => 'Server Disconnected',
+                'message' => 'Something went wrong on serverside.'
+            );
+            return response()->json($res);
         }
+    }
+
+    /* Render User Orders Page */
+    public function orders()
+    {
+        $title = 'Orders';
+        $orders = Order::where('user_id', Auth::user()->id)->get();
+        $data['orders'] = $orders;
+        return view('frontend.user.orders', $data)->withTitle($title);
+    }
+
+    /* Render User Order Detail Page */
+    public function orderDetail(Request $request)
+    {
+        $title = 'Order #'.Helper::genID($request->id);
+        $order_data = Order::with('products')->find($request->id);
+        if(empty($order_data)) return abort(404);
+        $data['content'] = $order_data;
+        return view('frontend.user.order-detail', $data)->withTitle($title);
     }
 }

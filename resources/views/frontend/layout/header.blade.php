@@ -16,7 +16,7 @@
 
                 <a href="assets/ajax/login.html" class="ml-0 d-lg-show login register">Register</a> --}}
                 @auth
-                <a href="#" class="d-lg-show">My Account</a>
+                <a href="{{ route('my-account') }}" class="d-lg-show">My Account</a>
                 <a href="{{ route('logout') }}" class="d-lg-show">Sign Out</a>
                 @else
                 <a href="{{ route('login') }}" class="d-lg-show"><i

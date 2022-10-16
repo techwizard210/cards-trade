@@ -12,6 +12,7 @@ use App\Models\Cart;
 use App\Models\Product;
 use App\Models\Order;
 use App\Models\OrderProduct;
+use App\Models\State;
 use App\User;
 use Auth;
 use Session;
@@ -226,7 +227,7 @@ class CartController extends Controller
         $sub_total = 0.0;
 
         $data['content'] = Cart::with('product')->where('user_id', Auth::user()->id)->get();
-        $data['countries'] = DB::table('countries')->get();
+        $data['states'] = State::where('country_id', '233')->get();
         $data['user'] = User::find(auth()->user()->id);
 
 
@@ -260,30 +261,6 @@ class CartController extends Controller
         return view('frontend.checkout', $data)->withTitle($title);
     }
 
-    /* Ajax Total order by shipping method */
-    public function updateCartTotal(Request $request)
-    {
-        $cart = Helper::getCart();
-        $sub_total = $cart['subtotal'];
-
-        $coupon = 0.0;
-        if(Session::has('coupon')) $coupon = Helper::getCouponDiscount($sub_total);
-
-        $shipping_fee = 0.0;
-        if($request->shipping_id > 0) {
-            $shipping = DB::table('shipping_methods')->where('shipping_methods.id', $request->shipping_id)->leftJoin('shipping_zones', 'shipping_zones.id', '=', 'shipping_methods.zone_id')->first();
-            $shipping_fee = Helper::getCHF($shipping->value, $shipping->currency);
-        }
-
-        $total = $sub_total -$coupon + $shipping_fee;
-
-        $res = array(
-            'status' => 'success',
-            'total' => Helper::getLocaleCurrency()->symbol.number_format(Helper::getPriceByCurrency($total), 2)
-        );
-        return response()->json($res);
-    }
-
     public function saveOrder(Request $request)
     {
         $subtotal = Helper::getCart()['subtotal'];
@@ -296,6 +273,44 @@ class CartController extends Controller
         $order->status = 'pending';
         $order->subtotal = $subtotal;
         $order->total = $subtotal;
+
+        $order->b_first_name = $request->firstname;
+        $order->b_last_name = $request->lastname;
+        $order->b_company_name = $request->company_name;
+        $order->b_address1 = $request->street_address_1;
+        $order->b_address2 = $request->street_address_2;
+        $order->b_city = $request->town;
+        $order->b_state = $request->state;
+        $order->b_country = $request->country;
+        $order->b_zip = $request->zip;
+        $order->b_email = $request->email;
+        $order->b_phone = $request->phone;
+
+        if($request->has('shipping_toggle'))
+        {
+            $order->s_first_name = $request->s_firstname;
+            $order->s_last_name = $request->s_lastname;
+            $order->s_company_name = $request->s_company_name;
+            $order->s_address1 = $request->s_street_address_1;
+            $order->s_address2 = $request->s_street_address_2;
+            $order->s_city = $request->s_town;
+            $order->s_state = $request->s_state;
+            $order->s_country = $request->s_country;
+            $order->s_zip = $request->s_zip;
+        } else {
+            $order->s_first_name = $request->firstname;
+            $order->s_last_name = $request->lastname;
+            $order->s_company_name = $request->company_name;
+            $order->s_address1 = $request->street_address_1;
+            $order->s_address2 = $request->street_address_2;
+            $order->s_city = $request->town;
+            $order->s_state = $request->state;
+            $order->s_country = $request->country;
+            $order->s_zip = $request->zip;
+        }
+
+        $order->comment = $request->order_notes;
+
         $order->save();
 
         foreach($products as $list)

@@ -15,14 +15,14 @@ class FrontendController extends Controller
     public function aboutUs()
     {
         $title = 'About Us';
-        return view('user.about-us')->withTitle($title);
+        return view('frontend.about-us')->withTitle($title);
     }
 
     /* Render Contact Us Page */
     public function contactUs()
     {
         $title = 'Contact Us';
-        return view('user.contact-us')->withTitle($title);
+        return view('frontend.contact-us')->withTitle($title);
     }
 
     /* Ajax Subscribe Email */

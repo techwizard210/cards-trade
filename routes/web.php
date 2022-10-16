@@ -9,9 +9,7 @@ use App\Http\Controllers\Frontend\FrontendController;
 use App\Http\Controllers\Frontend\CartController;
 use App\Http\Controllers\Frontend\WishlistController;
 
-
-
-
+use App\Http\Controllers\Support\UtilController;
 
 
 /*
@@ -26,6 +24,15 @@ use App\Http\Controllers\Frontend\WishlistController;
 */
 
 Auth::routes(['register'=>false, 'login'=>false]);
+
+/*
+|--------------------------------------------------------------------------
+|                           Support Routes
+|--------------------------------------------------------------------------|
+*/
+
+// Utility Routes
+Route::post('getStateData', [UtilController::class, 'getStateData'])->name('util.getStateData');
 
 /*
 |--------------------------------------------------------------------------
@@ -61,8 +68,8 @@ Route::get('/about-us', [FrontendController::class, 'aboutUs'])->name('about-us'
 Route::get('/contact-us', [FrontendController::class, 'contactUs'])->name('contact-us');
 Route::post('/conctact-submit', [FrontendController::class, 'contactUsMsg'])->name('contact.submit');
 
-Route::middleware(['auth'])->group(function ()
-{
+Route::middleware(['auth'])->group(function () {
+
     // Wishlist Routes
     Route::get('/wishlist', [WishlistController::class, 'index'])->name('wishlist');
     Route::post('addToWishlist', [WishlistController::class, 'add_wishlist'])->name('wishlist.add');
@@ -74,15 +81,17 @@ Route::middleware(['auth'])->group(function ()
     Route::post('saveOrder', [CartController::class, 'saveOrder'])->name('saveOrder');
     Route::get('confirm-order', [CartController::class, 'confirmOrder'])->name('order.confirm');
 
-//             // Profile
-        Route::get('my-account', 'UserController@myAccount')->name('my-account');
-//             Route::post('updateProfile', 'UserController@profileUpdate')->name('profile.update');
-//             //Route::get('profile','HomeController@profile')->name('user-profile');
-//             //Route::post('profile/{id}','HomeController@profileUpdate')->name('user-profile-update');
+    // Profile
+    Route::get('my-account', [UserController::class, 'myAccount'])->name('my-account');
+    Route::get('orders', [UserController::class, 'orders'])->name('account.orders');
+    Route::get('order-detail/{id}', [UserController::class, 'orderDetail'])->name('account.order-detail');
+    Route::get('downloads', [UserController::class, 'downloads'])->name('account.download');
+    Route::get('profile',[UserController::class, 'profile'])->name('account.profile');
+    Route::get('address',[UserController::class, 'address'])->name('account.address');
+    Route::post('updateProfile', [UserController::class, 'profileUpdate'])->name('profile.update');
 
 //             // Verification
 //             Route::get('resend-verification-email', 'UserController@resendVerifyEmail')->name('verify.resend-email');
-
 });
 
 
@@ -118,12 +127,6 @@ Route::post('/payments/crypto/callback', [App\Http\Controllers\Payment\PaymentCo
 
 // // Reset password
 // Route::post('password-reset', 'FrontendController@showResetForm')->name('password.reset');
-
-
-// // Frontend Routes
-// Route::get('/home', 'FrontendController@index');
-
-
 
 // Route::post('/contact/message','MessageController@store')->name('contact.store');
 
@@ -324,9 +327,6 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function(){
 //         Route::post('website/partners/delete', 'WebsiteController@partnerDelete')->name('admin.partner.delete');
 //         Route::post('website/partners/get', 'WebsiteController@partnerGet')->name('admin.partner.get');
 //         Route::post('website/partners/update', 'WebsiteController@partnerUpdate')->name('admin.partner.update');
-
-//         // Utility Routes
-//         Route::post('getStateData', 'UtilityController@getStateData')->name('admin.getStateData');
     });
 });
 

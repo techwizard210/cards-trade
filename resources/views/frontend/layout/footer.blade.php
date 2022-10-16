@@ -33,8 +33,7 @@
                 <div class="col-lg-4 col-sm-6">
                     <div class="widget widget-about">
                         <a href="{{ route('home') }}" class="logo-footer">
-                            <img src="{{ asset('user-assets/images/logo-black.png') }}" alt="logo-footer" width="144"
-                                height="45" />
+                            <img src="{{ asset('user-assets/images/logo_footer.png') }}" alt="logo-footer" width="300" height="45" />
                         </a>
                         <div class="widget-body">
                             <p class="widget-about-title">Got Question? Call us 24/7</p>
@@ -70,13 +69,16 @@
                     <div class="widget">
                         <h4 class="widget-title">My Account</h4>
                         <ul class="widget-body">
-                            <li><a href="#">Track My Order</a></li>
-                            <li><a href="cart.html">View Cart</a></li>
+                            @auth
+                            <li><a href="{{ route('my-account') }}">My account</a></li>
+                            @else
                             <li><a href="{{ route('login') }}">Sign In</a></li>
+                            @endauth
+                            <li><a href="#">Track My Order</a></li>
+                            <li><a href="{{ route('cart') }}">View Cart</a></li>
                             <li><a href="#">Help</a></li>
                             <li><a href="{{ route('wishlist') }}">My Wishlist</a></li>
                             <li><a href="#">Privacy Policy</a></li>
-                        </ul>
                     </div>
                 </div>
                 <div class="col-lg-3 col-sm-6">

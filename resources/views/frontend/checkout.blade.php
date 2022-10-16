@@ -19,36 +19,6 @@
     <!-- Start of PageContent -->
     <div class="page-content">
         <div class="container">
-            {{-- <div class="login-toggle">
-                Returning customer? <a href="#"
-                    class="show-login font-weight-bold text-uppercase text-dark">Login</a>
-            </div>
-            <form class="login-content">
-                <p>If you have shopped with us before, please enter your details below.
-                    If you are a new customer, please proceed to the Billing section.</p>
-                <div class="row">
-                    <div class="col-xs-6">
-                        <div class="form-group">
-                            <label>Username or email *</label>
-                            <input type="text" class="form-control form-control-md" name="name"
-                                required>
-                        </div>
-                    </div>
-                    <div class="col-xs-6">
-                        <div class="form-group">
-                            <label>Password *</label>
-                            <input type="text" class="form-control form-control-md" name="password"
-                                required>
-                        </div>
-                    </div>
-                </div>
-                <div class="form-group checkbox">
-                    <input type="checkbox" class="custom-checkbox" id="remember" name="remember">
-                    <label for="remember" class="mb-0 lh-2">Remember me</label>
-                    <a href="#" class="ml-3">Last your password?</a>
-                </div>
-                <button class="btn btn-rounded btn-login">Login</button>
-            </form> --}}
             {{-- <div class="coupon-toggle">
                 Have a coupon? <a href="#"
                     class="show-coupon font-weight-bold text-uppercase text-dark">Enter your
@@ -61,7 +31,7 @@
                     <button type="submit" class="btn button btn-rounded btn-coupon mb-2" name="apply_coupon" value="Apply coupon">Apply Coupon</button>
                 </div>
             </div> --}}
-            <form class="form checkout-form" action="{{ route('saveOrder') }}" method="post">
+            <form class="form checkout-form" id="checkout-form" action="{{ route('saveOrder') }}" method="post">
                 @csrf
                 <div class="row mb-9">
                     <div class="col-lg-7 pr-lg-4 mb-4">
@@ -72,42 +42,36 @@
                             <div class="col-xs-6">
                                 <div class="form-group">
                                     <label>First name *</label>
-                                    <input type="text" class="form-control form-control-md" name="firstname"
-                                        required >
+                                    <input type="text" class="form-control form-control-md" name="firstname" value="{{ $user->first_name }}" />
                                 </div>
                             </div>
                             <div class="col-xs-6">
                                 <div class="form-group">
                                     <label>Last name *</label>
-                                    <input type="text" class="form-control form-control-md" name="lastname"
-                                    >
+                                    <input type="text" class="form-control form-control-md" name="lastname" value="{{ $user->last_name }}" />
                                 </div>
                             </div>
                         </div>
                         <div class="form-group">
                             <label>Company name (optional)</label>
-                            <input type="text" class="form-control form-control-md" name="company-name">
+                            <input type="text" class="form-control form-control-md" name="company_name">
                         </div>
                         <div class="form-group">
                             <label>Country / Region *</label>
                             <div class="select-box">
                                 <select name="country" class="form-control form-control-md">
-                                    <option value="default" selected="selected">United States
-                                        (US)
-                                    </option>
-                                    <option value="uk">United Kingdom (UK)</option>
-                                    <option value="us">United States</option>
-                                    <option value="fr">France</option>
-                                    <option value="aus">Australia</option>
+                                    <option value="233">United States</option>
+                                    <option value="232">United Kingdom</option>
+                                    <option value="39">Canada</option>
                                 </select>
                             </div>
                         </div>
                         <div class="form-group">
                             <label>Street address *</label>
                             <input type="text" placeholder="House number and street name"
-                                class="form-control form-control-md mb-2" name="street-address-1"  >
+                                class="form-control form-control-md mb-2" name="street_address_1"  >
                             <input type="text" placeholder="Apartment, suite, unit, etc. (optional)"
-                                class="form-control form-control-md" name="street-address-2"  >
+                                class="form-control form-control-md" name="street_address_2"  >
                         </div>
                         <div class="row gutter-sm">
                             <div class="col-md-6">
@@ -117,35 +81,32 @@
                                 </div>
                                 <div class="form-group">
                                     <label>ZIP *</label>
-                                    <input type="text" class="form-control form-control-md" name="zip"  >
+                                    <input type="text" class="form-control form-control-md" name="zip" value="{{ $user->post_code }}"  >
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>State *</label>
                                     <div class="select-box">
-                                        <select name="country" class="form-control form-control-md">
-                                            <option value="default" selected="selected">California</option>
-                                            <option value="uk">United Kingdom (UK)</option>
-                                            <option value="us">United States</option>
-                                            <option value="fr">France</option>
-                                            <option value="aus">Australia</option>
+                                        <select name="state" class="form-control form-control-md">
+                                            @foreach($states as $list)
+                                            <option value="{{ $list->id }}">{{ $list->name }}</option>
+                                            @endforeach
                                         </select>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label>Phone *</label>
-                                    <input type="text" class="form-control form-control-md" name="phone"  >
+                                    <input type="text" class="form-control form-control-md" name="phone" value="{{ $user->phone }}"  >
                                 </div>
                             </div>
                         </div>
                         <div class="form-group mb-7">
                             <label>Email address *</label>
-                            <input type="email" class="form-control form-control-md" name="email"  >
+                            <input type="email" class="form-control form-control-md" name="email" value="{{ $user->email }}"  >
                         </div>
                         <div class="form-group checkbox-toggle pb-2">
-                            <input type="checkbox" class="custom-checkbox" id="shipping-toggle"
-                                name="shipping-toggle">
+                            <input type="checkbox" class="custom-checkbox" id="shipping-toggle" name="shipping_toggle" value="1">
                             <label for="shipping-toggle">Ship to a different address?</label>
                         </div>
                         <div class="checkbox-content">
@@ -153,57 +114,60 @@
                                 <div class="col-xs-6">
                                     <div class="form-group">
                                         <label>First name *</label>
-                                        <input type="text" class="form-control form-control-md" name="firstname"
+                                        <input type="text" class="form-control form-control-md" name="s_firstname"
                                         >
                                     </div>
                                 </div>
                                 <div class="col-xs-6">
                                     <div class="form-group">
                                         <label>Last name *</label>
-                                        <input type="text" class="form-control form-control-md" name="lastname"
+                                        <input type="text" class="form-control form-control-md" name="s_lastname"
                                         >
                                     </div>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label>Company name (optional)</label>
-                                <input type="text" class="form-control form-control-md" name="company-name">
+                                <input type="text" class="form-control form-control-md" name="s_company_name">
                             </div>
                             <div class="form-group">
                                 <label>Country / Region *</label>
                                 <div class="select-box">
-                                    <select name="country" class="form-control form-control-md">
-                                        <option value="default" selected="selected">United States
-                                            (US)
-                                        </option>
-                                        <option value="uk">United Kingdom (UK)</option>
-                                        <option value="us">United States</option>
-                                        <option value="fr">Canada</option>
+                                    <select name="s_country" class="form-control form-control-md">
+                                        <option value="233">United States</option>
+                                        <option value="232">United Kingdom</option>
+                                        <option value="39">Canada</option>
                                     </select>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label>Street address *</label>
                                 <input type="text" placeholder="House number and street name"
-                                    class="form-control form-control-md mb-2" name="street-address-1"  >
+                                    class="form-control form-control-md mb-2" name="s_street_address_1"  >
                                 <input type="text" placeholder="Apartment, suite, unit, etc. (optional)"
-                                    class="form-control form-control-md" name="street-address-2"  >
+                                    class="form-control form-control-md" name="s_street_address_2"  >
                             </div>
                             <div class="row gutter-sm">
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Town / City *</label>
-                                        <input type="text" class="form-control form-control-md" name="town"  >
+                                        <input type="text" class="form-control form-control-md" name="s_town"  >
                                     </div>
                                     <div class="form-group">
-                                        <label>Postcode *</label>
-                                        <input type="text" class="form-control form-control-md" name="postcode"  >
+                                        <label>State *</label>
+                                        <div class="select-box">
+                                            <select name="s_state" class="form-control form-control-md">
+                                                @foreach($states as $list)
+                                                <option value="{{ $list->id }}">{{ $list->name }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Country (optional)</label>
-                                        <input type="text" class="form-control form-control-md" name="zip"  >
+                                        <label>ZIP / Postcode *</label>
+                                        <input type="text" class="form-control form-control-md" name="s_zip"  >
                                     </div>
                                 </div>
                             </div>
@@ -211,8 +175,7 @@
 
                         <div class="form-group mt-3">
                             <label for="order-notes">Order notes (optional)</label>
-                            <textarea class="form-control mb-0" id="order-notes" name="order-notes" cols="30"
-                                rows="4"
+                            <textarea class="form-control mb-0" id="order-notes" name="order_notes" cols="30" rows="4"
                                 placeholder="Notes about your order, e.g special notes for delivery"></textarea>
                         </div>
                     </div>
@@ -305,9 +268,9 @@
                                                 <a href="#coin" class="collapse">Bitcoin</a>
                                             </div>
                                             <div id="coin" class="card-body expanded">
-                                                <p class="mb-0">
+                                                {{-- <p class="mb-0">
                                                     Pay with Bitcoin on GoURL.io
-                                                </p>
+                                                </p> --}}
                                             </div>
                                         </div>
                                         {{-- <div class="card">
@@ -375,3 +338,156 @@
 </main>
 
 @endsection
+
+@push('page-script')
+
+<script type="text/javascript">
+
+$( document ).ready(function() {
+
+    $("#checkout-form").validate({
+        rules: {
+            email: {
+                required: true,
+                email: true,
+            },
+            firstname: {
+                required: true
+            },
+            lastname: {
+                required: true
+            },
+            street_address_1: {
+                required: true
+            },
+            town: {
+                required: true
+            },
+            zip: {
+                required: true
+            },
+            phone: {
+                required: true
+            },
+            s_firstname: {
+                required: true
+            },
+            s_lastname: {
+                required: true
+            },
+            s_street_address_1: {
+                required: true
+            },
+            s_town: {
+                required: true
+            },
+            s_zip: {
+                required: true
+            },
+        },
+        messages: {
+            email: {
+                required: "This field is required",
+                email: "Invalid Email address",
+            },
+            firstname: {
+                required: "This field is required",
+            },
+            lastname: {
+                required: "This field is required",
+            },
+            street_address_1: {
+                required: "This field is required",
+            },
+            town: {
+                required: "This field is required",
+            },
+            zip: {
+                required: "This field is required",
+            },
+            phone: {
+                required: "This field is required",
+            },
+            s_firstname: {
+                required: "This field is required",
+            },
+            s_lastname: {
+                required: "This field is required",
+            },
+            s_street_address_1: {
+                required: "This field is required",
+            },
+            s_town: {
+                required: "This field is required",
+            },
+            s_zip: {
+                required: "This field is required",
+            },
+        },
+    });
+
+    $('select[name="country"]').on('change', function(){
+        $.ajax({
+            type: "POST",
+            url: "{{ route('util.getStateData') }}",
+            data: {
+                country_id: $(this).val()
+            },
+            headers: {
+                'X-CSRF-Token': $('meta[name=csrf_token]').attr('content')
+            },
+            success: function (response) {
+                if(response.status == 'error') {
+                    toastr['error'](response.message);
+                }
+                else if(response.status == 'success'){
+                    let txt = ''
+                    response.states.forEach(element => {
+                        txt += '<option value="' + element.id + '">' + element.name + '</option>';
+                    });
+                    $('select[name="state"]').html(txt);
+                } else {
+                    toastr['warning']('Sorry, something went wrong...');
+                }
+            },
+            error: function(response) {
+                toastr['error']('Failed, DB connection error');
+            }
+        });
+    });
+
+    $('select[name="s_country"]').on('change', function(){
+        $.ajax({
+            type: "POST",
+            url: "{{ route('util.getStateData') }}",
+            data: {
+                country_id: $(this).val()
+            },
+            headers: {
+                'X-CSRF-Token': $('meta[name=csrf_token]').attr('content')
+            },
+            success: function (response) {
+                if(response.status == 'error') {
+                    toastr['error'](response.message);
+                }
+                else if(response.status == 'success'){
+                    let txt = ''
+                    response.states.forEach(element => {
+                        txt += '<option value="' + element.id + '">' + element.name + '</option>';
+                    });
+                    $('select[name="s_state"]').html(txt);
+                } else {
+                    toastr['warning']('Sorry, something went wrong...');
+                }
+            },
+            error: function(response) {
+                toastr['error']('Failed, DB connection error');
+            }
+        });
+    });
+
+});
+
+</script>
+
+@endpush

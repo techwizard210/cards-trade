@@ -104,3 +104,229 @@
 .product-table th.wishlist-action {
     text-align: center;
 }
+
+.breadcrumb.shop-breadcrumb li.active {
+    color: #fb6a25;
+}
+
+.contact-us .icon-box .w-icon-hotline {
+    font-size: 5.1rem;
+}
+
+.icon-box-primary .icon-box-icon i {
+    color: #fb6a25;
+}
+.card-header a:hover {
+    color: #fb6a25;
+}
+.card-header a.collapse {
+    color: #fb6a25;
+}
+.footer a:hover, .footer a:active, .footer a.active {
+    color: #fb6a25;
+}
+.page-header {
+    background: url('../../user-assets/images/bg-banner.jpg');
+    background-size: cover;
+}
+/*----------------------------------
+    About Us
+        - Icon Box
+        - Timeline
+-----------------------------------*/
+.about-us .introduce .title {
+    margin-bottom: 1.3rem;
+    font-size: 4rem;
+  }
+  .about-us .introduce p {
+    margin-bottom: 4.3rem;
+    max-width: 57rem;
+  }
+  .about-us .introduce img {
+    min-height: 20rem;
+  }
+  .about-us .customer-service .card-header {
+    font-size: 1.8rem;
+  }
+  .about-us .customer-service p {
+    font-size: 1.4rem;
+    color: #333;
+  }
+  .about-us .customer-service img,
+  .about-us .boost-section img {
+    width: 100%;
+  }
+  .about-us .customer-service .title,
+  .about-us .boost-section .title,
+  .about-us .member-section .title {
+    font-size: 3.4rem;
+  }
+  .about-us .counter span {
+    font-size: 6rem;
+    font-weight: 800;
+    color: #ccc;
+    letter-spacing: -0.05em;
+    line-height: 1.54;
+  }
+  .about-us .counter .title {
+    margin-bottom: 1.2rem;
+  }
+  .about-us .boost-section {
+    background-color: #fafafb;
+  }
+  .about-us .boost-section .title {
+    line-height: 1.25;
+    margin-bottom: 1.3rem;
+  }
+  .about-us .boost-section .btn {
+    padding: 1.23em 2.35em;
+  }
+  .about-us .awards-wrapper .title {
+    font-size: 3rem;
+  }
+  .about-us .awards-wrapper img {
+    width: auto;
+    margin: 0 auto 2rem;
+  }
+  .about-us .awards-wrapper p {
+    margin-bottom: 0;
+    font-size: 2rem;
+    color: #333;
+    line-height: 1.6;
+    letter-spacing: -0.025em;
+  }
+  .about-us .member-section figure {
+    position: relative;
+    max-width: 29.5rem;
+    margin: 0 auto 2.5rem;
+  }
+  .about-us .member-section figure:hover .overlay {
+    padding-top: 0;
+    opacity: 1;
+  }
+  .about-us .member-section .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    padding-top: 10rem;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 1.3rem;
+    opacity: 0;
+    border-radius: 1.3rem;
+    -webkit-transition: opacity 0.3s, padding-top 0.3s;
+    transition: opacity 0.3s, padding-top 0.3s;
+    cursor: pointer;
+  }
+  .about-us .member-section .overlay p {
+    margin-bottom: 0;
+    text-transform: uppercase;
+  }
+  .about-us .member-section .member-name {
+    margin-bottom: 0;
+  }
+  .about-us .member-section .social-icon {
+    width: 4.6rem;
+    height: 4.6rem;
+    font-size: 2.4rem;
+    line-height: 4.1rem;
+    border-color: #fff;
+    color: #fff;
+  }
+  .about-us .member-section .social-icon:hover.social-facebook {
+    background-color: #1b4f9b;
+    border-color: #1b4f9b;
+  }
+  .about-us .member-section .social-icon:hover.social-twitter {
+    background-color: #00adef;
+    border-color: #00adef;
+  }
+  .about-us .member-section .social-icon:hover.social-instagram {
+    background-color: #cc0001;
+    border-color: #cc0001;
+  }
+
+  @media (max-width: 991px) {
+    .about-us .customer-service .title,
+  .about-us .boost-section .title {
+      font-size: 2.5rem;
+    }
+  }
+  @media (max-width: 767px) {
+    .about-us .introduce .title {
+      font-size: 3rem;
+    }
+  }
+.customer-review .testimonial blockquote {
+    color: #fff;
+    /* background: #fff; */
+}
+.testimonial-blockquote cite {
+    color: #fff;
+}
+
+
+#account-orders .account-orders-table .order-total {
+    width: 15%;
+    text-align: left;
+}
+#account-orders .account-orders-table .order-status {
+    text-align: center;
+    text-transform: capitalize;
+}
+#account-orders .account-orders-table .order-date {
+    width: 20%;
+    text-align: left;
+}
+#account-orders .account-orders-table .order-id {
+    padding-left: 3rem;
+    width: 20.77%;
+    text-align: left;
+}
+
+.nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-item .nav-link.active, .nav-tabs .nav-item:hover .nav-link {
+    color: #fb6a25;
+}
+
+/* Form Validation */
+.form-control.error:focus {
+    border-color: #843534;
+    box-shadow: inset 0 1px 1px rgb(0 0 0 / 8%), 0 0 6px #ce8483;
+}
+.form-control.error {
+	border-color: #a94442 !important;
+	box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+}
+label.error {
+    color: #c10000 !important;
+    font-size: 0.9em !important;
+    line-height: 18px;
+    padding: 5px 0 0;
+}
+
+
+#account-details .account-details-form .form-control {
+    margin-bottom: 0rem;
+}
+
+.checkout .form-control {
+    margin-bottom: 0;
+}
+.checkout .form-group {
+    margin-bottom: 1.3rem;
+}
+

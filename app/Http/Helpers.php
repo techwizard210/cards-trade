@@ -260,64 +260,7 @@ class Helper {
         else return false;
     }
 
-    // Get Language List
-    public static function getLanguages()
-    {
-        $data = Language::where('status', 'active')->get();
-        return $data;
-    }
-
-    // Get Current Language
-    public static function getLocaleLang($code)
-    {
-        $data = Language::where('code', $code)->first();
-        return $data;
-    }
-
-    // Get Currency List
-    public static function getCurrencies()
-    {
-        $data = Currency::where('status', 'active')->get();
-        return $data;
-    }
-
-    // Get Current Currency
-    public static function getLocaleCurrency()
-    {
-        $cur = Session::get('currency');
-        if($cur == '') $cur = 'CHF';
-        $data = Currency::where('name', $cur)->first();
-        return $data;
-    }
-
-    /* Get Currency Data */
-    public static function getCurSymbol($cur)
-    {
-        $data = Currency::where('name', $cur)->first();
-        if(empty($data)) return 'N/A';
-        return $data->symbol;
-    }
-
-    // Get Calculated Price by currency
-    public static function getPriceByCurrency($price)
-    {
-        $cur = Session::get('currency');
-        if($cur == '') $cur = 'CHF';
-        $currency_data = Currency::where('name', $cur)->first();
-        $result = $price * $currency_data->rate;
-
-        return $result;
-    }
-
-    /* Get converted CHF currency */
-    public static function getCHF($price, $curr)
-    {
-        $curr_data = Currency::where('name', $curr)->first();
-        if(empty($curr_data)) return 0;
-        else return $result = $price / $curr_data->rate;
-    }
-
-    // Get Random Status
+    /* Get Random Status */
     public static function getRandomStatus()
     {
         $stateNo =  rand(0, 7);
@@ -335,7 +278,7 @@ class Helper {
         return $state;
     }
 
-    // Get Time Elapased
+    /* Get Time Elapased */
     public static function getTimeAgo($time)
     {
         $time = strtotime($time);
@@ -379,34 +322,6 @@ class Helper {
         else return $data->name;
     }
 
-    /* Get Cart Item Price */
-    public static function getCartItemPrice($id)
-    {
-        // varialble init
-        $data = Cart::with('product')->find($id);
-        $rslt = 0.0;
-        // check if valid item id
-        if(empty($data)) return $rslt;
-        // calculate price
-        $base_price = $data->product->price;
-        if($data->product->discount_option == 2) { // percent discount
-            $rslt = $base_price * (100 - $data->product->discount) / 100;
-        } elseif($data->product->discount_option == 3) { // fixed discount
-            $rslt = $data->product->discounted_price;
-        } else {
-            $rslt = $base_price;
-        }
-
-        if($data->product->template == 'lens'){
-            $sub_quantity = $data->quantity_r;
-            if($data->eye_diff == 'true') $sub_quantity += $data->quantity_l;
-            $rslt *= $sub_quantity;
-        }
-
-
-        return $rslt;
-    }
-
     /* Get Product Price */
     public static function getProductPrice($id)
     {
@@ -416,15 +331,7 @@ class Helper {
         // check if valid item id
         if(empty($data)) return $rslt;
         // calculate price
-        $base_price = $data->price;
-        if($data->discount_option == 2) { // percent discount
-            $rslt = $base_price * (100 - $data->discount) / 100;
-        } elseif($data->discount_option == 3) { // fixed discount
-            $rslt = $data->discounted_price;
-        } else {
-            $rslt = $base_price;
-        }
-
+        $rslt = $data->value * (100 - $data->discount) / 100;
         return $rslt;
     }
 
