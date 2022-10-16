@@ -7,8 +7,8 @@
             </div>
             <div class="header-right">
                 <span class="divider d-lg-show"></span>
-                <a href="blog.html" class="d-lg-show">Blog</a>
-                <a href="contact-us.html" class="d-lg-show">Contact Us</a>
+                {{-- <a href="blog.html" class="d-lg-show">Blog</a> --}}
+                <a href="{{ route('contact-us') }}" class="d-lg-show">Contact Us</a>
 
                 {{-- <a href="{{ route('ajaxLogin') }}" class="d-lg-show login sign-in"><i
                         class="w-icon-account"></i>Sign In</a> --}}
