@@ -12,6 +12,7 @@
 <script src="{{ asset('user-assets/vendor/imagesloaded/imagesloaded.pkgd.min.js') }}"></script>
 <script src="{{ asset('user-assets/vendor/parallax/parallax.min.js') }}"></script>
 <script src="{{ asset('user-assets/vendor/zoom/jquery.zoom.js') }}"></script>
+<script src="{{ asset('user-assets/vendor/select2/select2.min.js') }}"></script>
 <script src="{{ asset('user-assets/vendor/magnific-popup/jquery.magnific-popup.min.js') }}"></script>
 <script src="{{ asset('user-assets/vendor/toastr/toastr.min.js') }}"></script>
 

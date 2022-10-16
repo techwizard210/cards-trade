@@ -2,7 +2,6 @@
 
 use Illuminate\Support\Facades\Route;
 
-use App\Http\Controllers\Frontend\HomeController;
 use App\Http\Controllers\Frontend\ProductController;
 use App\Http\Controllers\Frontend\UserController;
 use App\Http\Controllers\Frontend\FrontendController;
@@ -40,7 +39,7 @@ Route::post('getStateData', [UtilController::class, 'getStateData'])->name('util
 |--------------------------------------------------------------------------|
 */
 
-Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('/', [FrontendController::class, 'index'])->name('home');
 
 // Auth Routes
 Route::get('login', [UserController::class, 'login'])->name('login');

@@ -10,6 +10,13 @@ use DB;
 
 class FrontendController extends Controller
 {
+    /* Render Home Page */
+    public function index()
+    {
+        $title = 'Home';
+        $data = array();
+        return view('frontend.index', $data)->withTitle($title);
+    }
 
     /* Render About Us Page */
     public function aboutUs()

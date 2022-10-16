@@ -25,7 +25,7 @@ class UserController extends Controller
     public function login()
     {
         $title = 'SignIn';
-        return view('user.auth.login')->withTitle($title);
+        return view('frontend.auth.login')->withTitle($title);
     }
 
     public function ajaxLogin()
@@ -82,7 +82,7 @@ class UserController extends Controller
     public function register()
     {
         $title = 'SignUp';
-        return view('user.auth.register')->withTitle($title);
+        return view('frontend.auth.register')->withTitle($title);
     }
 
     /* Ajax Check Email Exist */

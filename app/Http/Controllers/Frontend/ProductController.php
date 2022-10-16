@@ -19,7 +19,8 @@ class ProductController extends Controller
     public function sell()
     {
         $title = 'Seller Page';
-        return view('user.seller')->withTitle($title);
+        $data['merchants'] = Merchant::where('status', 'active')->get();
+        return view('frontend.seller', $data)->withTitle($title);
     }
 
     /* Render Buyer Page */
