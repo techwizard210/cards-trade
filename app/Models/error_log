@@ -1,0 +1,40 @@
+[19-Oct-2022 00:11:50 UTC] PHP Fatal error:  Uncaught Error: Class 'Illuminate\Database\Eloquent\Model' not found in /home/cardcfbi/public_html/app/Models/Card.php:8
+Stack trace:
+#0 {main}
+  thrown in /home/cardcfbi/public_html/app/Models/Card.php on line 8
+[19-Oct-2022 00:11:52 UTC] PHP Fatal error:  Uncaught Error: Class 'Illuminate\Database\Eloquent\Model' not found in /home/cardcfbi/public_html/app/Models/Cart.php:7
+Stack trace:
+#0 {main}
+  thrown in /home/cardcfbi/public_html/app/Models/Cart.php on line 7
+[19-Oct-2022 00:11:55 UTC] PHP Fatal error:  Uncaught Error: Class 'Illuminate\Database\Eloquent\Model' not found in /home/cardcfbi/public_html/app/Models/Category.php:8
+Stack trace:
+#0 {main}
+  thrown in /home/cardcfbi/public_html/app/Models/Category.php on line 8
+[19-Oct-2022 00:11:57 UTC] PHP Fatal error:  Uncaught Error: Class 'Illuminate\Database\Eloquent\Model' not found in /home/cardcfbi/public_html/app/Models/Merchant.php:7
+Stack trace:
+#0 {main}
+  thrown in /home/cardcfbi/public_html/app/Models/Merchant.php on line 7
+[19-Oct-2022 00:11:59 UTC] PHP Fatal error:  Uncaught Error: Class 'Illuminate\Database\Eloquent\Model' not found in /home/cardcfbi/public_html/app/Models/Order.php:8
+Stack trace:
+#0 {main}
+  thrown in /home/cardcfbi/public_html/app/Models/Order.php on line 8
+[19-Oct-2022 00:12:01 UTC] PHP Fatal error:  Uncaught Error: Class 'Illuminate\Database\Eloquent\Model' not found in /home/cardcfbi/public_html/app/Models/OrderProduct.php:8
+Stack trace:
+#0 {main}
+  thrown in /home/cardcfbi/public_html/app/Models/OrderProduct.php on line 8
+[19-Oct-2022 00:12:03 UTC] PHP Fatal error:  Uncaught Error: Class 'Illuminate\Database\Eloquent\Model' not found in /home/cardcfbi/public_html/app/Models/Product.php:7
+Stack trace:
+#0 {main}
+  thrown in /home/cardcfbi/public_html/app/Models/Product.php on line 7
+[19-Oct-2022 00:12:05 UTC] PHP Fatal error:  Uncaught Error: Class 'Illuminate\Database\Eloquent\Model' not found in /home/cardcfbi/public_html/app/Models/State.php:8
+Stack trace:
+#0 {main}
+  thrown in /home/cardcfbi/public_html/app/Models/State.php on line 8
+[19-Oct-2022 00:12:08 UTC] PHP Fatal error:  Uncaught Error: Class 'Illuminate\Database\Eloquent\Model' not found in /home/cardcfbi/public_html/app/Models/UserVerify.php:7
+Stack trace:
+#0 {main}
+  thrown in /home/cardcfbi/public_html/app/Models/UserVerify.php on line 7
+[19-Oct-2022 00:12:10 UTC] PHP Fatal error:  Uncaught Error: Class 'Illuminate\Database\Eloquent\Model' not found in /home/cardcfbi/public_html/app/Models/Wishlist.php:7
+Stack trace:
+#0 {main}
+  thrown in /home/cardcfbi/public_html/app/Models/Wishlist.php on line 7

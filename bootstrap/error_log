@@ -1,0 +1,4 @@
+[18-Oct-2022 14:31:34 UTC] PHP Fatal error:  Uncaught Error: Class 'Illuminate\Foundation\Application' not found in /home/cardcfbi/public_html/bootstrap/app.php:14
+Stack trace:
+#0 {main}
+  thrown in /home/cardcfbi/public_html/bootstrap/app.php on line 14

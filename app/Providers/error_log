@@ -1,0 +1,20 @@
+[19-Oct-2022 00:12:19 UTC] PHP Fatal error:  Uncaught Error: Class 'Illuminate\Support\ServiceProvider' not found in /home/cardcfbi/public_html/app/Providers/AppServiceProvider.php:7
+Stack trace:
+#0 {main}
+  thrown in /home/cardcfbi/public_html/app/Providers/AppServiceProvider.php on line 7
+[19-Oct-2022 00:12:21 UTC] PHP Fatal error:  Uncaught Error: Class 'Illuminate\Foundation\Support\Providers\AuthServiceProvider' not found in /home/cardcfbi/public_html/app/Providers/AuthServiceProvider.php:8
+Stack trace:
+#0 {main}
+  thrown in /home/cardcfbi/public_html/app/Providers/AuthServiceProvider.php on line 8
+[19-Oct-2022 00:12:23 UTC] PHP Fatal error:  Uncaught Error: Class 'Illuminate\Support\ServiceProvider' not found in /home/cardcfbi/public_html/app/Providers/BroadcastServiceProvider.php:8
+Stack trace:
+#0 {main}
+  thrown in /home/cardcfbi/public_html/app/Providers/BroadcastServiceProvider.php on line 8
+[19-Oct-2022 00:12:25 UTC] PHP Fatal error:  Uncaught Error: Class 'Illuminate\Foundation\Support\Providers\EventServiceProvider' not found in /home/cardcfbi/public_html/app/Providers/EventServiceProvider.php:10
+Stack trace:
+#0 {main}
+  thrown in /home/cardcfbi/public_html/app/Providers/EventServiceProvider.php on line 10
+[19-Oct-2022 00:12:27 UTC] PHP Fatal error:  Uncaught Error: Class 'Illuminate\Foundation\Support\Providers\RouteServiceProvider' not found in /home/cardcfbi/public_html/app/Providers/RouteServiceProvider.php:11
+Stack trace:
+#0 {main}
+  thrown in /home/cardcfbi/public_html/app/Providers/RouteServiceProvider.php on line 11

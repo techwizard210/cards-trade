@@ -1,0 +1,20 @@
+[19-Oct-2022 05:54:36 UTC] PHP Fatal error:  Uncaught Error: Class 'Illuminate\Database\Migrations\Migration' not found in /home/cardcfbi/public_html/database/migrations/2014_10_12_000000_create_users_table.php:7
+Stack trace:
+#0 {main}
+  thrown in /home/cardcfbi/public_html/database/migrations/2014_10_12_000000_create_users_table.php on line 7
+[19-Oct-2022 05:54:38 UTC] PHP Fatal error:  Uncaught Error: Class 'Illuminate\Database\Migrations\Migration' not found in /home/cardcfbi/public_html/database/migrations/2014_10_12_100000_create_password_resets_table.php:7
+Stack trace:
+#0 {main}
+  thrown in /home/cardcfbi/public_html/database/migrations/2014_10_12_100000_create_password_resets_table.php on line 7
+[19-Oct-2022 05:54:41 UTC] PHP Fatal error:  Uncaught Error: Class 'Illuminate\Database\Migrations\Migration' not found in /home/cardcfbi/public_html/database/migrations/2019_08_19_000000_create_failed_jobs_table.php:7
+Stack trace:
+#0 {main}
+  thrown in /home/cardcfbi/public_html/database/migrations/2019_08_19_000000_create_failed_jobs_table.php on line 7
+[19-Oct-2022 05:54:43 UTC] PHP Fatal error:  Uncaught Error: Class 'Illuminate\Database\Migrations\Migration' not found in /home/cardcfbi/public_html/database/migrations/2019_12_14_000001_create_personal_access_tokens_table.php:7
+Stack trace:
+#0 {main}
+  thrown in /home/cardcfbi/public_html/database/migrations/2019_12_14_000001_create_personal_access_tokens_table.php on line 7
+[19-Oct-2022 05:54:47 UTC] PHP Fatal error:  Uncaught Error: Class 'Illuminate\Database\Migrations\Migration' not found in /home/cardcfbi/public_html/database/migrations/2021_08_15_113006_create_crypto_payments_table.php:8
+Stack trace:
+#0 {main}
+  thrown in /home/cardcfbi/public_html/database/migrations/2021_08_15_113006_create_crypto_payments_table.php on line 8

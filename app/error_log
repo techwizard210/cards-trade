@@ -1,0 +1,8 @@
+[18-Oct-2022 14:31:16 UTC] PHP Fatal error:  Uncaught Error: Class 'Illuminate\Foundation\Auth\User' not found in /home/cardcfbi/public_html/app/Admin.php:9
+Stack trace:
+#0 {main}
+  thrown in /home/cardcfbi/public_html/app/Admin.php on line 9
+[18-Oct-2022 14:31:27 UTC] PHP Fatal error:  Uncaught Error: Class 'Illuminate\Foundation\Auth\User' not found in /home/cardcfbi/public_html/app/User.php:9
+Stack trace:
+#0 {main}
+  thrown in /home/cardcfbi/public_html/app/User.php on line 9

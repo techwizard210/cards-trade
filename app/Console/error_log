@@ -1,0 +1,4 @@
+[19-Oct-2022 00:11:18 UTC] PHP Fatal error:  Uncaught Error: Class 'Illuminate\Foundation\Console\Kernel' not found in /home/cardcfbi/public_html/app/Console/Kernel.php:8
+Stack trace:
+#0 {main}
+  thrown in /home/cardcfbi/public_html/app/Console/Kernel.php on line 8

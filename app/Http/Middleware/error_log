@@ -1,0 +1,28 @@
+[19-Oct-2022 06:03:33 UTC] PHP Fatal error:  Uncaught Error: Class 'Illuminate\Auth\Middleware\Authenticate' not found in /home/cardcfbi/public_html/app/Http/Middleware/Authenticate.php:7
+Stack trace:
+#0 {main}
+  thrown in /home/cardcfbi/public_html/app/Http/Middleware/Authenticate.php on line 7
+[19-Oct-2022 06:03:37 UTC] PHP Fatal error:  Uncaught Error: Class 'Illuminate\Cookie\Middleware\EncryptCookies' not found in /home/cardcfbi/public_html/app/Http/Middleware/EncryptCookies.php:7
+Stack trace:
+#0 {main}
+  thrown in /home/cardcfbi/public_html/app/Http/Middleware/EncryptCookies.php on line 7
+[19-Oct-2022 06:03:40 UTC] PHP Fatal error:  Uncaught Error: Class 'Illuminate\Foundation\Http\Middleware\PreventRequestsDuringMaintenance' not found in /home/cardcfbi/public_html/app/Http/Middleware/PreventRequestsDuringMaintenance.php:7
+Stack trace:
+#0 {main}
+  thrown in /home/cardcfbi/public_html/app/Http/Middleware/PreventRequestsDuringMaintenance.php on line 7
+[19-Oct-2022 06:03:45 UTC] PHP Fatal error:  Uncaught Error: Class 'Illuminate\Foundation\Http\Middleware\TrimStrings' not found in /home/cardcfbi/public_html/app/Http/Middleware/TrimStrings.php:7
+Stack trace:
+#0 {main}
+  thrown in /home/cardcfbi/public_html/app/Http/Middleware/TrimStrings.php on line 7
+[19-Oct-2022 06:03:50 UTC] PHP Fatal error:  Uncaught Error: Class 'Illuminate\Http\Middleware\TrustHosts' not found in /home/cardcfbi/public_html/app/Http/Middleware/TrustHosts.php:7
+Stack trace:
+#0 {main}
+  thrown in /home/cardcfbi/public_html/app/Http/Middleware/TrustHosts.php on line 7
+[19-Oct-2022 06:03:55 UTC] PHP Fatal error:  Uncaught Error: Class 'Illuminate\Http\Middleware\TrustProxies' not found in /home/cardcfbi/public_html/app/Http/Middleware/TrustProxies.php:8
+Stack trace:
+#0 {main}
+  thrown in /home/cardcfbi/public_html/app/Http/Middleware/TrustProxies.php on line 8
+[19-Oct-2022 06:03:58 UTC] PHP Fatal error:  Uncaught Error: Class 'Illuminate\Foundation\Http\Middleware\VerifyCsrfToken' not found in /home/cardcfbi/public_html/app/Http/Middleware/VerifyCsrfToken.php:7
+Stack trace:
+#0 {main}
+  thrown in /home/cardcfbi/public_html/app/Http/Middleware/VerifyCsrfToken.php on line 7

@@ -7,6 +7,8 @@ use App\Http\Controllers\Frontend\UserController;
 use App\Http\Controllers\Frontend\FrontendController;
 use App\Http\Controllers\Frontend\CartController;
 use App\Http\Controllers\Frontend\WishlistController;
+use App\Http\Controllers\Frontend\OfferController;
+use App\Http\Controllers\Frontend\UploadController;
 
 use App\Http\Controllers\Support\UtilController;
 
@@ -67,6 +69,21 @@ Route::post('cart-remove', [CartController::class, 'cartRemove'])->name('cart.re
 // Sell Routes
 Route::get('sell', [ProductController::class, 'sell'])->name('sell');
 
+// card upload
+Route::post('card-upload',[UploadController::class, 'store'])->name('card-upload');
+
+// Offer Routes
+Route::get('offer', [OfferController::class, 'offer'])->name('offer');
+Route::get('re-offer', [OfferController::class, 'reOffer'])->name('re-offer');
+Route::get('more-offer', [OfferController::class, 'moreOffer'])->name('more-offer');
+
+// Gateway Routes
+Route::get('gateway', [OfferController::class, 'gateway'])->name('gateway');
+
+// CardDetail Routs
+Route::get('card-detail', [OfferController::class, 'cardDetail'])->name('card.detail');
+Route::post('submit-card', [OfferController::class, 'submitCard'])->name('submit-card');
+
 // Help Routes
 Route::get('/about-us', [FrontendController::class, 'aboutUs'])->name('about-us');
 Route::get('/contact-us', [FrontendController::class, 'contactUs'])->name('contact-us');
@@ -97,7 +114,6 @@ Route::middleware(['auth'])->group(function () {
 //             // Verification
 //             Route::get('resend-verification-email', 'UserController@resendVerifyEmail')->name('verify.resend-email');
 });
-
 
 // You can protect the 'payments.crypto.pay' route with `auth` middleware to allow access by only authenticated user
 Route::match(['get', 'post'], '/payments/crypto/pay', Victorybiz\LaravelCryptoPaymentGateway\Http\Controllers\CryptoPaymentController::class)
@@ -149,7 +165,7 @@ Route::post('/payments/crypto/callback', [App\Http\Controllers\Payment\PaymentCo
 
 
         // Socialite
-        // Route::get('login/{provider}/', 'Auth\LoginController@redirect')->name('login.redirect');
+        Route::get('login/{provider}/', 'Auth\LoginController@redirect')->name('login.redirect');
         // Route::get('login/{provider}/callback/', 'Auth\LoginController@Callback')->name('login.callback');
 
 

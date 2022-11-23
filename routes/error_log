@@ -1,0 +1,28 @@
+[18-Oct-2022 13:29:37 UTC] PHP Fatal error:  Uncaught Error: Class 'Illuminate\Support\Facades\Route' not found in /home/cardcfbi/public_html/routes/api.php:17
+Stack trace:
+#0 {main}
+  thrown in /home/cardcfbi/public_html/routes/api.php on line 17
+[18-Oct-2022 13:29:39 UTC] PHP Fatal error:  Uncaught Error: Class 'Illuminate\Support\Facades\Broadcast' not found in /home/cardcfbi/public_html/routes/channels.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/cardcfbi/public_html/routes/channels.php on line 16
+[18-Oct-2022 13:29:41 UTC] PHP Fatal error:  Uncaught Error: Class 'Illuminate\Support\Facades\Artisan' not found in /home/cardcfbi/public_html/routes/console.php:17
+Stack trace:
+#0 {main}
+  thrown in /home/cardcfbi/public_html/routes/console.php on line 17
+[18-Oct-2022 13:29:42 UTC] PHP Fatal error:  Uncaught Error: Class 'Auth' not found in /home/cardcfbi/public_html/routes/web.php:30
+Stack trace:
+#0 {main}
+  thrown in /home/cardcfbi/public_html/routes/web.php on line 30
+[20-Oct-2022 12:24:34 UTC] PHP Fatal error:  Uncaught Error: Class 'Illuminate\Support\Facades\Route' not found in /home/cardcfbi/public_html/routes/api.php:17
+Stack trace:
+#0 {main}
+  thrown in /home/cardcfbi/public_html/routes/api.php on line 17
+[20-Oct-2022 12:24:37 UTC] PHP Fatal error:  Uncaught Error: Class 'Auth' not found in /home/cardcfbi/public_html/routes/web.php:30
+Stack trace:
+#0 {main}
+  thrown in /home/cardcfbi/public_html/routes/web.php on line 30
+[20-Oct-2022 12:24:41 UTC] PHP Fatal error:  Uncaught Error: Class 'Illuminate\Support\Facades\Artisan' not found in /home/cardcfbi/public_html/routes/console.php:17
+Stack trace:
+#0 {main}
+  thrown in /home/cardcfbi/public_html/routes/console.php on line 17

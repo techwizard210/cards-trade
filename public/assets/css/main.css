@@ -471,17 +471,17 @@
 .font4 {
     font-family: Oswald, sans-serif !important;
 }
-@media (min-width:992px){
+@media (min-width: 992px) {
     .d-lg-none {
-        display:none!important
+        display: none !important;
     }
-    .d-lg-block{
-        display:block!important
+    .d-lg-block {
+        display: block !important;
     }
-    .w-lg-max{
-        flex:1;
-        -ms-flex:1;
-        max-width:100%
+    .w-lg-max {
+        flex: 1;
+        -ms-flex: 1;
+        max-width: 100%;
     }
 }
 @media (max-width: 767px) {
@@ -661,16 +661,17 @@
     }
 }
 .owl-height {
-    transition:height 500ms ease-in-out
+    transition: height 500ms ease-in-out;
 }
 .owl-carousel .owl-item {
 }
 .owl-carousel .owl-item .owl-lazy {
-    opacity:0;
-    transition:opacity 400ms ease
+    opacity: 0;
+    transition: opacity 400ms ease;
 }
-.owl-carousel .owl-item .owl-lazy:not([src]),.owl-carousel .owl-item .owl-lazy[src^=""]{
-    max-height:0
+.owl-carousel .owl-item .owl-lazy:not([src]),
+.owl-carousel .owl-item .owl-lazy[src^=""] {
+    max-height: 0;
 }
 .owl-carousel .owl-item img.owl-lazy {
     transform-style: preserve-3d;
@@ -688,7 +689,8 @@
     top: 50%;
     margin-left: -40px;
     margin-top: -40px;
-    background: url("../../../../../www.portotheme.com/html/porto_ecommerce/assets/images/owl.video.play.html") no-repeat;
+    background: url("../../../../../www.portotheme.com/html/porto_ecommerce/assets/images/owl.video.play.html")
+        no-repeat;
     cursor: pointer;
     z-index: 1;
     -webkit-backface-visibility: hidden;
@@ -736,14 +738,14 @@
     border-radius: 3px;
 }
 
-.owl-theme .owl-nav [class*=owl-] i:before{
-    margin:0;
-    width:auto
+.owl-theme .owl-nav [class*="owl-"] i:before {
+    margin: 0;
+    width: auto;
 }
-.owl-theme .owl-nav [class*=owl-]:not(.disabled):hover {
-    background:transparent;
-    color:#222529;
-    text-decoration:none
+.owl-theme .owl-nav [class*="owl-"]:not(.disabled):hover {
+    background: transparent;
+    color: #222529;
+    text-decoration: none;
 }
 .owl-theme .owl-nav .owl-prev {
     left: 0;
@@ -765,9 +767,9 @@
 }
 
 .owl-theme .owl-dots .owl-dot {
-    display:inline-block;
-    zoom:1;
-    *display:inline
+    display: inline-block;
+    zoom: 1;
+    *display: inline;
 }
 .owl-theme .owl-dots .owl-dot span {
     position: relative;
@@ -1142,7 +1144,8 @@ img.mfp-img {
 .mfp-gallery .mfp-image-holder .mfp-figure {
     cursor: pointer;
 }
-@media (max-width: 800px) and (orientation: landscape), screen and (max-height: 300px) {
+@media (max-width: 800px) and (orientation: landscape),
+    screen and (max-height: 300px) {
     .mfp-img-mobile .mfp-image-holder {
         padding-left: 0;
         padding-right: 0;
@@ -1276,7 +1279,6 @@ img.mfp-img {
     border-radius: 0;
     bottom: 0;
 }
-
 
 /*! nouislider - 11.1.0 - 2018-04-02 11:18:13 */
 .noUi-target,
@@ -1546,7 +1548,8 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-handle {
     width: 1em;
     height: 1em;
     color: #000;
-    background: transparent url(../images/elements/alert/close.svg) center/1em auto no-repeat;
+    background: transparent url(../images/elements/alert/close.svg) center/1em
+        auto no-repeat;
     border: 0;
     border-radius: 0;
     opacity: 0.5;
@@ -3615,8 +3618,12 @@ a:focus {
 @font-face {
     font-family: "porto";
     src: url("../fonts/porto6e1d.eot?64334846");
-    src: url("../fonts/porto6e1d.eot?64334846#iefix") format("embedded-opentype"), url("../fonts/porto6e1d.woff2?64334846") format("woff2"), url("../fonts/porto6e1d.woff?64334846") format("woff"),
-        url("../fonts/porto6e1d.ttf?64334846") format("truetype"), url("../fonts/porto6e1d.svg?64334846#porto") format("svg");
+    src: url("../fonts/porto6e1d.eot?64334846#iefix")
+            format("embedded-opentype"),
+        url("../fonts/porto6e1d.woff2?64334846") format("woff2"),
+        url("../fonts/porto6e1d.woff?64334846") format("woff"),
+        url("../fonts/porto6e1d.ttf?64334846") format("truetype"),
+        url("../fonts/porto6e1d.svg?64334846#porto") format("svg");
     font-style: normal;
     font-weight: normal;
     font-display: swap;
@@ -4311,6 +4318,12 @@ form h2 {
     font-weight: 400;
     line-height: 1.5;
 }
+
+.blue-btn {
+    background-color: #336699;
+    color: white;
+}
+
 .form-control:focus {
     border-color: #dfdfdf;
     background-color: #fff;
@@ -4500,7 +4513,9 @@ label {
     content: "";
     font-family: "porto";
 }
-.custom-checkbox .custom-control-input:indeterminate ~ .custom-control-label:before {
+.custom-checkbox
+    .custom-control-input:indeterminate
+    ~ .custom-control-label:before {
     background-color: #ff7272;
 }
 .custom-control-input:focus ~ .custom-control-label:before {
@@ -6198,7 +6213,8 @@ figure .porto-loading-icon {
     padding: 0;
     opacity: 0;
     visibility: hidden;
-    transition: opacity 0.3s, background-color 0.3s, color 0.3s, border-color 0.3s;
+    transition: opacity 0.3s, background-color 0.3s, color 0.3s,
+        border-color 0.3s;
     transform: none;
 }
 .inner-icon figure .btn-icon i:not(.fa):before {
@@ -9273,16 +9289,23 @@ header p {
 .header-bottom.fixed .header-search-inline.header-search i {
     font-size: 2.3rem;
 }
-.header-bottom.fixed .header-search-inline.header-search .header-search-wrapper {
+.header-bottom.fixed
+    .header-search-inline.header-search
+    .header-search-wrapper {
     display: flex;
     position: absolute;
     margin-top: 10px;
     border: 5px solid #ff7272;
 }
-.header-bottom.fixed .header-search-inline.header-search:not(.show) .header-search-wrapper {
+.header-bottom.fixed
+    .header-search-inline.header-search:not(.show)
+    .header-search-wrapper {
     display: none;
 }
-.header-bottom.fixed .header-search-inline.header-search .header-search-inline .btn:after,
+.header-bottom.fixed
+    .header-search-inline.header-search
+    .header-search-inline
+    .btn:after,
 .header-bottom.fixed .header-search-inline.header-search .search-toggle {
     display: block;
 }
@@ -10987,10 +11010,14 @@ footer .contact-info-label {
 .product-widgets-container .product-price {
     font-size: 1.5rem;
 }
-.product-single-container:not(.product-quick-view) .product-action .add-cart.added-to-cart:before {
+.product-single-container:not(.product-quick-view)
+    .product-action
+    .add-cart.added-to-cart:before {
     display: none;
 }
-.product-single-container:not(.product-quick-view) .product-action .add-cart.added-to-cart:after {
+.product-single-container:not(.product-quick-view)
+    .product-action
+    .add-cart.added-to-cart:after {
     margin-left: 8px;
     font-family: "Font Awesome 5 Free";
     content: "";
@@ -11489,7 +11516,8 @@ main .sticky-header .product-ratings:before {
 .product-single-share:not(.icon-with-color) .social-icon {
     border-radius: 50%;
 }
-.product-single-share:not(.icon-with-color) .social-icon:not(:hover):not(:active):not(:focus) {
+.product-single-share:not(.icon-with-color)
+    .social-icon:not(:hover):not(:active):not(:focus) {
     color: #222529;
     background-color: transparent;
     border-color: #e7e7e7;
@@ -11861,7 +11889,10 @@ main .sticky-header .product-ratings:before {
 .add-product-review {
     padding-top: 5px;
 }
-.add-product-review .custom-checkbox .custom-control-input:checked ~ .custom-control-label:after {
+.add-product-review
+    .custom-checkbox
+    .custom-control-input:checked
+    ~ .custom-control-label:after {
     top: 4px;
     left: 2px;
 }
@@ -11915,11 +11946,17 @@ main .sticky-header .product-ratings:before {
     font-size: 1.2rem;
     font-weight: 300;
 }
-.add-product-review .custom-checkbox .custom-control-input:checked ~ .custom-control-label:before {
+.add-product-review
+    .custom-checkbox
+    .custom-control-input:checked
+    ~ .custom-control-label:before {
     background-color: #0075ff;
     border-color: #0075ff;
 }
-.add-product-review .custom-checkbox .custom-control-input:checked ~ .custom-control-label:after {
+.add-product-review
+    .custom-checkbox
+    .custom-control-input:checked
+    ~ .custom-control-label:after {
     color: #fff;
 }
 .add-product-review .custom-control {

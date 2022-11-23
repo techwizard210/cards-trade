@@ -1,0 +1,4 @@
+[19-Oct-2022 05:55:30 UTC] PHP Fatal error:  Uncaught Error: Class 'Illuminate\Database\Seeder' not found in /home/cardcfbi/public_html/database/seeders/DatabaseSeeder.php:7
+Stack trace:
+#0 {main}
+  thrown in /home/cardcfbi/public_html/database/seeders/DatabaseSeeder.php on line 7

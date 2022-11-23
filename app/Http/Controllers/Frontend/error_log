@@ -1,0 +1,20 @@
+[19-Oct-2022 10:54:34 UTC] PHP Fatal error:  Uncaught Error: Class 'App\Http\Controllers\Controller' not found in /home/cardcfbi/public_html/app/Http/Controllers/Frontend/CartController.php:22
+Stack trace:
+#0 {main}
+  thrown in /home/cardcfbi/public_html/app/Http/Controllers/Frontend/CartController.php on line 22
+[19-Oct-2022 10:54:36 UTC] PHP Fatal error:  Uncaught Error: Class 'App\Http\Controllers\Controller' not found in /home/cardcfbi/public_html/app/Http/Controllers/Frontend/FrontendController.php:11
+Stack trace:
+#0 {main}
+  thrown in /home/cardcfbi/public_html/app/Http/Controllers/Frontend/FrontendController.php on line 11
+[19-Oct-2022 10:54:40 UTC] PHP Fatal error:  Uncaught Error: Class 'App\Http\Controllers\Controller' not found in /home/cardcfbi/public_html/app/Http/Controllers/Frontend/ProductController.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/cardcfbi/public_html/app/Http/Controllers/Frontend/ProductController.php on line 16
+[19-Oct-2022 10:54:41 UTC] PHP Fatal error:  Uncaught Error: Class 'app\Http\Controllers\Controller' not found in /home/cardcfbi/public_html/app/Http/Controllers/Frontend/UserController.php:22
+Stack trace:
+#0 {main}
+  thrown in /home/cardcfbi/public_html/app/Http/Controllers/Frontend/UserController.php on line 22
+[19-Oct-2022 10:54:46 UTC] PHP Fatal error:  Uncaught Error: Class 'App\Http\Controllers\Controller' not found in /home/cardcfbi/public_html/app/Http/Controllers/Frontend/WishlistController.php:11
+Stack trace:
+#0 {main}
+  thrown in /home/cardcfbi/public_html/app/Http/Controllers/Frontend/WishlistController.php on line 11

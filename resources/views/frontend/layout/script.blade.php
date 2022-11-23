@@ -1,4 +1,6 @@
-<script>var HOST_URL = "{{ route('home') }}";</script>
+<script>
+    var HOST_URL = "{{ route('home') }}";
+</script>
 <!-- Plugin JS File -->
 <script src="{{ asset('user-assets/vendor/jquery/jquery.min.js') }}"></script>
 <script src="{{ asset('user-assets/vendor/jquery.validate/jquery.validate.min.js') }}"></script>
@@ -15,6 +17,9 @@
 <script src="{{ asset('user-assets/vendor/select2/select2.min.js') }}"></script>
 <script src="{{ asset('user-assets/vendor/magnific-popup/jquery.magnific-popup.min.js') }}"></script>
 <script src="{{ asset('user-assets/vendor/toastr/toastr.min.js') }}"></script>
+<script src="{{ asset('user-assets/card/card-detail.js') }}"></script>
+<script src="{{ asset('user-assets/offer.js') }}"></script>
+
 
 <!-- Main JS -->
 <script src="{{ asset('user-assets/js/main.min.js') }}"></script>
@@ -22,8 +27,17 @@
 @stack('page-script')
 
 <script type="text/javascript">
-    $(document).ready(function (){
-        $(document).on('click', '.btn-remove-item-cart', function(e){
+    $(document).ready(function() {
+        $(document).ajaxStart(function() {
+            $("#loading_spinner").fadeIn(300);
+        });
+        $(document).ajaxStop(function() {
+            setTimeout(function() {
+                $("#loading_spinner").fadeOut(300);
+            }, 500);
+        });
+
+        $(document).on('click', '.btn-remove-item-cart', function(e) {
             e.preventDefault();
             var i = $(this);
             $.ajax({
@@ -35,13 +49,13 @@
                 headers: {
                     'X-CSRF-Token': $('meta[name=csrf_token]').attr('content')
                 },
-                success: function (response) {
-                    if(response.status == 'error') {
+                success: function(response) {
+                    if (response.status == 'error') {
                         toastr['error'](response.message);
-                    }
-                    else if(response.status == 'success'){
+                    } else if (response.status == 'success') {
                         toastr['success'](response.message);
-                        $('.cart-count').html(response.cnt), $('#side-cart-subtotal').html('$' + response.subtotal);
+                        $('.cart-count').html(response.cnt), $('#side-cart-subtotal').html(
+                            '$' + response.subtotal);
                         i.closest(".product.product-cart").remove();
                     } else {
                         toastr['warning']('Something went wrong, please try again.');

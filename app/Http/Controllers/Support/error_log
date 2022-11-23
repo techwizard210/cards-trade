@@ -1,0 +1,8 @@
+[19-Oct-2022 10:55:06 UTC] PHP Fatal error:  Uncaught Error: Class 'App\Http\Controllers\Controller' not found in /home/cardcfbi/public_html/app/Http/Controllers/Support/EmailController.php:10
+Stack trace:
+#0 {main}
+  thrown in /home/cardcfbi/public_html/app/Http/Controllers/Support/EmailController.php on line 10
+[19-Oct-2022 10:55:09 UTC] PHP Fatal error:  Uncaught Error: Class 'App\Http\Controllers\Controller' not found in /home/cardcfbi/public_html/app/Http/Controllers/Support/UtilController.php:9
+Stack trace:
+#0 {main}
+  thrown in /home/cardcfbi/public_html/app/Http/Controllers/Support/UtilController.php on line 9

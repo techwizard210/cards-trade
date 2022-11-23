@@ -1,0 +1,16 @@
+[19-Oct-2022 10:53:55 UTC] PHP Fatal error:  Uncaught Error: Class 'App\Http\Controllers\Controller' not found in /home/cardcfbi/public_html/app/Http/Controllers/Admin/AdminController.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/cardcfbi/public_html/app/Http/Controllers/Admin/AdminController.php on line 16
+[19-Oct-2022 10:53:57 UTC] PHP Fatal error:  Uncaught Error: Class 'App\Http\Controllers\Controller' not found in /home/cardcfbi/public_html/app/Http/Controllers/Admin/CardController.php:19
+Stack trace:
+#0 {main}
+  thrown in /home/cardcfbi/public_html/app/Http/Controllers/Admin/CardController.php on line 19
+[19-Oct-2022 10:53:59 UTC] PHP Fatal error:  Uncaught Error: Class 'App\Http\Controllers\Controller' not found in /home/cardcfbi/public_html/app/Http/Controllers/Admin/CustomerController.php:23
+Stack trace:
+#0 {main}
+  thrown in /home/cardcfbi/public_html/app/Http/Controllers/Admin/CustomerController.php on line 23
+[19-Oct-2022 10:54:01 UTC] PHP Fatal error:  Uncaught Error: Class 'App\Http\Controllers\Controller' not found in /home/cardcfbi/public_html/app/Http/Controllers/Admin/MerchantController.php:19
+Stack trace:
+#0 {main}
+  thrown in /home/cardcfbi/public_html/app/Http/Controllers/Admin/MerchantController.php on line 19

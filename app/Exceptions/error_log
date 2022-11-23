@@ -1,0 +1,4 @@
+[19-Oct-2022 00:11:26 UTC] PHP Fatal error:  Uncaught Error: Class 'Illuminate\Foundation\Exceptions\Handler' not found in /home/cardcfbi/public_html/app/Exceptions/Handler.php:8
+Stack trace:
+#0 {main}
+  thrown in /home/cardcfbi/public_html/app/Exceptions/Handler.php on line 8

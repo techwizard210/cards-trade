@@ -1,0 +1,56 @@
+[18-Oct-2022 13:26:32 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/cardcfbi/public_html/config/app.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/cardcfbi/public_html/config/app.php on line 16
+[18-Oct-2022 13:26:36 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/cardcfbi/public_html/config/broadcasting.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/cardcfbi/public_html/config/broadcasting.php on line 18
+[18-Oct-2022 13:26:38 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/cardcfbi/public_html/config/cache.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/cardcfbi/public_html/config/cache.php on line 18
+[18-Oct-2022 13:26:42 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/cardcfbi/public_html/config/database.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/cardcfbi/public_html/config/database.php on line 18
+[18-Oct-2022 13:26:44 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/cardcfbi/public_html/config/filesystems.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/cardcfbi/public_html/config/filesystems.php on line 16
+[18-Oct-2022 13:26:45 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/cardcfbi/public_html/config/hashing.php:32
+Stack trace:
+#0 {main}
+  thrown in /home/cardcfbi/public_html/config/hashing.php on line 32
+[18-Oct-2022 13:26:48 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/cardcfbi/public_html/config/laravel-crypto-payment-gateway.php:52
+Stack trace:
+#0 {main}
+  thrown in /home/cardcfbi/public_html/config/laravel-crypto-payment-gateway.php on line 52
+[18-Oct-2022 13:26:50 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/cardcfbi/public_html/config/logging.php:20
+Stack trace:
+#0 {main}
+  thrown in /home/cardcfbi/public_html/config/logging.php on line 20
+[18-Oct-2022 13:26:52 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/cardcfbi/public_html/config/mail.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/cardcfbi/public_html/config/mail.php on line 16
+[18-Oct-2022 13:26:53 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/cardcfbi/public_html/config/queue.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/cardcfbi/public_html/config/queue.php on line 16
+[18-Oct-2022 13:26:55 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/cardcfbi/public_html/config/sanctum.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/cardcfbi/public_html/config/sanctum.php on line 16
+[18-Oct-2022 13:26:57 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/cardcfbi/public_html/config/services.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/cardcfbi/public_html/config/services.php on line 18
+[18-Oct-2022 13:26:59 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/cardcfbi/public_html/config/session.php:21
+Stack trace:
+#0 {main}
+  thrown in /home/cardcfbi/public_html/config/session.php on line 21
+[18-Oct-2022 13:27:01 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function resource_path() in /home/cardcfbi/public_html/config/view.php:17
+Stack trace:
+#0 {main}
+  thrown in /home/cardcfbi/public_html/config/view.php on line 17

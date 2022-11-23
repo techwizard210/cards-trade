@@ -1,0 +1,8 @@
+[19-Oct-2022 06:03:07 UTC] PHP Fatal error:  Uncaught Error: Class 'Illuminate\Routing\Controller' not found in /home/cardcfbi/public_html/app/Http/Controllers/Controller.php:10
+Stack trace:
+#0 {main}
+  thrown in /home/cardcfbi/public_html/app/Http/Controllers/Controller.php on line 10
+[19-Oct-2022 06:03:13 UTC] PHP Fatal error:  Uncaught Error: Class 'App\Http\Controllers\Controller' not found in /home/cardcfbi/public_html/app/Http/Controllers/HomeController.php:7
+Stack trace:
+#0 {main}
+  thrown in /home/cardcfbi/public_html/app/Http/Controllers/HomeController.php on line 7

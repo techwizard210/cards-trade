@@ -1,5 +1,10 @@
 <!-- Start of Header -->
 <header class="header header-border">
+    <div id="loading_spinner">
+        <div class="cv_spinner">
+            <span class="span_spinner"></span>
+        </div>
+    </div>
     <div class="header-top">
         <div class="container">
             <div class="header-left">
@@ -16,13 +21,12 @@
 
                 <a href="assets/ajax/login.html" class="ml-0 d-lg-show login register">Register</a> --}}
                 @auth
-                <a href="{{ route('my-account') }}" class="d-lg-show">My Account</a>
-                <a href="{{ route('logout') }}" class="d-lg-show">Sign Out</a>
+                    <a href="{{ route('my-account') }}" class="d-lg-show">My Account</a>
+                    <a href="{{ route('logout') }}" class="d-lg-show">Sign Out</a>
                 @else
-                <a href="{{ route('login') }}" class="d-lg-show"><i
-                    class="w-icon-account"></i>Sign In</a>
-                <span class="delimiter d-lg-show">/</span>
-                <a href="{{ route('register') }}" class="ml-0 d-lg-show">Register</a>
+                    <a href="{{ route('login') }}" class="d-lg-show"><i class="w-icon-account"></i>Sign In</a>
+                    <span class="delimiter d-lg-show">/</span>
+                    <a href="{{ route('register') }}" class="ml-0 d-lg-show">Register</a>
                 @endauth
             </div>
         </div>
@@ -35,19 +39,21 @@
                 <a href="#" class="mobile-menu-toggle  w-icon-hamburger" aria-label="menu-toggle">
                 </a>
                 <a href="{{ route('home') }}" class="logo ml-lg-0">
-                    <img src="{{ asset('user-assets/images/logo-black.png') }}" alt="CardsTrade" width="180" height="45" />
+                    <img src="{{ asset('user-assets/images/logo-black.png') }}" alt="CardsTrade" width="180"
+                        height="45" />
                 </a>
-                <form method="get" action="#" class="header-search hs-expanded hs-round d-none d-md-flex input-wrapper">
+                <form method="get" action="#"
+                    class="header-search hs-expanded hs-round d-none d-md-flex input-wrapper">
                     <div class="select-box">
                         <select id="category" name="category">
                             <option value="0">All Categories</option>
                             @foreach (Helper::getAllCategories() as $list)
-                            <option value="{{ $list->id }}">{{ $list->title }}</option>
+                                <option value="{{ $list->id }}">{{ $list->title }}</option>
                             @endforeach
                         </select>
                     </div>
-                    <input type="text" class="form-control" name="search" id="search"
-                        placeholder="Search in..." required />
+                    <input type="text" class="form-control" name="search" id="search" placeholder="Search in..."
+                        required />
                     <button class="btn btn-search" type="submit"><i class="w-icon-search"></i>
                     </button>
                 </form>
@@ -57,8 +63,11 @@
                     <a href="tel:#" class="w-icon-call"></a>
                     <div class="call-info d-lg-show">
                         <h4 class="chat font-weight-normal font-size-md text-normal ls-normal text-light mb-0">
-                            <a href="https://wa.me/+15083221918" class="text-capitalize" target="_blank">Whatsapp</a> or :</h4>
-                        <a href="tel:+1 508 322 1918" class="phone-number font-weight-bolder ls-50">+1 (508) 322-1918</a>
+                            <a href="https://wa.me/+15083221918" class="text-capitalize" target="_blank">Whatsapp</a> or
+                            :
+                        </h4>
+                        <a href="tel:+1 508 322 1918" class="phone-number font-weight-bolder ls-50">+1 (508)
+                            322-1918</a>
                     </div>
                 </div>
                 <a class="wishlist label-down link d-xs-show" href="{{ route('wishlist') }}">
@@ -83,8 +92,7 @@
                 <div class="header-left">
                     <div class="dropdown category-dropdown has-border" data-visible="true">
                         <a href="#" class="category-toggle" role="button" data-toggle="dropdown"
-                            aria-haspopup="true" aria-expanded="true" data-display="static"
-                            title="Browse Categories">
+                            aria-haspopup="true" aria-expanded="true" data-display="static" title="Browse Categories">
                             <i class="w-icon-category"></i>
                             <span>Browse Categories</span>
                         </a>
@@ -92,14 +100,15 @@
                         <div class="dropdown-box">
                             <ul class="menu vertical-menu category-menu">
                                 @foreach (Helper::getAllCategories() as $list)
-                                <li>
-                                    <a href="{{ route('buy').'?cat='.$list->id }}">
-                                        {{ $list->title }}
-                                    </a>
-                                </li>
+                                    <li>
+                                        <a href="{{ route('buy') . '?cat=' . $list->id }}">
+                                            {{ $list->title }}
+                                        </a>
+                                    </li>
                                 @endforeach
                                 <li>
-                                    <a href="{{ route('buy') }}" class="font-weight-bold text-primary text-uppercase ls-25">
+                                    <a href="{{ route('buy') }}"
+                                        class="font-weight-bold text-primary text-uppercase ls-25">
                                         View All Categories<i class="w-icon-angle-right"></i>
                                     </a>
                                 </li>

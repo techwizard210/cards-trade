@@ -1,0 +1,24 @@
+[19-Oct-2022 10:54:11 UTC] PHP Fatal error:  Uncaught Error: Class 'App\Http\Controllers\Controller' not found in /home/cardcfbi/public_html/app/Http/Controllers/Auth/ConfirmPasswordController.php:9
+Stack trace:
+#0 {main}
+  thrown in /home/cardcfbi/public_html/app/Http/Controllers/Auth/ConfirmPasswordController.php on line 9
+[19-Oct-2022 10:54:13 UTC] PHP Fatal error:  Uncaught Error: Class 'App\Http\Controllers\Controller' not found in /home/cardcfbi/public_html/app/Http/Controllers/Auth/ForgotPasswordController.php:8
+Stack trace:
+#0 {main}
+  thrown in /home/cardcfbi/public_html/app/Http/Controllers/Auth/ForgotPasswordController.php on line 8
+[19-Oct-2022 10:54:15 UTC] PHP Fatal error:  Uncaught Error: Class 'App\Http\Controllers\Controller' not found in /home/cardcfbi/public_html/app/Http/Controllers/Auth/LoginController.php:9
+Stack trace:
+#0 {main}
+  thrown in /home/cardcfbi/public_html/app/Http/Controllers/Auth/LoginController.php on line 9
+[19-Oct-2022 10:54:17 UTC] PHP Fatal error:  Uncaught Error: Class 'App\Http\Controllers\Controller' not found in /home/cardcfbi/public_html/app/Http/Controllers/Auth/RegisterController.php:12
+Stack trace:
+#0 {main}
+  thrown in /home/cardcfbi/public_html/app/Http/Controllers/Auth/RegisterController.php on line 12
+[19-Oct-2022 10:54:19 UTC] PHP Fatal error:  Uncaught Error: Class 'App\Http\Controllers\Controller' not found in /home/cardcfbi/public_html/app/Http/Controllers/Auth/ResetPasswordController.php:9
+Stack trace:
+#0 {main}
+  thrown in /home/cardcfbi/public_html/app/Http/Controllers/Auth/ResetPasswordController.php on line 9
+[19-Oct-2022 10:54:21 UTC] PHP Fatal error:  Uncaught Error: Class 'App\Http\Controllers\Controller' not found in /home/cardcfbi/public_html/app/Http/Controllers/Auth/VerificationController.php:9
+Stack trace:
+#0 {main}
+  thrown in /home/cardcfbi/public_html/app/Http/Controllers/Auth/VerificationController.php on line 9
